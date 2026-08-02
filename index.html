@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Зимняя Россия за 30 дней — маршрут для двоих</title>
+<title>Зимняя Россия за 30 дней — для моей любви Иззи</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Prata&family=Golos+Text:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
@@ -87,6 +87,11 @@ a{color:inherit}
 }
 .hero h1{font-size:clamp(38px,6.6vw,74px); color:#fff; margin:16px 0 0; max-width:16ch}
 .hero h1 em{font-style:normal; color:var(--gold-soft)}
+.dedication{
+  display:flex; align-items:center; gap:14px; margin:18px 0 0;
+  font-family:"Prata",Georgia,serif; font-size:clamp(17px,2.2vw,24px); color:var(--gold-soft);
+}
+.dedication::before{content:""; width:46px; height:1px; background:var(--gold); flex:none}
 .hero-lead{max-width:56ch; color:#B9C9DB; margin-top:20px; font-size:17px}
 .facts{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:1px; background:rgba(255,255,255,.14); margin-top:44px; border-radius:var(--r); overflow:hidden}
 .fact{background:var(--ink); padding:20px 18px}
@@ -248,6 +253,7 @@ footer .sign{font-family:"JetBrains Mono",monospace; font-size:11px; letter-spac
   <div class="wrap hero-in">
     <div class="eyebrow">Маршрут для двоих · 5 января — 3 февраля</div>
     <h1>Зимняя Россия <em>за 30 дней</em></h1>
+    <p class="dedication">для моей любви Иззи</p>
     <p class="hero-lead">Для человека, который никогда не видел снега. Шесть городов, восемь переездов, ни одного перелёта — и девять дней, в которые не запланировано ровным счётом ничего.</p>
     <div class="facts">
       <div class="fact"><span class="n">30</span><span class="l">ночей</span></div>
@@ -1319,6 +1325,7 @@ footer .sign{font-family:"JetBrains Mono",monospace; font-size:11px; letter-spac
   <div class="wrap hero-in">
     <div class="eyebrow">A route for two · 5 January — 3 February</div>
     <h1>Winter Russia <em>in 30 days</em></h1>
+    <p class="dedication">for my love, Izzy</p>
     <p class="hero-lead">Built for someone who has never seen snow. Six cities, eight journeys, not a single flight — and nine days with absolutely nothing planned.</p>
     <div class="facts">
       <div class="fact"><span class="n">30</span><span class="l">nights</span></div>
@@ -2415,6 +2422,7 @@ function setLang(lang){
   ru.hidden = lang !== 'ru';
   en.hidden = lang !== 'en';
   document.documentElement.lang = lang;
+  document.title = lang === 'en' ? 'Winter Russia in 30 Days — for my love, Izzy' : 'Зимняя Россия за 30 дней — для моей любви Иззи';
   document.querySelectorAll('[data-en]').forEach(function(el){
     if(el.dataset.ru === undefined) el.dataset.ru = el.innerHTML;
     el.innerHTML = lang === 'en' ? el.dataset.en : el.dataset.ru;
