@@ -1,0 +1,2438 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Зимняя Россия за 30 дней — маршрут для двоих</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Prata&family=Golos+Text:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#101B2E;
+  --ink-2:#1C2B44;
+  --frost:#E9EFF6;
+  --frost-2:#DDE7F1;
+  --paper:#FFFFFF;
+  --gold:#C08A28;
+  --gold-soft:#E8C77A;
+  --blue:#4E7CAE;
+  --berry:#8C2F39;
+  --text:#17233A;
+  --muted:#5A6B84;
+  --line:#C9D6E4;
+  --shadow:0 1px 2px rgba(16,27,46,.06), 0 12px 32px -18px rgba(16,27,46,.35);
+  --r:14px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth; scroll-padding-top:78px}
+body{
+  margin:0; background:var(--frost); color:var(--text);
+  font-family:"Golos Text",-apple-system,Segoe UI,Roboto,sans-serif;
+  font-size:16.5px; line-height:1.62; -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4{font-family:"Prata",Georgia,serif; font-weight:400; letter-spacing:-.01em; line-height:1.15; margin:0}
+p{margin:0 0 1em}
+a{color:inherit}
+.mono{font-family:"JetBrains Mono",ui-monospace,monospace}
+.wrap{max-width:1120px; margin:0 auto; padding:0 22px}
+
+/* ---------- nav ---------- */
+.nav{
+  position:sticky; top:0; z-index:50;
+  background:rgba(233,239,246,.88); backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.nav-in{display:flex; align-items:center; gap:18px; height:60px}
+.brand{font-family:"JetBrains Mono",monospace; font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--muted); white-space:nowrap}
+.brand b{color:var(--ink); font-weight:700}
+.nav-links{display:flex; gap:4px; overflow-x:auto; scrollbar-width:none; margin-left:auto}
+.nav-links::-webkit-scrollbar{display:none}
+.nav-links a{
+  text-decoration:none; font-size:14px; color:var(--muted); padding:7px 12px; border-radius:99px;
+  white-space:nowrap; transition:background .2s,color .2s;
+}
+.nav-links a:hover,.nav-links a.on{background:var(--ink); color:#fff}
+.lang{display:flex; gap:2px; background:var(--frost-2); border-radius:99px; padding:3px; margin-left:14px; flex:none}
+.lang-btn{
+  font-family:"JetBrains Mono",monospace; font-size:11px; letter-spacing:.08em; cursor:pointer;
+  border:0; background:none; color:var(--muted); padding:6px 11px; border-radius:99px; transition:background .2s,color .2s;
+}
+.lang-btn[aria-pressed="true"]{background:var(--ink); color:#fff}
+.lang-btn:focus-visible{outline:2px solid var(--blue); outline-offset:2px}
+
+/* ---------- hero ---------- */
+.hero{
+  background:var(--ink); color:#EAF1F9; position:relative; overflow:hidden;
+  padding:74px 0 0;
+}
+.hero::before{
+  content:""; position:absolute; inset:0;
+  background-image:
+    radial-gradient(1.6px 1.6px at 12% 22%, var(--gold-soft) 50%, transparent 51%),
+    radial-gradient(1.4px 1.4px at 27% 62%, var(--gold-soft) 50%, transparent 51%),
+    radial-gradient(1.2px 1.2px at 41% 15%, #fff 50%, transparent 51%),
+    radial-gradient(1.7px 1.7px at 58% 44%, var(--gold-soft) 50%, transparent 51%),
+    radial-gradient(1.3px 1.3px at 71% 25%, #fff 50%, transparent 51%),
+    radial-gradient(1.5px 1.5px at 83% 66%, var(--gold-soft) 50%, transparent 51%),
+    radial-gradient(1.2px 1.2px at 92% 33%, #fff 50%, transparent 51%),
+    radial-gradient(1.4px 1.4px at 34% 84%, var(--gold-soft) 50%, transparent 51%),
+    radial-gradient(1.2px 1.2px at 64% 88%, #fff 50%, transparent 51%);
+  opacity:.85;
+}
+.hero-in{position:relative; z-index:1; padding-bottom:56px}
+.eyebrow{
+  font-family:"JetBrains Mono",monospace; font-size:11px; letter-spacing:.2em;
+  text-transform:uppercase; color:var(--gold-soft);
+}
+.hero h1{font-size:clamp(38px,6.6vw,74px); color:#fff; margin:16px 0 0; max-width:16ch}
+.hero h1 em{font-style:normal; color:var(--gold-soft)}
+.hero-lead{max-width:56ch; color:#B9C9DB; margin-top:20px; font-size:17px}
+.facts{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:1px; background:rgba(255,255,255,.14); margin-top:44px; border-radius:var(--r); overflow:hidden}
+.fact{background:var(--ink); padding:20px 18px}
+.fact .n{font-family:"Prata",serif; font-size:30px; color:#fff; display:block}
+.fact .l{font-family:"JetBrains Mono",monospace; font-size:10.5px; letter-spacing:.12em; text-transform:uppercase; color:#8FA5BF; margin-top:6px; display:block}
+.dome{height:14px; background:
+  repeating-linear-gradient(90deg,var(--gold) 0 2px,transparent 2px 9px),
+  linear-gradient(var(--ink-2),var(--ink-2));
+  opacity:.9}
+
+/* ---------- sections ---------- */
+section{padding:76px 0 4px}
+.sec-head{display:flex; align-items:baseline; gap:16px; margin-bottom:8px; flex-wrap:wrap}
+.sec-head .eyebrow{color:var(--blue)}
+.sec-head h2{font-size:clamp(28px,4vw,42px)}
+.sec-sub{color:var(--muted); max-width:70ch; margin:10px 0 34px}
+
+/* ---------- route spine ---------- */
+.spine{list-style:none; padding:0; margin:0 0 34px; position:relative}
+.spine::before{content:""; position:absolute; left:11px; top:12px; bottom:12px; width:2px; background:linear-gradient(var(--blue),var(--gold))}
+.stop{position:relative; padding:0 0 0 42px; margin-bottom:6px}
+.stop::before{
+  content:""; position:absolute; left:4px; top:16px; width:16px; height:16px; border-radius:50%;
+  background:var(--paper); border:3px solid var(--ink);
+}
+.stop.major::before{border-color:var(--gold); background:var(--gold)}
+.stop-card{
+  background:var(--paper); border:1px solid var(--line); border-radius:var(--r);
+  padding:14px 18px; display:flex; align-items:center; gap:14px; flex-wrap:wrap; box-shadow:var(--shadow);
+}
+.stop-card .city{font-family:"Prata",serif; font-size:20px}
+.stop-card .dates{color:var(--muted); font-size:14px}
+.nights{
+  font-family:"JetBrains Mono",monospace; font-size:12px; background:var(--frost-2);
+  border-radius:99px; padding:4px 11px; margin-left:auto; white-space:nowrap;
+}
+.leg{font-family:"JetBrains Mono",monospace; font-size:12.5px; color:var(--muted); padding:9px 0 9px 42px}
+.leg b{color:var(--berry); font-weight:500}
+
+/* ---------- tables ---------- */
+.tbl-wrap{overflow-x:auto; border:1px solid var(--line); border-radius:var(--r); background:var(--paper); margin:0 0 26px; box-shadow:var(--shadow)}
+table{border-collapse:collapse; width:100%; min-width:520px; font-size:15px}
+th{
+  text-align:left; font-family:"JetBrains Mono",monospace; font-weight:500; font-size:10.5px;
+  letter-spacing:.11em; text-transform:uppercase; color:var(--muted);
+  padding:13px 16px; border-bottom:1px solid var(--line); background:#F7FAFD; white-space:nowrap;
+}
+td{padding:13px 16px; border-bottom:1px solid #EDF2F7; vertical-align:top}
+tr:last-child td{border-bottom:0}
+td.num,th.num{text-align:right; font-family:"JetBrains Mono",monospace; font-size:13.5px; white-space:nowrap}
+tr.total td{background:var(--ink); color:#fff; font-weight:600}
+tr.total td.num{color:var(--gold-soft)}
+.day{font-family:"JetBrains Mono",monospace; font-weight:700; color:var(--blue); white-space:nowrap}
+
+/* ---------- city cards ---------- */
+.city{background:var(--paper); border:1px solid var(--line); border-radius:20px; padding:30px 30px 12px; margin-bottom:26px; box-shadow:var(--shadow)}
+.city-head{display:flex; align-items:flex-end; gap:18px; flex-wrap:wrap; border-bottom:2px solid var(--ink); padding-bottom:16px; margin-bottom:22px}
+.city-head h3{font-size:clamp(26px,3.6vw,36px)}
+.city-head .meta{font-family:"JetBrains Mono",monospace; font-size:12px; color:var(--muted); margin-left:auto; text-align:right}
+.city-head .meta b{display:block; font-size:22px; color:var(--gold); font-weight:700}
+.why{border-left:3px solid var(--gold); background:#FCF7EC; padding:14px 18px; border-radius:0 10px 10px 0; margin-bottom:24px; font-size:15.5px}
+.why b{font-family:"JetBrains Mono",monospace; font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--gold); display:block; margin-bottom:4px}
+.grid{display:grid; gap:22px; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); margin-bottom:10px}
+.block h4{font-size:19px; margin-bottom:10px; display:flex; align-items:center; gap:9px}
+.block h4::before{content:""; width:7px; height:7px; background:var(--blue); border-radius:2px; transform:rotate(45deg); flex:none}
+ul{margin:0 0 18px; padding-left:19px}
+li{margin-bottom:7px}
+li b{font-weight:600}
+.tag{display:inline-block; font-family:"JetBrains Mono",monospace; font-size:11px; background:var(--frost-2); color:var(--ink-2); padding:3px 9px; border-radius:99px; margin:0 5px 5px 0}
+
+/* ---------- notes ---------- */
+.note{background:#FBEEF0; border:1px solid #EBC9CE; border-left:4px solid var(--berry); border-radius:0 12px 12px 0; padding:16px 20px; margin:0 0 26px; font-size:15.5px}
+.note b{color:var(--berry)}
+.tip{background:#EDF5FB; border:1px solid #CFE0EE; border-left:4px solid var(--blue); border-radius:0 12px 12px 0; padding:16px 20px; margin:0 0 26px; font-size:15.5px}
+
+/* ---------- budget ---------- */
+.tiers{display:flex; gap:10px; flex-wrap:wrap; margin-bottom:26px}
+.tier-btn{
+  font-family:"Golos Text",sans-serif; font-size:14.5px; cursor:pointer;
+  background:var(--paper); border:1px solid var(--line); border-radius:12px; padding:12px 18px; text-align:left;
+  transition:border-color .2s, background .2s, color .2s; color:var(--text);
+}
+.tier-btn span{display:block; font-family:"JetBrains Mono",monospace; font-size:12px; color:var(--muted); margin-top:3px}
+.tier-btn[aria-selected="true"]{background:var(--ink); color:#fff; border-color:var(--ink)}
+.tier-btn[aria-selected="true"] span{color:var(--gold-soft)}
+.tier-btn:focus-visible{outline:3px solid var(--blue); outline-offset:2px}
+.panel[hidden]{display:none}
+.summary{display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:14px; margin-bottom:26px}
+.sum-card{background:var(--paper); border:1px solid var(--line); border-radius:var(--r); padding:20px; box-shadow:var(--shadow)}
+.sum-card .l{font-family:"JetBrains Mono",monospace; font-size:10.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted)}
+.sum-card .v{font-family:"Prata",serif; font-size:30px; margin-top:8px}
+.sum-card .v small{font-size:15px; color:var(--muted); font-family:"Golos Text",sans-serif}
+.sum-card.hi{background:var(--ink); border-color:var(--ink)}
+.sum-card.hi .l{color:#8FA5BF} .sum-card.hi .v{color:var(--gold-soft)} .sum-card.hi .v small{color:#B9C9DB}
+
+/* ---------- daylight bars ---------- */
+.daylight{list-style:none; padding:0; margin:0 0 26px}
+.daylight li{display:grid; grid-template-columns:minmax(130px,1fr) 3fr auto; gap:14px; align-items:center; margin-bottom:12px}
+.dl-bar{height:22px; border-radius:6px; overflow:hidden; display:flex; background:var(--ink-2)}
+.dl-light{background:linear-gradient(90deg,#F0C86B,#FFF3D6,#F0C86B)}
+.dl-val{font-family:"JetBrains Mono",monospace; font-size:12.5px; color:var(--muted); white-space:nowrap}
+
+/* ---------- food ---------- */
+.dish{background:var(--paper); border:1px solid var(--line); border-radius:var(--r); padding:20px 22px; box-shadow:var(--shadow)}
+.dish h4{font-size:20px; margin-bottom:12px}
+.dish ul{margin-bottom:0}
+
+/* ---------- pace ---------- */
+.gauge{background:var(--paper); border:1px solid var(--line); border-radius:20px; padding:28px 30px; box-shadow:var(--shadow); margin-bottom:26px}
+.gauge-scale{position:relative; height:10px; border-radius:99px; background:linear-gradient(90deg,#7FB069,#EBC15A,#C25B4E); margin:22px 0 8px}
+.gauge-pin{position:absolute; top:-9px; left:35%; width:4px; height:28px; background:var(--ink); border-radius:2px}
+.gauge-pin::after{content:"3,5 / 10"; position:absolute; top:-26px; left:50%; transform:translateX(-50%); font-family:"JetBrains Mono",monospace; font-size:12px; font-weight:700; white-space:nowrap}
+.gauge-ends{display:flex; justify-content:space-between; font-family:"JetBrains Mono",monospace; font-size:11px; color:var(--muted)}
+
+/* ---------- footer ---------- */
+footer{background:var(--ink); color:#B9C9DB; margin-top:80px; padding:56px 0 44px}
+footer h3{color:#fff; font-size:26px; margin-bottom:18px}
+footer ol{padding-left:20px; max-width:70ch}
+footer li{margin-bottom:12px}
+footer .sign{font-family:"JetBrains Mono",monospace; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:#6E839D; margin-top:34px; border-top:1px solid rgba(255,255,255,.14); padding-top:22px}
+
+.reveal{opacity:0; transform:translateY(14px); transition:opacity .6s ease, transform .6s ease}
+.reveal.in{opacity:1; transform:none}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .reveal{opacity:1; transform:none; transition:none}
+}
+@media (max-width:640px){
+  body{font-size:16px}
+  .city{padding:22px 18px 8px}
+  .daylight li{grid-template-columns:1fr; gap:6px}
+  section{padding:56px 0 4px}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap nav-in">
+    <div class="brand" data-en="30 nights · January"><b>30 ночей</b> · январь</div>
+    <div class="nav-links">
+      <a href="#route" data-sec="route" data-en="Route">Маршрут</a>
+      <a href="#lite" data-sec="lite" data-en="Lite version">Упрощённый</a>
+      <a href="#cities" data-sec="cities" data-en="Cities">Города</a>
+      <a href="#budget" data-sec="budget" data-en="Budget">Бюджет</a>
+      <a href="#practice" data-sec="practice" data-en="Practical">Практика</a>
+      <a href="#food" data-sec="food" data-en="Food">Кухня</a>
+      <a href="#pace" data-sec="pace" data-en="Pace">Темп</a>
+    </div>
+    <div class="lang">
+      <button class="lang-btn" type="button" data-lang="ru" aria-pressed="true">RU</button>
+      <button class="lang-btn" type="button" data-lang="en" aria-pressed="false">EN</button>
+    </div>
+  </div>
+</nav>
+
+<div id="ru-content">
+<header class="hero">
+  <div class="wrap hero-in">
+    <div class="eyebrow">Маршрут для двоих · 5 января — 3 февраля</div>
+    <h1>Зимняя Россия <em>за 30 дней</em></h1>
+    <p class="hero-lead">Для человека, который никогда не видел снега. Шесть городов, восемь переездов, ни одного перелёта — и девять дней, в которые не запланировано ровным счётом ничего.</p>
+    <div class="facts">
+      <div class="fact"><span class="n">30</span><span class="l">ночей</span></div>
+      <div class="fact"><span class="n">6</span><span class="l">городов + 4 поездки одним днём</span></div>
+      <div class="fact"><span class="n">8</span><span class="l">переездов</span></div>
+      <div class="fact"><span class="n">9</span><span class="l">дней без программы</span></div>
+      <div class="fact"><span class="n">8 000</span><span class="l">NZD на человека</span></div>
+    </div>
+  </div>
+  <div class="dome"></div>
+</header>
+
+<main>
+
+<!-- ============ МАРШРУТ ============ -->
+<section id="route">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">01</div>
+      <h2>Маршрут</h2>
+    </div>
+    <p class="sec-sub">Кольцо без возвратов: Москва — Золотое кольцо по дуге — Москва — Петербург — Новгород — Москва. Самолёты не нужны: самое длинное плечо занимает 3 часа 45 минут, и это «Сапсан». Если хочется ещё спокойнее — ниже есть <a href="#lite">упрощённая версия на четыре города</a>.</p>
+
+    <ol class="spine">
+      <li class="stop major"><div class="stop-card"><span class="city">Москва</span><span class="dates">5–10 января · знакомство</span><span class="nights mono">6 ночей</span></div></li>
+      <li class="leg">↓ «Ласточка» до Владимира <b>1 ч 40 мин</b> + трансфер в Суздаль <b>45 мин</b></li>
+      <li class="stop"><div class="stop-card"><span class="city">Суздаль</span><span class="dates">11–14 января · + Владимир</span><span class="nights mono">4 ночи</span></div></li>
+      <li class="leg">↓ трансфер <b>3 ч 30 мин</b></li>
+      <li class="stop"><div class="stop-card"><span class="city">Кострома</span><span class="dates">15–16 января</span><span class="nights mono">2 ночи</span></div></li>
+      <li class="leg">↓ электричка <b>1 ч 20 мин</b></li>
+      <li class="stop"><div class="stop-card"><span class="city">Ярославль</span><span class="dates">17–19 января · + Ростов Великий</span><span class="nights mono">3 ночи</span></div></li>
+      <li class="leg">↓ «Ласточка» <b>3 ч 15 мин</b></li>
+      <li class="stop"><div class="stop-card"><span class="city">Москва</span><span class="dates">20–21 января · пауза посередине</span><span class="nights mono">2 ночи</span></div></li>
+      <li class="leg">↓ <b>«Сапсан» 3 ч 45 мин</b></li>
+      <li class="stop major"><div class="stop-card"><span class="city">Санкт-Петербург</span><span class="dates">22–29 января</span><span class="nights mono">8 ночей</span></div></li>
+      <li class="leg">↓ «Ласточка» <b>3 ч</b></li>
+      <li class="stop"><div class="stop-card"><span class="city">Великий Новгород</span><span class="dates">30–31 января</span><span class="nights mono">2 ночи</span></div></li>
+      <li class="leg">↓ ночной поезд <b>8 ч</b>, купе</li>
+      <li class="stop"><div class="stop-card"><span class="city">Москва</span><span class="dates">1–3 февраля · буфер и подарки</span><span class="nights mono">3 ночи</span></div></li>
+    </ol>
+
+    <h3 style="font-size:22px;margin-bottom:14px">Все переезды и цены</h3>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Отрезок</th><th>Транспорт</th><th>Время</th><th class="num">Цена / чел.</th></tr></thead>
+        <tbody>
+          <tr><td>Аэропорт → отель, Москва</td><td>Аэроэкспресс или такси</td><td>45–60 мин</td><td class="num">500–2 500 ₽</td></tr>
+          <tr><td>Москва → Владимир</td><td>«Ласточка», Курский вокзал</td><td>1 ч 40 мин</td><td class="num">1 000–1 500 ₽</td></tr>
+          <tr><td>Владимир → Суздаль</td><td>Индивидуальный трансфер</td><td>45 мин</td><td class="num">1 500 ₽</td></tr>
+          <tr><td>Суздаль → Кострома</td><td>Индивидуальный трансфер</td><td>3 ч 30 мин</td><td class="num">4 000–6 000 ₽</td></tr>
+          <tr><td>Кострома → Ярославль</td><td>Электричка или автобус</td><td>1 ч 20 мин</td><td class="num">500–800 ₽</td></tr>
+          <tr><td>Ярославль → Москва</td><td>«Ласточка», Ярославский вокзал</td><td>3 ч 15 мин</td><td class="num">1 500–2 000 ₽</td></tr>
+          <tr><td><b>Москва → Санкт-Петербург</b></td><td><b>«Сапсан»</b></td><td>3 ч 45 мин</td><td class="num">5 000–8 000 ₽</td></tr>
+          <tr><td>Петербург → Великий Новгород</td><td>«Ласточка»</td><td>3 ч</td><td class="num">1 000–1 400 ₽</td></tr>
+          <tr><td>Великий Новгород → Москва</td><td>Ночной поезд, купе</td><td>8 ч</td><td class="num">4 000–5 000 ₽</td></tr>
+          <tr><td>Москва → аэропорт</td><td>Аэроэкспресс или такси</td><td>45–60 мин</td><td class="num">500–2 500 ₽</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note"><b>Билеты покупайте в кассе вокзала за наличные по загранпаспорту</b> — иностранные карты в России не работают, включая сайт РЖД. Второй рабочий вариант: попросить отель выкупить билеты за вас. «Сапсан» и «Ласточки» берите за 1–2 недели: цена динамическая и растёт по мере заполнения.</div>
+
+    <h3 style="font-size:22px;margin-bottom:14px">Почему именно январь и именно эти даты</h3>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Дата</th><th>Что происходит</th><th>Почему это ценно</th></tr></thead>
+        <tbody>
+          <tr><td class="day">5–8 янв</td><td>Святки, конец новогодних каникул</td><td>Города ещё полностью украшены, но пик толп 31.12–3.01 уже позади</td></tr>
+          <tr><td class="day">7 янв</td><td>Православное Рождество</td><td>Праздничные службы, особая атмосфера в Москве</td></tr>
+          <tr><td class="day">14 янв</td><td>Старый Новый год</td><td>В Суздале отмечают по-домашнему, с гуляньями на Торговой площади</td></tr>
+          <tr><td class="day">19 янв</td><td>Крещение</td><td>Крестные ходы и водосвятные молебны, храмы Ярославля в праздничном убранстве</td></tr>
+          <tr><td class="day">конец янв</td><td>Самый снежный период</td><td>Меньше туристов, ниже цены, световой день уже заметно длиннее</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="sec-sub">Иллюминация в Москве и Петербурге обычно горит до середины февраля — весь маршрут пройдёт в подсвеченном городе.</p>
+  </div>
+</section>
+
+<!-- ============ УПРОЩЁННЫЙ ВАРИАНТ ============ -->
+<section id="lite">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">Альтернатива</div>
+      <h2>Упрощённый маршрут</h2>
+    </div>
+    <p class="sec-sub">Если шесть городов кажутся перебором — вот версия на четыре города и всего пять переездов. Те же 30 ночей, тот же бюджет, но вы почти всё время живёте в одном отеле и не собираете чемодан каждые три дня.</p>
+
+    <ol class="spine">
+      <li class="stop major"><div class="stop-card"><span class="city">Москва</span><span class="dates">5–15 января · с поездками в Сергиев Посад и Владимир</span><span class="nights mono">11 ночей</span></div></li>
+      <li class="leg">↓ «Ласточка» до Владимира <b>1 ч 40</b> + трансфер <b>45 мин</b></li>
+      <li class="stop"><div class="stop-card"><span class="city">Суздаль</span><span class="dates">16–19 января</span><span class="nights mono">4 ночи</span></div></li>
+      <li class="leg">↓ трансфер и «Ласточка» обратно в Москву <b>2 ч 30</b></li>
+      <li class="stop"><div class="stop-card"><span class="city">Москва</span><span class="dates">20 января · транзитная ночь</span><span class="nights mono">1 ночь</span></div></li>
+      <li class="leg">↓ <b>«Сапсан» 3 ч 45</b></li>
+      <li class="stop major"><div class="stop-card"><span class="city">Санкт-Петербург</span><span class="dates">21–31 января · с Царским Селом, Павловском, Кронштадтом</span><span class="nights mono">11 ночей</span></div></li>
+      <li class="leg">↓ «Ласточка» <b>3 ч</b></li>
+      <li class="stop"><div class="stop-card"><span class="city">Великий Новгород</span><span class="dates">1–2 февраля</span><span class="nights mono">2 ночи</span></div></li>
+      <li class="leg">↓ ночной поезд <b>8 ч</b></li>
+      <li class="stop"><div class="stop-card"><span class="city">Москва</span><span class="dates">3 февраля · ночь перед вылетом</span><span class="nights mono">1 ночь</span></div></li>
+    </ol>
+
+    <div class="grid">
+      <div class="block">
+        <h4>Что выигрываете</h4>
+        <ul>
+          <li><b>5 переездов вместо 8</b> — один раз в шесть дней</li>
+          <li>Два «дома» на весь месяц: 12 ночей в Москве и 11 в Петербурге в одном и том же отеле</li>
+          <li>Появляется время на то, что обычно вырезают: второй заход в Эрмитаж без спешки, Кронштадт, Коломенское, ВДНХ целиком</li>
+          <li>Утомительность падает примерно до <b>2,5 из 10</b>: дней отдыха становится 12–13</li>
+          <li>Меньше чемоданных дней — значит меньше такси, вокзалов и «где мы сегодня ночуем»</li>
+        </ul>
+      </div>
+      <div class="block">
+        <h4>Чем жертвуете</h4>
+        <ul>
+          <li><b>Кострома</b> — а вместе с ней лосиная ферма и Терем Снегурочки, самое необычное развлечение всего маршрута</li>
+          <li><b>Ярославль и Ростов Великий</b> — ростовская финифть, звоны и замёрзшее озеро Неро</li>
+          <li>Ощущение «мы проехали страну»: провинция останется представленной одним Суздалем</li>
+          <li>Волга в этом варианте не появляется вообще</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 style="font-size:22px;margin-bottom:14px">Чем занять освободившиеся дни</h3>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Где</th><th>Дни</th><th>Чем наполнить</th></tr></thead>
+        <tbody>
+          <tr><td><b>Москва</b></td><td class="day">+5 дней</td><td>Сергиев Посад и Владимир одним днём (по 1,5 ч на «Ласточке»), ВДНХ и Музей космонавтики целиком, Коломенское, Кусково, Бункер-42, второй визит в Третьяковку, хаски, цирк на Цветном бульваре, мастер-класс по пельменям</td></tr>
+          <tr><td><b>Петербург</b></td><td class="day">+3 дня</td><td>Кронштадт и «Остров фортов», Петергоф зимой, Павловск отдельным днём, Эрарта, Юсуповский дворец, экскурсия по парадным, второй балет</td></tr>
+          <tr><td><b>Суздаль</b></td><td class="day">4 дня</td><td>Без изменений: Владимир, Боголюбово, кремль, монастыри, сани, медовуха</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 style="font-size:22px;margin-bottom:14px">Бюджет упрощённого варианта</h3>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Категория</th><th class="num">₽ / чел.</th><th class="num">NZD / чел.</th><th>Отличие от основного маршрута</th></tr></thead>
+        <tbody>
+          <tr><td>Жильё</td><td class="num">115 000</td><td class="num">2 556</td><td>Больше ночей в дорогих Москве и Петербурге</td></tr>
+          <tr><td>Транспорт по России</td><td class="num">35 000</td><td class="num">778</td><td>Три переезда отпадают, добавляются две электрички одним днём</td></tr>
+          <tr><td>Питание</td><td class="num">90 000</td><td class="num">2 000</td><td>Без изменений</td></tr>
+          <tr><td>Музеи</td><td class="num">26 000</td><td class="num">578</td><td>Без изменений: провинциальные музеи заменяются столичными</td></tr>
+          <tr><td>Развлечения</td><td class="num">30 000</td><td class="num">667</td><td>Без изменений</td></tr>
+          <tr><td>Сувениры, связь, страховка, виза</td><td class="num">33 000</td><td class="num">733</td><td>Без изменений</td></tr>
+          <tr><td>Резерв</td><td class="num">30 000</td><td class="num">667</td><td>Без изменений</td></tr>
+          <tr class="total"><td>Итого на человека</td><td class="num">359 000 ₽</td><td class="num">7 978</td><td>На двоих — 718 000 ₽ / 15 956 NZD</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="tip"><b>Как выбрать.</b> Если для вашей девушки это первая поездка в Россию и главное — впечатление, а не количество галочек, берите упрощённый вариант: он спокойнее и почти не отличается по деньгам. Если хочется увидеть именно провинцию — деревянные дома, замёрзшую Волгу, маленькие города, — оставайтесь на основном маршруте: разница в усталости не такая большая, как кажется.</div>
+
+    <div class="note"><b>Компромисс между двумя вариантами:</b> оставить основной маршрут, но убрать из него Кострому. Тогда получается пять городов, семь переездов, а освободившиеся две ночи уходят в Ярославль — Ростов Великий и лосиную ферму можно совместить в один длинный день с водителем.</div>
+  </div>
+</section>
+
+<!-- ============ ГОРОДА ============ -->
+<section id="cities">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">02</div>
+      <h2>Города</h2>
+    </div>
+    <p class="sec-sub">Принцип всего маршрута: не больше одного «большого» дела в день, каждый третий-четвёртый день — пустой.</p>
+
+    <!-- МОСКВА 1 -->
+    <article class="city">
+      <div class="city-head">
+        <h3>Москва · часть первая</h3>
+        <div class="meta"><b>6 ночей</b>дни 1–6 · 5–10 января</div>
+      </div>
+      <div class="why"><b>Почему столько</b>Это одновременно первая встреча с настоящей зимой и с огромным городом. Один-два дня уйдут на акклиматизацию после перелёта из Новой Зеландии (разница 10–12 часов), а январская Москва — это не только музеи, но и главный зимний театр страны: катки, ярмарки, иллюминация. Меньше пяти дней здесь — гарантированная гонка.</div>
+
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>День</th><th>Программа</th><th>Нагрузка</th></tr></thead>
+          <tbody>
+            <tr><td class="day">1</td><td>Прилёт, заселение, короткая вечерняя прогулка до Красной площади, ужин рядом с отелем</td><td>Лёгкая</td></tr>
+            <tr><td class="day">2</td><td>Красная площадь, ГУМ, парк «Зарядье», парящий мост, Ледяная пещера</td><td>Средняя</td></tr>
+            <tr><td class="day">3</td><td>Московский Кремль: Соборная площадь и <b>Оружейная палата</b>. Вечер свободный</td><td>Средняя</td></tr>
+            <tr><td class="day">4</td><td><b>Третьяковская галерея</b>, прогулка по Замоскворечью, вечером каток</td><td>Средняя</td></tr>
+            <tr><td class="day">5</td><td><b>Без программы:</b> метро-прогулка по красивым станциям, Патриаршие пруды, кофейни, ГЭС-2</td><td>Лёгкая</td></tr>
+            <tr><td class="day">6</td><td>Царицыно или Коломенское, вечером балет или рождественская ярмарка</td><td>Средняя</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="grid">
+        <div class="block">
+          <h4>Главное</h4>
+          <ul>
+            <li><b>Красная площадь и собор Василия Блаженного</b> — в снегу и вечерней подсветке выглядит буквально как иллюстрация к сказке</li>
+            <li><b>Кремль</b> — Соборная площадь, колокольня Ивана Великого, Царь-пушка</li>
+            <li><b>ГУМ</b> — не магазин, а памятник архитектуры: стеклянная крыша, фонтан, «Гастроном №1» с советскими интерьерами</li>
+            <li><b>Парк «Зарядье»</b> — парящий мост с видом на Кремль, Ледяная пещера (−5 °C круглый год)</li>
+            <li><b>Новодевичий монастырь</b> — зимой почти безлюдно, замёрзший пруд, самый тихий вид Москвы</li>
+            <li><b>Царицыно</b> — готический дворец в снегу и огромный подсвеченный парк</li>
+            <li><b>Коломенское</b> — деревянный дворец Алексея Михайловича, вид на реку с высокого берега</li>
+            <li><b>Измайловский кремль</b> — китчево, но именно там удобно покупать валенки, шапки и сувениры</li>
+          </ul>
+        </div>
+        <div class="block">
+          <h4>Музеи</h4>
+          <ul>
+            <li><b>Оружейная палата</b> — кареты, троны, яйца Фаберже, царские одежды <span class="tag">1 500–2 000 ₽</span></li>
+            <li><b>Третьяковская галерея</b> — от икон Рублёва до Врубеля <span class="tag">800–1 200 ₽</span></li>
+            <li><b>Новая Третьяковка</b> — авангард: Малевич, Кандинский <span class="tag">800–1 000 ₽</span></li>
+            <li><b>ГМИИ им. Пушкина</b> — европейское искусство <span class="tag">800–1 200 ₽</span></li>
+            <li><b>Музей космонавтики</b> на ВДНХ — Гагарин, «Луноход», скафандры <span class="tag">500–700 ₽</span></li>
+            <li><b>Музей русского импрессионизма</b> — идеальный «музей на два часа» <span class="tag">500–700 ₽</span></li>
+            <li><b>ГЭС-2</b> — современное искусство в бывшей электростанции <span class="tag">часто бесплатно</span></li>
+            <li><b>Бункер-42</b> на Таганке — командный пункт на глубине 65 м <span class="tag">1 500–2 500 ₽</span></li>
+          </ul>
+        </div>
+        <div class="block">
+          <h4>Зимние прогулки</h4>
+          <ul>
+            <li><b>Замоскворечье:</b> Лаврушинский → Ордынка → Пятницкая — купеческие дома, церкви, тихие дворы</li>
+            <li><b>Чистые пруды → Покровка → Хохловский переулок</b> — самый уютный маршрут с кофейнями</li>
+            <li><b>Патриаршие пруды</b> — каток прямо на пруду, дом Булгакова рядом</li>
+            <li><b>Крутицкое подворье</b> — деревянная мостовая и изразцы, ощущение XVII века</li>
+            <li><b>Воробьёвы горы → Нескучный сад → Парк Горького</b> вдоль замёрзшей реки</li>
+          </ul>
+          <h4>Смотровые</h4>
+          <ul>
+            <li><b>Воробьёвы горы</b> — классическая панорама <span class="tag">бесплатно</span></li>
+            <li><b>Панорама 360</b>, башня «Федерация», 89-й этаж <span class="tag">1 500–2 500 ₽</span></li>
+            <li><b>Крыша ЦДМ на Лубянке</b> — малоизвестный вид на Кремль <span class="tag">бесплатно</span></li>
+            <li><b>Парящий мост в «Зарядье»</b> <span class="tag">бесплатно</span></li>
+          </ul>
+        </div>
+        <div class="block">
+          <h4>Где есть</h4>
+          <ul>
+            <li><b>Кафе «Пушкинъ»</b> — русская классика в интерьере дворянского особняка <span class="tag">4 000–7 000 ₽</span></li>
+            <li><b>«Доктор Живаго»</b> — вид на Кремль, лучшие завтраки <span class="tag">2 500–4 000 ₽</span></li>
+            <li><b>«Мари Vanna»</b> — как квартира бабушки: пельмени, селёдка под шубой, настойки <span class="tag">2 500–3 500 ₽</span></li>
+            <li><b>«Вареничная №1»</b> — демократично и по-домашнему <span class="tag">1 200–1 800 ₽</span></li>
+            <li><b>«Столовая №57»</b> в ГУМе — советская столовая, огромные порции <span class="tag">700–1 200 ₽</span></li>
+            <li><b>Даниловский рынок</b> и <b>Depo.Moscow</b> — гастромаркеты на любой вкус <span class="tag">800–2 000 ₽</span></li>
+          </ul>
+        </div>
+        <div class="block">
+          <h4>Катки и ярмарки</h4>
+          <ul>
+            <li><b>ГУМ-каток на Красной площади</b> — самый открыточный вид в стране <span class="tag">1 000–2 000 ₽</span></li>
+            <li><b>ВДНХ</b> — крупнейший каток Европы, музыка и подсвеченные павильоны <span class="tag">600–1 200 ₽</span></li>
+            <li><b>Парк Горького</b> — дорожки среди деревьев, огни, глинтвейн <span class="tag">500–1 000 ₽</span></li>
+            <li><b>Патриаршие пруды</b> — каток на настоящем пруду <span class="tag">300–500 ₽</span></li>
+            <li><b>«Путешествие в Рождество»</b> — ярмарочные домики на Тверской, Манежной, площади Революции. Обычно с середины декабря до середины января, даты объявляют в декабре</li>
+          </ul>
+        </div>
+        <div class="block">
+          <h4>Необычное</h4>
+          <ul>
+            <li><b>Чайная церемония с самоваром</b> — в «Пушкинъ» или в чайных на Мясницкой, где до сих пор торгуют развесным чаем в интерьерах чайного дома Перлова</li>
+            <li><b>Балет</b> — Большой (билеты за 2–3 месяца), Новая опера, театр Станиславского</li>
+            <li><b>Рождественская служба 7 января</b> — Храм Христа Спасителя или маленький храм в Замоскворечье</li>
+            <li><b>Хаски-парк в Сокольниках</b> — упряжка прямо в городе</li>
+            <li><b>Мастер-класс по лепке пельменей</b> — проводят для двоих во многих студиях</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tip">Многие музеи закрыты по понедельникам, Кремль — по четвергам. Планируйте «музейные» дни заранее.</div>
+    </article>
+
+    <!-- СУЗДАЛЬ -->
+    <article class="city">
+      <div class="city-head">
+        <h3>Суздаль <span style="font-size:.55em;color:var(--muted)">+ Владимир</span></h3>
+        <div class="meta"><b>4 ночи</b>дни 7–10 · 11–14 января</div>
+      </div>
+      <div class="why"><b>Почему столько</b>Главное открытие маршрута: город без единого высокого здания, где две сотни памятников стоят среди снежных полей. Четыре ночи дают день на Владимир по дороге, два полных дня в Суздале и один совершенно свободный — на сани, медовуху и долгие обеды. Именно здесь зима будет самой настоящей.</div>
+
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>День</th><th>Программа</th></tr></thead>
+          <tbody>
+            <tr><td class="day">7</td><td>Утром «Ласточка» во <b>Владимир</b>: Золотые ворота, Успенский собор с фресками Рублёва, Дмитриевский собор, смотровая на Георгиевской. Днём трансфер в Суздаль</td></tr>
+            <tr><td class="day">8</td><td>Суздальский кремль, Рождественский собор, Торговые ряды, Музей деревянного зодчества</td></tr>
+            <tr><td class="day">9</td><td>Спасо-Евфимиев монастырь с колокольными звонами, Покровский монастырь, дегустация медовухи</td></tr>
+            <tr><td class="day">10</td><td><b>Без программы:</b> катание в санях, Ильинский луг, ледяные горки, долгий обед</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="grid">
+        <div class="block">
+          <h4>Владимир за полдня</h4>
+          <ul>
+            <li><b>Золотые ворота</b> (1164) — единственные сохранившиеся домонгольские городские ворота России</li>
+            <li><b>Успенский собор</b> — фрески Андрея Рублёва, XII век, ЮНЕСКО</li>
+            <li><b>Дмитриевский собор</b> — 600 резных белокаменных рельефов на фасадах</li>
+            <li><b>Улица Георгиевская</b> и смотровая на заснеженную пойму Клязьмы</li>
+            <li><b>Боголюбово и церковь Покрова на Нерли</b> — полтора километра пешком по снежному лугу до одинокого белого храма. Одевайтесь максимально тепло: на лугу сильный ветер</li>
+          </ul>
+        </div>
+        <div class="block">
+          <h4>Суздаль</h4>
+          <ul>
+            <li><b>Суздальский кремль</b> и Рождественский собор с синими куполами в золотых звёздах</li>
+            <li><b>Спасо-Евфимиев монастырь</b> — крепостные стены, аптекарский огород и живые <b>колокольные звоны</b> несколько раз в день (узнайте расписание)</li>
+            <li><b>Музей деревянного зодчества</b> — избы, мельницы и деревянные церкви под снегом</li>
+            <li><b>Покровский монастырь</b> — место ссылки цариц, тихий и белый</li>
+            <li><b>Торговая площадь</b> — сувениры, валенки, варежки, горячий сбитень</li>
+            <li><b>Ильинский луг</b> — панорама на весь город с реки Каменки. Лучшая фотография поездки будет отсюда</li>
+          </ul>
+        </div>
+        <div class="block">
+          <h4>Где есть</h4>
+          <ul>
+            <li><b>«Огурец»</b> — современная русская кухня, местные огурцы во всех видах <span class="tag">1 500–2 500 ₽</span></li>
+            <li><b>«ГраФинъ»</b> — настойки и отличная кухня <span class="tag">1 500–2 500 ₽</span></li>
+            <li><b>«Гостиный двор»</b> — классика на главной площади <span class="tag">1 200–2 000 ₽</span></li>
+            <li><b>Трапезная в Кремле</b> — своды и каша в горшочке <span class="tag">1 000–1 800 ₽</span></li>
+            <li><b>Медоваренный завод</b> — дегустация десяти сортов медовухи <span class="tag">500–900 ₽</span></li>
+          </ul>
+        </div>
+        <div class="block">
+          <h4>Необычное</h4>
+          <ul>
+            <li><b>Катание в санях с лошадью</b> по заснеженным улицам <span class="tag">1 500–3 000 ₽</span></li>
+            <li><b>Тюбинг и ледяные горки</b> на территории ГТК «Суздаль»</li>
+            <li><b>Ужин у настоящей печи</b> в трапезной с чугунками и настойками — самое суздальское, что можно придумать</li>
+            <li><b>Старый Новый год 14 января</b> — гулянья на Торговой площади</li>
+            <li><b>Ночная прогулка</b> — фонарей почти нет, зато видны звёзды, а снег светится</li>
+          </ul>
+        </div>
+      </div>
+    </article>
+
+    <!-- КОСТРОМА -->
+    <article class="city">
+      <div class="city-head">
+        <h3>Кострома</h3>
+        <div class="meta"><b>2 ночи</b>дни 11–12 · 15–16 января</div>
+      </div>
+      <div class="why"><b>Почему столько</b>Центр обходится за день, но здесь два уникальных объекта: Ипатьевский монастырь, где началась династия Романовых, и Терем Снегурочки с лосиной фермой поблизости. Две ночи позволяют не спешить и уехать в Ярославль отдохнувшими.</div>
+      <div class="grid">
+        <div class="block">
+          <h4>Что смотреть</h4>
+          <ul>
+            <li><b>Ипатьевский монастырь</b> — колыбель дома Романовых, Троицкий собор с фресками, палаты бояр</li>
+            <li><b>«Костромская слобода»</b> — музей деревянного зодчества рядом с монастырём, зимой сказочный</li>
+            <li><b>Сусанинская площадь, Торговые ряды, каланча</b> — образцовый классицистический ансамбль</li>
+            <li><b>Набережная Волги</b> — зимой река замерзает; для человека, не видевшего льда на большой реке, это отдельное впечатление</li>
+            <li><b>Терем Снегурочки</b> — Ледяная комната изо льда (−14 °C), напитки в ледяных стаканах</li>
+            <li><b>Романовский музей</b> и <b>Музей сыра</b> — небольшие и тёплые</li>
+          </ul>
+        </div>
+        <div class="block">
+          <h4>Необычное и еда</h4>
+          <ul>
+            <li><b>Сумароковская лосиная ферма</b> в 20 км: кормить лосей с руки и попробовать лосиное молоко. Таких мест в мире единицы</li>
+            <li><b>Красное-на-Волге</b> — ювелирный посёлок, полдня, если интересны украшения</li>
+            <li><b>«Гроза»</b> — лучший ресторан города <span class="tag">1 500–2 500 ₽</span></li>
+            <li><b>«Слобода»</b> — домашняя кухня у монастыря <span class="tag">1 000–1 800 ₽</span></li>
+            <li><b>Рынок у Торговых рядов</b> — чёрная соль, мёд, солёные грузди</li>
+          </ul>
+        </div>
+      </div>
+    </article>
+
+    <!-- ЯРОСЛАВЛЬ -->
+    <article class="city">
+      <div class="city-head">
+        <h3>Ярославль <span style="font-size:.55em;color:var(--muted)">+ Ростов Великий</span></h3>
+        <div class="meta"><b>3 ночи</b>дни 13–15 · 17–19 января</div>
+      </div>
+      <div class="why"><b>Почему столько</b>Столица Золотого кольца: центр под охраной ЮНЕСКО, набережная Волги и настоящая городская жизнь — кофейни, театры, рестораны. После маленького Суздаля это приятная смена ритма. Один из трёх дней уходит на Ростов Великий, который пропускать нельзя.</div>
+
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>День</th><th>Программа</th></tr></thead>
+          <tbody>
+            <tr><td class="day">13</td><td>Заселение, Волжская набережная, Стрелка, Успенский собор, вечер в кафе</td></tr>
+            <tr><td class="day">14</td><td><b>Ростов Великий</b> — час на электричке: Ростовский кремль, замёрзшее озеро Неро, музей финифти</td></tr>
+            <tr><td class="day">15</td><td>Спасо-Преображенский монастырь, церковь Ильи Пророка, музей «Музыка и время», вечером Волковский театр</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="grid">
+        <div class="block">
+          <h4>Ярославль</h4>
+          <ul>
+            <li><b>Спасо-Преображенский монастырь</b> — древнейшие постройки города, звонница со смотровой площадкой</li>
+            <li><b>Церковь Ильи Пророка</b> — фрески XVII века, эталон ярославской школы (зимой открыта не всегда, уточняйте)</li>
+            <li><b>Волжская набережная и Стрелка</b> — прогулка над замёрзшей Волгой</li>
+            <li><b>Волковский театр</b> — первый русский профессиональный театр, 1750 год</li>
+            <li><b>Музей «Музыка и время»</b> — частная коллекция шарманок, часов и колоколов; хозяева показывают всё в звуке</li>
+            <li><b>Митрополичьи палаты</b> и Губернаторский дом — древнерусское искусство и живопись XIX века</li>
+          </ul>
+        </div>
+        <div class="block">
+          <h4>Ростов Великий</h4>
+          <ul>
+            <li><b>Ростовский кремль</b> — тот самый, из «Ивана Васильевича»: белые стены, переходы, знаменитые ростовские звоны</li>
+            <li><b>Озеро Неро</b> — зимой можно выйти на лёд, там же рыбаки и снегоходы</li>
+            <li><b>Музей финифти</b> — уникальная местная эмаль и лучшие сувениры маршрута</li>
+            <li><b>Спасо-Яковлевский монастырь</b> — вид на озеро с берега</li>
+            <li>Обед в музее-ресторане <b>«Собрание»</b> или в трапезной кремля</li>
+          </ul>
+        </div>
+        <div class="block">
+          <h4>Где есть и зимнее</h4>
+          <ul>
+            <li><b>«Иоанн Васильевич»</b> — интерьеры по мотивам советских комедий, лучший «вау-ужин» города <span class="tag">1 500–2 500 ₽</span></li>
+            <li><b>«Ванильное небо»</b> — панорамный вид на Волгу <span class="tag">2 000–3 000 ₽</span></li>
+            <li><b>«Пенаты»</b> — уютные завтраки <span class="tag">700–1 200 ₽</span></li>
+            <li>Каток на <b>Даманском острове</b> и в городском парке</li>
+            <li><b>Прогулка по льду Волги</b> в районе Стрелки — только по натоптанным тропам, где ходят местные</li>
+          </ul>
+        </div>
+      </div>
+    </article>
+
+    <!-- МОСКВА 2 -->
+    <article class="city">
+      <div class="city-head">
+        <h3>Москва · пауза</h3>
+        <div class="meta"><b>2 ночи</b>дни 16–17 · 20–21 января</div>
+      </div>
+      <div class="why"><b>Почему столько</b>После Золотого кольца нужен мягкий переход. Дни без обязательств: то, что не успели в первый раз, любимое кафе ещё раз, шопинг, отдых перед «Сапсаном». Психологически это важная пауза ровно в середине поездки.</div>
+      <div class="grid">
+        <div class="block">
+          <h4>Выбрать два-три пункта, не больше</h4>
+          <ul>
+            <li><b>ВДНХ</b> — павильоны сталинской эпохи в снегу, каток, Музей космонавтики</li>
+            <li><b>Пушкинский музей</b> или <b>Музей русского импрессионизма</b> — то, что не успели</li>
+            <li><b>Цирк на Цветном бульваре</b> или «Москвариум» на ВДНХ — если хочется чего-то нетуристического</li>
+            <li><b>Метро-прогулка</b>: «Комсомольская», «Новослободская», «Маяковская», «Площадь Революции» — потереть нос бронзовой собаке</li>
+            <li><b>Измайловский кремль</b> — сувениры перед второй половиной поездки</li>
+            <li>Вечером — «Красный Октябрь», ГЭС-2, вид на Кремль с Патриаршего моста</li>
+          </ul>
+        </div>
+        <div class="block">
+          <h4>День 18: «Сапсан»</h4>
+          <p>Ленинградский вокзал → Московский вокзал, 3 ч 45 мин. Берите утренний рейс, чтобы приехать засветло, и место у окна: заснеженные леса всю дорогу.</p>
+          <p style="margin:0">Завтрак в поезде включён не во все тарифы — проверьте при покупке.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- ПЕТЕРБУРГ -->
+    <article class="city">
+      <div class="city-head">
+        <h3>Санкт-Петербург</h3>
+        <div class="meta"><b>8 ночей</b>дни 18–25 · 22–29 января</div>
+      </div>
+      <div class="why"><b>Почему столько</b>Это как минимум три отдельных города: имперский центр, музеи мирового уровня и пригородные дворцы. Эрмитаж честно требует двух визитов. Плюс короткий световой день и частая пасмурность — нужен запас на дни, когда хочется провести три часа в музее и два в кофейне.</div>
+
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>День</th><th>Программа</th><th>Нагрузка</th></tr></thead>
+          <tbody>
+            <tr><td class="day">18</td><td>«Сапсан», заселение, Невский проспект вечером, ужин</td><td>Лёгкая</td></tr>
+            <tr><td class="day">19</td><td><b>Эрмитаж, визит первый</b>: парадные залы Зимнего дворца</td><td>Средняя</td></tr>
+            <tr><td class="day">20</td><td>Спас на Крови, Русский музей, Михайловский сад</td><td>Средняя</td></tr>
+            <tr><td class="day">21</td><td>Петропавловская крепость, Заячий остров, Стрелка Васильевского</td><td>Средняя</td></tr>
+            <tr><td class="day">22</td><td><b>Без программы:</b> Новая Голландия, каток, кофейни, Севкабель Порт</td><td>Лёгкая</td></tr>
+            <tr><td class="day">23</td><td><b>Царское Село</b>: Екатерининский дворец и Янтарная комната</td><td>Средняя</td></tr>
+            <tr><td class="day">24</td><td>Исаакиевский собор и колоннада, Юсуповский дворец, вечером <b>балет в Мариинском</b></td><td>Средняя</td></tr>
+            <tr><td class="day">25</td><td><b>Эрмитаж, визит второй</b> — Главный штаб, импрессионисты. Или Фаберже и Достоевский</td><td>Лёгкая</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="grid">
+        <div class="block">
+          <h4>Главное</h4>
+          <ul>
+            <li><b>Эрмитаж</b> — схема на два раза: Зимний дворец со старыми мастерами и Главный штаб с Моне, Матиссом, Пикассо</li>
+            <li><b>Спас на Крови</b> — семь тысяч квадратных метров мозаик внутри</li>
+            <li><b>Исаакиевский собор</b> — обязательно колоннада: лучшая зимняя панорама города, 262 ступени</li>
+            <li><b>Петропавловская крепость</b> — усыпальница Романовых, полуденный выстрел пушки, вид на замёрзшую Неву</li>
+            <li><b>Дворцовая площадь</b> с Александровской колонной вечером, в подсветке</li>
+            <li><b>Стрелка Васильевского острова</b> — Ростральные колонны и панорама на Зимний через лёд</li>
+          </ul>
+        </div>
+        <div class="block">
+          <h4>Музеи</h4>
+          <ul>
+            <li><b>Эрмитаж</b> — мировая пятёрка <span class="tag">500–1 000 ₽</span></li>
+            <li><b>Русский музей</b> — Брюллов, Айвазовский, Репин <span class="tag">700–1 000 ₽</span></li>
+            <li><b>Музей Фаберже</b> — императорские пасхальные яйца <span class="tag">800–1 200 ₽</span></li>
+            <li><b>Кунсткамера</b> — первый музей России <span class="tag">600–900 ₽</span></li>
+            <li><b>Юсуповский дворец</b> — интерьеры и подвал, где убили Распутина <span class="tag">1 000–1 800 ₽</span></li>
+            <li><b>Музей Ахматовой</b> в Фонтанном доме — самый атмосферный маленький музей города <span class="tag">400–600 ₽</span></li>
+            <li><b>Музей Достоевского</b> и <b>Эрарта</b> — на дождливый день <span class="tag">500–1 200 ₽</span></li>
+          </ul>
+        </div>
+        <div class="block">
+          <h4>Пригороды — выбрать один-два</h4>
+          <ul>
+            <li><b>Царское Село (Пушкин)</b> — Екатерининский дворец, Янтарная комната, парк в снегу <span class="tag">40 мин на электричке</span></li>
+            <li><b>Павловск</b> — самый красивый зимний парк, белки и синицы едят с рук <span class="tag">45 мин</span></li>
+            <li><b>Петергоф</b> — фонтаны выключены, но Большой дворец и заснеженный парк у залива почти пусты <span class="tag">40 мин</span></li>
+          </ul>
+          <p style="margin:0"><b>Рекомендация:</b> Царское Село обязательно, Павловск рядом — их удобно объединить в один день.</p>
+        </div>
+        <div class="block">
+          <h4>Прогулки и смотровые</h4>
+          <ul>
+            <li><b>Мойка → Новая Голландия → Никольский собор</b> — самый уютный маршрут города</li>
+            <li><b>Дворцовая набережная в сумерках</b> — фонари и лёд на Неве</li>
+            <li><b>Канал Грибоедова</b> от Спаса на Крови до Львиного мостика</li>
+            <li><b>Летний сад</b> зимой — скульптуры в футлярах, пустые аллеи</li>
+            <li><b>Елагин остров</b> — лыжи, коньки, белки</li>
+            <li>Смотровые: <b>колоннада Исаакия</b>, <b>«Лофт Проект Этажи»</b>, <b>колокольня Смольного собора</b></li>
+          </ul>
+        </div>
+        <div class="block">
+          <h4>Где есть</h4>
+          <ul>
+            <li><b>«Кококо»</b> — современная русская кухня из локальных продуктов, лучший гастро-опыт города <span class="tag">3 500–5 500 ₽</span></li>
+            <li><b>«Северянин»</b> — русская классика в интерьере 1910-х <span class="tag">2 000–3 000 ₽</span></li>
+            <li><b>«Идiотъ»</b> — подвальчик на Мойке по мотивам Достоевского <span class="tag">1 500–2 500 ₽</span></li>
+            <li><b>«Пышечная» на Большой Конюшенной</b> — пончики с сахарной пудрой с 1958 года <span class="tag">300–500 ₽</span></li>
+            <li><b>«Тепло»</b> — пледы и домашняя еда <span class="tag">1 500–2 500 ₽</span></li>
+            <li><b>Севкабель Порт</b> и <b>Василеостровский рынок</b> <span class="tag">1 000–1 800 ₽</span></li>
+          </ul>
+        </div>
+        <div class="block">
+          <h4>Зимнее и необычное</h4>
+          <ul>
+            <li><b>Каток в Новой Голландии</b> — маленький, с домиками и глинтвейном, в самом центре</li>
+            <li><b>Балет в Мариинском</b> — билеты за 1–2 месяца <span class="tag">3 000–12 000 ₽</span></li>
+            <li><b>Полуденный выстрел</b> с Нарышкина бастиона, ежедневно в 12:00</li>
+            <li><b>Кронштадт и парк «Остров фортов»</b> — Финский залив подо льдом, полдня</li>
+            <li><b>Экскурсия по парадным и дворам-колодцам</b> — тот Петербург, который не виден с улицы</li>
+            <li><b>Ледокол «Красин»</b> — музей на борту настоящего полярного ледокола, пришвартованного на Неве</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tip">Эрмитаж закрыт по понедельникам, Русский музей — по вторникам. Билеты в Эрмитаж лучше взять заранее онлайн через отель или в автоматах во дворе.</div>
+    </article>
+
+    <!-- НОВГОРОД -->
+    <article class="city">
+      <div class="city-head">
+        <h3>Великий Новгород</h3>
+        <div class="meta"><b>2 ночи</b>дни 26–27 · 30–31 января</div>
+      </div>
+      <div class="why"><b>Почему столько</b>Самый древний город маршрута (859 год) и лучший финальный аккорд: после имперского Петербурга — тихая средневековая Русь. Всё главное осматривается за полтора дня, а вечером второго дня удобный ночной поезд в Москву.</div>
+      <div class="grid">
+        <div class="block">
+          <h4>Что смотреть</h4>
+          <ul>
+            <li><b>Новгородский кремль (Детинец)</b> — крепость XV века, прогулка по стене</li>
+            <li><b>Софийский собор</b> (1050) — древнейший храм России, старше почти всего, что вы видели до этого</li>
+            <li><b>Памятник «Тысячелетие России»</b> — 129 фигур, вся история страны в одной скульптуре</li>
+            <li><b>Ярославово дворище</b> — восемь церквей на одном пятачке, вид через замёрзший Волхов</li>
+            <li><b>Витославлицы</b> — музей деревянного зодчества рядом с Юрьевым монастырём: избы, часовни, снег, тишина. Обязательно</li>
+            <li><b>Берестяные грамоты</b> в Музее письменности — записки обычных людей XI–XIV веков, включая рисунки мальчика Онфима</li>
+          </ul>
+        </div>
+        <div class="block">
+          <h4>Еда и зимнее</h4>
+          <ul>
+            <li><b>«Дом Берга»</b> — историческая русская кухня, лучший ресторан города <span class="tag">1 500–2 500 ₽</span></li>
+            <li><b>«Юрьевское подворье»</b> — деревенская кухня, печь, медовуха, рядом с Витославлицами</li>
+            <li><b>«Ильмень»</b> — рыба из озера</li>
+            <li>Прогулка <b>по льду Волхова</b> от Детинца к Ярославову дворищу — только по натоптанной тропе</li>
+            <li>Катание с горок и каток у стен кремля</li>
+            <li>Медовуха и сбитень на морозе — здесь их варят по старым рецептам</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tip">Вечером дня 27 — ночной поезд в Москву. Восемь часов, купе, чай в подстаканнике: экономит целый день и сам по себе является впечатлением.</div>
+    </article>
+
+    <!-- МОСКВА ФИНАЛ -->
+    <article class="city">
+      <div class="city-head">
+        <h3>Москва · финал</h3>
+        <div class="meta"><b>3 ночи</b>дни 28–30 · 1–3 февраля</div>
+      </div>
+      <div class="why"><b>Почему столько</b>Нужен буфер перед международным перелётом — зимой возможны метели и задержки поездов, — а также время на подарки и на «то, что понравилось, ещё раз». Никакой обязательной программы.</div>
+      <div class="grid">
+        <div class="block">
+          <h4>Идеи</h4>
+          <ul>
+            <li>Утро дня 28 — заселение после поезда, неспешный завтрак, отдых</li>
+            <li>Ещё раз Красная площадь и ГУМ — теперь как к старому знакомому</li>
+            <li><b>Усадьба Кусково или Останкино</b> — если хочется последней заснеженной усадьбы</li>
+            <li>Третьяковка второй раз или Пушкинский, если не успели</li>
+            <li>Прощальный ужин в «Пушкинъ» или «Доктор Живаго»</li>
+          </ul>
+        </div>
+        <div class="block">
+          <h4>Что привезти</h4>
+          <ul>
+            <li><b>Валенки</b> и шерстяные варежки — Измайлово</li>
+            <li><b>Ростовская финифть</b> и <b>суздальская медовуха</b> — куплены по дороге</li>
+            <li><b>Павловопосадский платок</b> — ГУМ, «Дом фарфора»</li>
+            <li><b>Конфеты «Красный Октябрь» и «Бабаевский»</b>, тульские пряники</li>
+            <li><b>Костромской сыр</b> и чёрная соль — если позволит таможня Новой Зеландии (проверьте правила ввоза еды: они строгие)</li>
+          </ul>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============ БЮДЖЕТ ============ -->
+<section id="budget">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">03</div>
+      <h2>Бюджет</h2>
+    </div>
+    <p class="sec-sub">Все суммы — на одного человека, кроме отдельно указанных строк по жилью. Расчёт по курсу 1 NZD = 45 ₽. Лимит в 14 000 NZD не расходуется даже наполовину: рекомендуемый вариант укладывается в 8 000.</p>
+
+    <div class="tiers" role="tablist" aria-label="Уровни бюджета">
+      <button class="tier-btn" role="tab" aria-selected="false" aria-controls="p-eco" id="t-eco">Экономный комфорт<span>7 000 NZD</span></button>
+      <button class="tier-btn" role="tab" aria-selected="true" aria-controls="p-rec" id="t-rec">Рекомендуемый<span>8 000 NZD</span></button>
+      <button class="tier-btn" role="tab" aria-selected="false" aria-controls="p-lux" id="t-lux">С размахом<span>10 000 NZD</span></button>
+    </div>
+
+    <!-- ЭКОНОМ -->
+    <div class="panel" id="p-eco" role="tabpanel" aria-labelledby="t-eco" hidden>
+      <div class="summary">
+        <div class="sum-card"><div class="l">На человека</div><div class="v">316 500 ₽</div></div>
+        <div class="sum-card hi"><div class="l">На человека</div><div class="v">7 033 <small>NZD</small></div></div>
+        <div class="sum-card"><div class="l">На двоих</div><div class="v">14 067 <small>NZD</small></div></div>
+        <div class="sum-card"><div class="l">Остаток от лимита</div><div class="v">6 967 <small>NZD / чел.</small></div></div>
+      </div>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Категория</th><th class="num">₽ / чел.</th><th class="num">NZD / чел.</th><th>Что это значит на практике</th></tr></thead>
+          <tbody>
+            <tr><td>Жильё</td><td class="num">92 500</td><td class="num">2 056</td><td>Отели 3,5–4★ и апартаменты в 10–15 минутах от центра</td></tr>
+            <tr><td>Транспорт по России</td><td class="num">38 000</td><td class="num">844</td><td>Автобус вместо трансфера Суздаль — Кострома, меньше такси</td></tr>
+            <tr><td>Питание</td><td class="num">82 500</td><td class="num">1 833</td><td>≈ 2 750 ₽ в день: обеды в гастромаркетах, один дорогой ужин</td></tr>
+            <tr><td>Музеи</td><td class="num">22 000</td><td class="num">489</td><td>Все ключевые музеи, без повторного Эрмитажа</td></tr>
+            <tr><td>Развлечения</td><td class="num">25 000</td><td class="num">556</td><td>Один балет, катки, сани, одна экскурсия с гидом</td></tr>
+            <tr><td>Сувениры, связь, страховка, виза</td><td class="num">26 500</td><td class="num">589</td><td>—</td></tr>
+            <tr><td>Резерв</td><td class="num">30 000</td><td class="num">667</td><td>≈ 10% на непредвиденное</td></tr>
+            <tr class="total"><td>Итого на человека</td><td class="num">316 500 ₽</td><td class="num">7 033</td><td>На двоих — 633 000 ₽ / 14 067 NZD</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="sec-sub">Это тот же маршрут, те же города и те же музеи. Комфорт не страдает — сокращается только «премиальность» отелей и число ресторанных ужинов.</p>
+    </div>
+
+    <!-- РЕКОМЕНДУЕМЫЙ -->
+    <div class="panel" id="p-rec" role="tabpanel" aria-labelledby="t-rec">
+      <div class="summary">
+        <div class="sum-card"><div class="l">На человека</div><div class="v">360 000 ₽</div></div>
+        <div class="sum-card hi"><div class="l">На человека</div><div class="v">8 000 <small>NZD</small></div></div>
+        <div class="sum-card"><div class="l">На двоих</div><div class="v">16 000 <small>NZD</small></div></div>
+        <div class="sum-card"><div class="l">Остаток от лимита</div><div class="v">6 000 <small>NZD / чел.</small></div></div>
+      </div>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Категория</th><th class="num">₽ / чел.</th><th class="num">NZD / чел.</th><th>Что входит</th></tr></thead>
+          <tbody>
+            <tr><td>Жильё</td><td class="num">109 000</td><td class="num">2 422</td><td>Отели и апартаменты 8,5+ в центре, двухместный номер</td></tr>
+            <tr><td>Транспорт по России</td><td class="num">42 000</td><td class="num">933</td><td>8 переездов, 4 поездки одним днём, метро и такси на 30 дней</td></tr>
+            <tr><td>Питание</td><td class="num">90 000</td><td class="num">2 000</td><td>≈ 3 000 ₽ в день, включая 3 «дорогих» ужина</td></tr>
+            <tr><td>Музеи</td><td class="num">26 000</td><td class="num">578</td><td>18–20 музеев, включая два визита в Эрмитаж</td></tr>
+            <tr><td>Развлечения</td><td class="num">30 000</td><td class="num">667</td><td>Балет, катки, сани, хаски, лосиная ферма, 2–3 гида</td></tr>
+            <tr><td>Сувениры, связь, страховка, виза</td><td class="num">33 000</td><td class="num">733</td><td>Виза с приглашением ≈ 12 000 ₽, страховка ≈ 8 000 ₽</td></tr>
+            <tr><td>Резерв</td><td class="num">30 000</td><td class="num">667</td><td>Метели, дорогое такси, спонтанные идеи</td></tr>
+            <tr class="total"><td>Итого на человека</td><td class="num">360 000 ₽</td><td class="num">8 000</td><td>На двоих — 720 000 ₽ / 16 000 NZD</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 style="font-size:22px;margin-bottom:14px">Жильё по городам</h3>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Город</th><th class="num">Ночей</th><th class="num">За номер / ночь</th><th class="num">Всего за жильё</th><th class="num">На человека</th></tr></thead>
+          <tbody>
+            <tr><td>Москва (6 + 2 + 3)</td><td class="num">11</td><td class="num">8 000 ₽</td><td class="num">88 000 ₽</td><td class="num">44 000 ₽</td></tr>
+            <tr><td>Суздаль</td><td class="num">4</td><td class="num">7 000 ₽</td><td class="num">28 000 ₽</td><td class="num">14 000 ₽</td></tr>
+            <tr><td>Кострома</td><td class="num">2</td><td class="num">5 000 ₽</td><td class="num">10 000 ₽</td><td class="num">5 000 ₽</td></tr>
+            <tr><td>Ярославль</td><td class="num">3</td><td class="num">6 000 ₽</td><td class="num">18 000 ₽</td><td class="num">9 000 ₽</td></tr>
+            <tr><td>Санкт-Петербург</td><td class="num">8</td><td class="num">8 000 ₽</td><td class="num">64 000 ₽</td><td class="num">32 000 ₽</td></tr>
+            <tr><td>Великий Новгород</td><td class="num">2</td><td class="num">5 000 ₽</td><td class="num">10 000 ₽</td><td class="num">5 000 ₽</td></tr>
+            <tr class="total"><td>Итого</td><td class="num">30</td><td class="num">—</td><td class="num">218 000 ₽ · 4 844 NZD</td><td class="num">109 000 ₽ · 2 422 NZD</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 style="font-size:22px;margin-bottom:14px">Где искать отели</h3>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Город</th><th>Район</th><th>Примеры</th></tr></thead>
+          <tbody>
+            <tr><td>Москва</td><td>Китай-город, Тверская, Чистые пруды, Замоскворечье</td><td>Cosmos Selection Tverskaya, «Азимут Смоленская», апарт-отели Vertical, бутик-отели на Покровке</td></tr>
+            <tr><td>Суздаль</td><td>Пешком до Торговой площади</td><td>«Пушкарская слобода», «Николаевский посад», ГТК «Суздаль»</td></tr>
+            <tr><td>Кострома</td><td>У Сусанинской площади</td><td>«Азимут Кострома», «Островский причал»</td></tr>
+            <tr><td>Ярославль</td><td>Волжская набережная, центр</td><td>«Ринг Премьер Отель», отель «Иоанн Васильевич»</td></tr>
+            <tr><td>Петербург</td><td>Адмиралтейский и Центральный, у Мойки и Фонтанки</td><td>«Гельвеция», отели у Исаакиевской площади, апартаменты на Мойке</td></tr>
+            <tr><td>Новгород</td><td>У кремля</td><td>«Волхов», «Труворъ»</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="note"><b>Booking.com в России не работает.</b> Бронируйте на Ostrovok.ru, Яндекс Путешествиях или 101hotels и выбирайте тариф <b>«оплата при заселении»</b> — это решает проблему с неработающими иностранными картами. Названия и рейтинги отелей перепроверьте перед бронированием: рынок меняется быстро.</div>
+    </div>
+
+    <!-- ЛЮКС -->
+    <div class="panel" id="p-lux" role="tabpanel" aria-labelledby="t-lux" hidden>
+      <div class="summary">
+        <div class="sum-card"><div class="l">На человека</div><div class="v">450 500 ₽</div></div>
+        <div class="sum-card hi"><div class="l">На человека</div><div class="v">10 011 <small>NZD</small></div></div>
+        <div class="sum-card"><div class="l">На двоих</div><div class="v">20 022 <small>NZD</small></div></div>
+        <div class="sum-card"><div class="l">Остаток от лимита</div><div class="v">3 989 <small>NZD / чел.</small></div></div>
+      </div>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Категория</th><th class="num">₽ / чел.</th><th class="num">NZD / чел.</th><th>Разница с рекомендуемым</th></tr></thead>
+          <tbody>
+            <tr><td>Жильё</td><td class="num">131 500</td><td class="num">2 922</td><td>Отели на категорию выше, окна на исторический центр</td></tr>
+            <tr><td>Транспорт по России</td><td class="num">47 500</td><td class="num">1 056</td><td>Только индивидуальные трансферы, такси вместо метро</td></tr>
+            <tr><td>Питание</td><td class="num">120 000</td><td class="num">2 667</td><td>≈ 4 000 ₽ в день, 5–6 ресторанных ужинов</td></tr>
+            <tr><td>Музеи</td><td class="num">30 000</td><td class="num">667</td><td>Плюс дворцы-пригороды без экономии</td></tr>
+            <tr><td>Развлечения</td><td class="num">45 000</td><td class="num">1 000</td><td>Ложа в Большом, частный гид-искусствовед в Эрмитаже</td></tr>
+            <tr><td>Сувениры, связь, страховка, виза</td><td class="num">36 500</td><td class="num">811</td><td>—</td></tr>
+            <tr><td>Резерв</td><td class="num">40 000</td><td class="num">889</td><td>—</td></tr>
+            <tr class="total"><td>Итого на человека</td><td class="num">450 500 ₽</td><td class="num">10 011</td><td>На двоих — 901 000 ₽ / 20 022 NZD</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="sec-sub">Если хочется потратить больше осмысленно, три лучшие идеи: ложа в Большом театре, частный гид-искусствовед на день в Эрмитаже, отель на две категории выше в Петербурге на все восемь ночей.</p>
+    </div>
+
+    <div class="tip"><b>Совет:</b> запас от лимита лучше не тратить на апгрейд ради апгрейда, а держать как подушку. Зимой случаются перебронирования, дорогое такси в метель и внезапные «а поехали ещё и в Кронштадт».</div>
+  </div>
+</section>
+
+<!-- ============ ПРАКТИКА ============ -->
+<section id="practice">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">04</div>
+      <h2>Практика</h2>
+    </div>
+    <p class="sec-sub">Девять вещей, которые нужно знать до вылета. Пункт про оплату — самый важный во всём документе.</p>
+
+    <article class="city">
+      <div class="city-head"><h3>Погода и световой день</h3></div>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Город</th><th class="num">Днём</th><th class="num">Ночью</th><th class="num">Экстремум</th><th>Особенность</th></tr></thead>
+          <tbody>
+            <tr><td>Москва</td><td class="num">−6…−12 °C</td><td class="num">−10…−16 °C</td><td class="num">до −25 °C</td><td>Сухой мороз, много снега, солнце редко</td></tr>
+            <tr><td>Суздаль, Ярославль, Кострома</td><td class="num">−8…−14 °C</td><td class="num">−14…−20 °C</td><td class="num">до −28 °C</td><td>Самый настоящий мороз маршрута, снега больше всего</td></tr>
+            <tr><td>Санкт-Петербург</td><td class="num">−3…−8 °C</td><td class="num">−6…−12 °C</td><td class="num">редко ниже −20 °C</td><td>Мягче, но влажно и ветрено, бывают оттепели и слякоть</td></tr>
+            <tr><td>Великий Новгород</td><td class="num">−4…−9 °C</td><td class="num">−8…−14 °C</td><td class="num">до −20 °C</td><td>Промежуточный вариант</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="tip">−15 °C в сухой Москве переносятся легче, чем −5 °C с ветром в Петербурге. Не судите по цифрам.</div>
+
+      <h4 style="font-size:19px;margin:0 0 14px">Сколько будет светло</h4>
+      <ul class="daylight">
+        <li><span>Москва, начало января</span><span class="dl-bar"><span style="width:37.5%"></span><span class="dl-light" style="width:29%"></span><span style="width:33.5%"></span></span><span class="dl-val">9:00–16:00 · 7 ч</span></li>
+        <li><span>Москва, конец января</span><span class="dl-bar"><span style="width:35.4%"></span><span class="dl-light" style="width:36.1%"></span><span style="width:28.5%"></span></span><span class="dl-val">8:30–17:10 · 8 ч 40</span></li>
+        <li><span>Петербург, начало января</span><span class="dl-bar"><span style="width:41.7%"></span><span class="dl-light" style="width:24.7%"></span><span style="width:33.6%"></span></span><span class="dl-val">10:00–16:00 · 5 ч 55</span></li>
+        <li><span>Петербург, конец января</span><span class="dl-bar"><span style="width:38.2%"></span><span class="dl-light" style="width:32.3%"></span><span style="width:29.5%"></span></span><span class="dl-val">9:10–17:00 · 7 ч 45</span></li>
+      </ul>
+      <p>Практический вывод: всё, что нужно видеть при свете — прогулки, панорамы, пригороды, — планируйте на <b>10:00–15:30</b>. Музеи, театры и рестораны уходят на тёмное время. Это не минус: подсвеченный снежный город вечером — половина впечатления от зимней России.</p>
+    </article>
+
+    <article class="city">
+      <div class="city-head"><h3>Как одеваться</h3></div>
+      <div class="grid">
+        <div class="block">
+          <h4>Три слоя</h4>
+          <ul>
+            <li><b>База:</b> термобельё из мериносовой шерсти, верх и низ. Не хлопок — он намокает и холодит</li>
+            <li><b>Утепление:</b> флис или тонкий шерстяной свитер</li>
+            <li><b>Верх:</b> пуховик до середины бедра или ниже, с капюшоном, рассчитанный примерно на −20 °C</li>
+          </ul>
+          <h4>Обязательный минимум</h4>
+          <ul>
+            <li>Шапка, закрывающая уши — не шляпка и не берет</li>
+            <li><b>Варежки, а не перчатки</b> — теплее на треть; тонкие перчатки под них для телефона</li>
+            <li>Шарф или бафф, чтобы закрывать лицо на ветру</li>
+            <li>Термоштаны под брюки: джинсы на голое тело в −15 °C не работают</li>
+            <li>Шерстяные носки, две пары на самые холодные дни</li>
+            <li>Жирный крем для лица и гигиеническая помада — мороз и сухой воздух в помещениях сушат кожу мгновенно</li>
+            <li>Солнцезащитные очки: снег ослепительно ярок в редкие солнечные дни</li>
+          </ul>
+        </div>
+        <div class="block">
+          <h4>Обувь — самое важное</h4>
+          <ul>
+            <li><b>Зимние ботинки с утеплителем и толстой рифлёной подошвой.</b> Городские кроссовки и кожаные сапоги на гладкой подошве — это гарантированное падение</li>
+            <li>Купите съёмные <b>ледоходы</b> — накладки на подошву, 500–1 000 ₽ в любом хозяйственном магазине</li>
+            <li>Обувь должна быть чуть свободной: воздушная прослойка греет, а тесная обувь ведёт к замерзанию ног</li>
+            <li>Возьмите вторую пару — в Петербурге бывают оттепели, и вы промочите ноги</li>
+            <li>Сувенир с пользой: <b>валенки</b> из Суздаля или Измайлова. В них действительно тепло</li>
+          </ul>
+          <div class="tip" style="margin-top:6px">В музеях и ресторанах везде есть бесплатный гардероб, и сдавать верхнюю одежду обязательно. Пуховик внутри вы не носите никогда — одевайтесь так, чтобы под ним было красиво.</div>
+        </div>
+      </div>
+    </article>
+
+    <article class="city">
+      <div class="city-head"><h3>Деньги</h3></div>
+      <div class="note"><b>Иностранные карты Visa, Mastercard и Amex в России не работают вообще</b> — ни в магазинах, ни в банкоматах, ни онлайн. Планируйте поездку так, будто карт у вас нет.</div>
+      <div class="grid">
+        <div class="block">
+          <h4>Как платить</h4>
+          <ul>
+            <li><b>Основной инструмент — наличные рубли.</b> Меняйте валюту в отделениях крупных банков по паспорту, не в аэропорту: там курс заметно хуже</li>
+            <li>Везите <b>новые, неповреждённые купюры</b> USD или EUR. Рваные и старые могут не принять</li>
+            <li>Без декларации можно ввезти сумму, эквивалентную <b>10 000 USD</b> на человека — этого более чем достаточно</li>
+            <li><b>Сколько нужно:</b> около 360 000 ₽ на человека, то есть примерно <b>5 000–5 500 USD на двоих</b>. Меняйте частями раз в неделю, остальное держите в сейфе отеля</li>
+            <li><b>UnionPay</b> зарубежного выпуска иногда срабатывает в крупных отелях, но рассчитывать на неё нельзя</li>
+          </ul>
+        </div>
+        <div class="block">
+          <h4>Вариант, который окупается за 30 дней</h4>
+          <ul>
+            <li>Иностранец может открыть счёт в российском банке и получить <b>карту «Мир»</b> по загранпаспорту — часто нужен ИНН, всё оформляется за день</li>
+            <li>С ней работают метро, такси, онлайн-покупки и билеты РЖД — то есть исчезает половина бытовых сложностей</li>
+            <li>Потратьте на это один из свободных дней в первую неделю в Москве. Правила у банков разные, уточняйте на месте</li>
+          </ul>
+          <h4>Курс для расчётов</h4>
+          <p style="margin:0">В 2026 году курс держится в коридоре <b>44–46 ₽ за 1 NZD</b>. Все сметы здесь посчитаны по 45. Проверьте курс перед поездкой: рубль подвижен.</p>
+        </div>
+      </div>
+    </article>
+
+    <article class="city">
+      <div class="city-head"><h3>Связь и приложения</h3></div>
+      <div class="grid">
+        <div class="block">
+          <h4>Скачать до вылета</h4>
+          <ul>
+            <li><b>Яндекс Go</b> — такси. Дёшево, безопасно, без торга. Главное приложение поездки</li>
+            <li><b>Яндекс Карты</b> или <b>2ГИС</b> — навигация; 2ГИС работает офлайн, скачайте карты городов заранее</li>
+            <li><b>Яндекс Метро</b> — схемы Москвы и Петербурга с расчётом времени</li>
+            <li><b>РЖД Пассажирам</b> — расписания и статус поездов</li>
+            <li><b>Яндекс Переводчик</b> — офлайн-русский и перевод по фото: меню, вывески, музейные таблички</li>
+            <li><b>Telegram</b> — в России это основной мессенджер, а не WhatsApp</li>
+            <li><b>Яндекс Еда</b> — доставка в отель в очень холодный вечер</li>
+          </ul>
+        </div>
+        <div class="block">
+          <h4>SIM-карта</h4>
+          <ul>
+            <li><b>Самый простой вариант:</b> международная eSIM (Airalo, Yesim и аналоги) с тарифом на Россию — активируется до вылета и работает в роуминге</li>
+            <li><b>Местная SIM:</b> с 2025 года иностранцу требуется сдача биометрии и регистрация. Процедура выполнима, но занимает время — идите в официальный салон МТС, Билайн, МегаФон или t2 с паспортом и миграционной картой</li>
+            <li>Не покупайте SIM с рук: такие карты блокируют</li>
+            <li>Wi-Fi есть везде, включая метро обеих столиц (нужна регистрация по номеру телефона)</li>
+            <li>Instagram и Facebook в России заблокированы, часть западных сервисов работает нестабильно. Google Maps работает, но Яндекс точнее по транспорту и заведениям</li>
+          </ul>
+        </div>
+      </div>
+    </article>
+
+    <article class="city">
+      <div class="city-head"><h3>Безопасность и формальности</h3></div>
+      <div class="grid">
+        <div class="block">
+          <h4>Безопасность</h4>
+          <ul>
+            <li><b>Москва и Петербург безопасны по европейским меркам</b> — и когда вы гуляете вдвоём, и когда девушка идёт одна в тёмное время. Метро работает до часу ночи, оно чистое и патрулируемое</li>
+            <li>Главная реальная опасность зимой — <b>лёд под ногами</b>. Смотрите вниз, ходите короткими шагами, держитесь за поручни</li>
+            <li>Вторая — <b>сосульки и снег с крыш</b>. Не идите вплотную к стенам зданий в оттепель и не игнорируйте оградительные ленты</li>
+            <li>Не садитесь в такси, которые предлагают услуги на вокзалах и в аэропортах — только через приложение</li>
+            <li>Далеко не все водители тормозят перед зеброй: переходите, убедившись, что машина реально останавливается</li>
+            <li>Скорая помощь — 103, единый номер — 112</li>
+          </ul>
+        </div>
+        <div class="block">
+          <h4>Формальности</h4>
+          <ul>
+            <li><b>Виза:</b> гражданам Новой Зеландии электронная виза недоступна. Нужна обычная туристическая виза через консульство или визовый центр, с приглашением от аккредитованного туроператора. Подавайтесь за 1,5–2 месяца</li>
+            <li><b>Миграционный учёт:</b> отель ставит вас на учёт автоматически, для этого и берут паспорт при заселении. При аренде квартиры это обязан сделать хозяин в течение 7 рабочих дней — для длинной поездки надёжнее отели</li>
+            <li>Носите копию паспорта и визы, оригинал держите в сейфе — кроме дней с поездами, там нужен оригинал</li>
+            <li><b>Страховка</b> обязательна для визы. Многие западные страховщики не покрывают Россию — выбирайте компанию, которую принимает консульство</li>
+            <li>Прямых рейсов из Новой Зеландии нет: стыковки обычно через Дубай, Доху, Стамбул или Пекин</li>
+            <li>Перед покупкой билетов проверьте актуальные рекомендации МИД Новой Зеландии на SafeTravel — стандартная процедура для любой поездки</li>
+          </ul>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============ КУХНЯ ============ -->
+<section id="food">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">05</div>
+      <h2>Что попробовать</h2>
+    </div>
+    <p class="sec-sub">Зимняя русская кухня плотная и согревающая — в этом её смысл. Список построен так, чтобы в каждом городе было что-то своё.</p>
+
+    <div class="grid" style="margin-bottom:26px">
+      <div class="dish">
+        <h4>Классика — везде</h4>
+        <ul>
+          <li><b>Борщ</b> — свекольный суп со сметаной, с пампушками или чёрным хлебом</li>
+          <li><b>Пельмени</b> — со сметаной или уксусом; зимняя еда номер один</li>
+          <li><b>Блины</b> — с красной икрой, сметаной, творогом или мёдом</li>
+          <li><b>Солянка</b> — насыщенный кисло-солёный суп с копчёностями и лимоном</li>
+          <li><b>Оливье и селёдка под шубой</b> — в январе они везде</li>
+          <li><b>Сырники</b> — творожные оладьи, лучший русский завтрак</li>
+          <li><b>Бефстроганов</b> — говядина в сметанном соусе с пюре</li>
+          <li><b>Медовик и «Наполеон»</b> — два главных торта; попробуйте оба и выберите свой</li>
+        </ul>
+      </div>
+      <div class="dish">
+        <h4>Напитки</h4>
+        <ul>
+          <li><b>Сбитень</b> — горячий медово-пряный напиток; на ярмарках, в Суздале и Новгороде</li>
+          <li><b>Морс</b> клюквенный или брусничный — идеален после мороза</li>
+          <li><b>Компот и кисель</b> — в столовых и домашних кафе</li>
+          <li><b>Чай из самовара с вареньем</b> — Суздаль, Ярославль</li>
+          <li><b>Медовуха</b> — Суздаль обязательно, затем Великий Новгород</li>
+          <li><b>Настойки</b>: хреновуха, клюквенная, кедровая — «ГраФинъ» в Суздале, «Мари Vanna» в Москве</li>
+          <li><b>Водка</b> — один раз ради опыта: холодная, под солёный огурец и селёдку</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="dish">
+        <h4>Москва</h4>
+        <ul>
+          <li>Кулебяка и гурьевская каша в «Пушкинъ»</li>
+          <li>Пожарские котлеты и бефстроганов</li>
+          <li>Торт «Наполеон» и горячий шоколад на Даниловском рынке</li>
+          <li>Конфеты «Красный Октябрь» — в подарок домой</li>
+        </ul>
+      </div>
+      <div class="dish">
+        <h4>Владимир и Суздаль</h4>
+        <ul>
+          <li><b>Медовуха</b> во всех сортах</li>
+          <li><b>Суздальские солёные огурцы</b> и даже огуречное варенье — местная шутка, ставшая брендом</li>
+          <li>Каша в горшочке из печи, уха из судака</li>
+          <li>Ватрушки, пироги с щукой, горячие блины на Торговой площади</li>
+        </ul>
+      </div>
+      <div class="dish">
+        <h4>Кострома</h4>
+        <ul>
+          <li><b>Костромской сыр</b> — это сырная столица России</li>
+          <li><b>Лосиное молоко</b> на Сумароковской ферме: вкус, который вы больше нигде не получите</li>
+          <li>Волжская уха, чёрная соль, солёные грузди</li>
+        </ul>
+      </div>
+      <div class="dish">
+        <h4>Ярославль и Ростов</h4>
+        <ul>
+          <li>Копчёная волжская рыба</li>
+          <li>Щи из квашеной капусты в горшочке</li>
+          <li>Ростовская щука из озера Неро</li>
+          <li>Пряники и наливки, обед в интерьерах «Иоанна Васильевича»</li>
+        </ul>
+      </div>
+      <div class="dish">
+        <h4>Санкт-Петербург</h4>
+        <ul>
+          <li><b>Пышки</b> с сахарной пудрой на Большой Конюшенной — ритуал, а не еда</li>
+          <li>Балтийская сельдь с молодой картошкой, уха из судака</li>
+          <li>Северное меню: <b>оленина, морошка, брусника, грибы</b> в «Кококо»</li>
+          <li>Ленинградский рассольник, конфеты фабрики имени Крупской</li>
+          <li>Корюшка — увы, только весной, но спросите о ней: местные оживятся</li>
+        </ul>
+      </div>
+      <div class="dish">
+        <h4>Великий Новгород</h4>
+        <ul>
+          <li>Рыба из озера Ильмень: судак, лещ</li>
+          <li>Медовуха монастырских рецептов в «Юрьевском подворье»</li>
+          <li>Мочёные яблоки и брусника</li>
+          <li>Пироги из печи</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ТЕМП ============ -->
+<section id="pace">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">06</div>
+      <h2>Темп поездки</h2>
+    </div>
+
+    <div class="gauge">
+      <h3 style="font-size:22px">Утомительность маршрута</h3>
+      <div class="gauge-scale"><div class="gauge-pin"></div></div>
+      <div class="gauge-ends"><span>1 — санаторий</span><span>10 — марафон</span></div>
+      <p style="margin:22px 0 0">Для сравнения: классический тур «Золотое кольцо за 7 дней» тянет на 8 из 10. Здесь темп сознательно занижен — это отпуск.</p>
+    </div>
+
+    <div class="grid">
+      <div class="block">
+        <h4>Почему так спокойно</h4>
+        <ul>
+          <li>Всего <b>8 переездов за 30 дней</b> — в среднем один раз в 3,75 дня</li>
+          <li>Самый длинный дневной переезд — 3 ч 45 мин, и это комфортный «Сапсан»</li>
+          <li>Ни одного перелёта и ни одного подъёма в четыре утра</li>
+          <li>Ни один город не посещается набегом: минимальная остановка — две ночи</li>
+          <li>Заложено <b>9 дней вообще без обязательной программы</b></li>
+        </ul>
+      </div>
+      <div class="block">
+        <h4>Что всё-таки будет утомлять</h4>
+        <ul>
+          <li>Смена часовых поясов в начале: 2–3 дня адаптации после перелёта из Новой Зеландии</li>
+          <li>Короткий световой день — непривычно и слегка снижает энергию</li>
+          <li>Сам мороз расходует силы: после трёх часов на улице хочется спать</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Показатель</th><th class="num">Значение</th></tr></thead>
+        <tbody>
+          <tr><td>Всего дней и ночей</td><td class="num">31 день / 30 ночей</td></tr>
+          <tr><td>Городов</td><td class="num">6 базовых + 4 поездки одним днём</td></tr>
+          <tr><td>Междугородних переездов</td><td class="num">8</td></tr>
+          <tr><td>Из них ночных</td><td class="num">1</td></tr>
+          <tr><td>Дней отдыха без программы</td><td class="num">9</td></tr>
+          <tr><td>Дней активных прогулок и осмотра</td><td class="num">15</td></tr>
+          <tr><td>Дней средней нагрузки: переезд плюс лёгкая программа</td><td class="num">7</td></tr>
+          <tr><td>Музеев в программе</td><td class="num">18–20</td></tr>
+          <tr><td>Времени на ногах в активный день</td><td class="num">4–5 часов с перерывами</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 style="font-size:22px;margin-bottom:14px">Как ощущается типичная неделя</h3>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Пн</th><th>Вт</th><th>Ср</th><th>Чт</th><th>Пт</th><th>Сб</th><th>Вс</th></tr></thead>
+        <tbody>
+          <tr><td>музей</td><td>прогулка</td><td><b>отдых</b></td><td>переезд</td><td>город</td><td>музей и театр</td><td><b>отдых</b></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <h3>Три вещи, которые запомнятся больше всего</h3>
+    <ol>
+      <li><b>Первое утро в Суздале</b>, когда вы выйдете из отеля и увидите деревянные дома, дым из труб и белые церкви среди снежных полей — без единого современного здания в поле зрения.</li>
+      <li><b>Каток на Красной площади вечером</b> — с музыкой, огнями ГУМа и собором Василия Блаженного прямо над головой.</li>
+      <li><b>Ночной поезд из Новгорода в Москву</b> — чай в подстаканнике, тёмные заснеженные полустанки за окном и ощущение, что вы пересекаете очень большую страну.</li>
+    </ol>
+    <div class="sign">30 ночей · 6 городов · 8 переездов · 8 000 NZD на человека · хорошей зимы</div>
+  </div>
+</footer>
+</div>
+<div id="en-content" hidden>
+
+<header class="hero">
+  <div class="wrap hero-in">
+    <div class="eyebrow">A route for two · 5 January — 3 February</div>
+    <h1>Winter Russia <em>in 30 days</em></h1>
+    <p class="hero-lead">Built for someone who has never seen snow. Six cities, eight journeys, not a single flight — and nine days with absolutely nothing planned.</p>
+    <div class="facts">
+      <div class="fact"><span class="n">30</span><span class="l">nights</span></div>
+      <div class="fact"><span class="n">6</span><span class="l">cities + 4 day trips</span></div>
+      <div class="fact"><span class="n">8</span><span class="l">journeys</span></div>
+      <div class="fact"><span class="n">9</span><span class="l">days with no plan</span></div>
+      <div class="fact"><span class="n">8,000</span><span class="l">NZD per person</span></div>
+    </div>
+  </div>
+  <div class="dome"></div>
+</header>
+
+<main>
+
+<!-- ROUTE -->
+<section id="route-en">
+  <div class="wrap">
+    <div class="sec-head"><div class="eyebrow">01</div><h2>The route</h2></div>
+    <p class="sec-sub">A loop with no backtracking: Moscow — the Golden Ring in an arc — Moscow — St Petersburg — Novgorod — Moscow. No flights needed: the longest leg is 3 hours 45 minutes, and that is the Sapsan high-speed train. If you want it calmer still, there is a <a href="#lite-en">four-city lite version</a> below.</p>
+
+    <ol class="spine">
+      <li class="stop major"><div class="stop-card"><span class="city">Moscow</span><span class="dates">5–10 Jan · first impressions</span><span class="nights mono">6 nights</span></div></li>
+      <li class="leg">↓ Lastochka train to Vladimir <b>1 h 40</b> + transfer to Suzdal <b>45 min</b></li>
+      <li class="stop"><div class="stop-card"><span class="city">Suzdal</span><span class="dates">11–14 Jan · with Vladimir</span><span class="nights mono">4 nights</span></div></li>
+      <li class="leg">↓ private transfer <b>3 h 30</b></li>
+      <li class="stop"><div class="stop-card"><span class="city">Kostroma</span><span class="dates">15–16 Jan</span><span class="nights mono">2 nights</span></div></li>
+      <li class="leg">↓ regional train <b>1 h 20</b></li>
+      <li class="stop"><div class="stop-card"><span class="city">Yaroslavl</span><span class="dates">17–19 Jan · with Rostov Veliky</span><span class="nights mono">3 nights</span></div></li>
+      <li class="leg">↓ Lastochka <b>3 h 15</b></li>
+      <li class="stop"><div class="stop-card"><span class="city">Moscow</span><span class="dates">20–21 Jan · a pause mid-trip</span><span class="nights mono">2 nights</span></div></li>
+      <li class="leg">↓ <b>Sapsan 3 h 45</b></li>
+      <li class="stop major"><div class="stop-card"><span class="city">St Petersburg</span><span class="dates">22–29 Jan</span><span class="nights mono">8 nights</span></div></li>
+      <li class="leg">↓ Lastochka <b>3 h</b></li>
+      <li class="stop"><div class="stop-card"><span class="city">Veliky Novgorod</span><span class="dates">30–31 Jan</span><span class="nights mono">2 nights</span></div></li>
+      <li class="leg">↓ overnight sleeper <b>8 h</b></li>
+      <li class="stop"><div class="stop-card"><span class="city">Moscow</span><span class="dates">1–3 Feb · buffer and presents</span><span class="nights mono">3 nights</span></div></li>
+    </ol>
+
+    <h3 style="font-size:22px;margin-bottom:14px">Every journey, with prices</h3>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Leg</th><th>Transport</th><th>Time</th><th class="num">Per person</th></tr></thead>
+        <tbody>
+          <tr><td>Airport → hotel, Moscow</td><td>Aeroexpress or taxi</td><td>45–60 min</td><td class="num">500–2,500 ₽</td></tr>
+          <tr><td>Moscow → Vladimir</td><td>Lastochka, Kursky station</td><td>1 h 40</td><td class="num">1,000–1,500 ₽</td></tr>
+          <tr><td>Vladimir → Suzdal</td><td>Private transfer</td><td>45 min</td><td class="num">1,500 ₽</td></tr>
+          <tr><td>Suzdal → Kostroma</td><td>Private transfer</td><td>3 h 30</td><td class="num">4,000–6,000 ₽</td></tr>
+          <tr><td>Kostroma → Yaroslavl</td><td>Train or bus</td><td>1 h 20</td><td class="num">500–800 ₽</td></tr>
+          <tr><td>Yaroslavl → Moscow</td><td>Lastochka, Yaroslavsky station</td><td>3 h 15</td><td class="num">1,500–2,000 ₽</td></tr>
+          <tr><td><b>Moscow → St Petersburg</b></td><td><b>Sapsan</b></td><td>3 h 45</td><td class="num">5,000–8,000 ₽</td></tr>
+          <tr><td>St Petersburg → Veliky Novgorod</td><td>Lastochka</td><td>3 h</td><td class="num">1,000–1,400 ₽</td></tr>
+          <tr><td>Veliky Novgorod → Moscow</td><td>Overnight sleeper, 2-berth</td><td>8 h</td><td class="num">4,000–5,000 ₽</td></tr>
+          <tr><td>Moscow → airport</td><td>Aeroexpress or taxi</td><td>45–60 min</td><td class="num">500–2,500 ₽</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note"><b>Buy train tickets at the station ticket office, in cash, with your passport.</b> Foreign cards do not work in Russia, including on the Russian Railways website. The other reliable option is to ask your hotel to buy them for you. Book Sapsan and Lastochka seats 1–2 weeks ahead: prices rise as trains fill.</div>
+
+    <h3 style="font-size:22px;margin-bottom:14px">Why January, and why these dates</h3>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Date</th><th>What happens</th><th>Why it matters</th></tr></thead>
+        <tbody>
+          <tr><td class="day">5–8 Jan</td><td>Svyatki, the tail of the New Year holidays</td><td>Cities still fully decorated, but the 31 Dec – 3 Jan crush is over</td></tr>
+          <tr><td class="day">7 Jan</td><td>Orthodox Christmas</td><td>Christmas services and a particular hush over Moscow</td></tr>
+          <tr><td class="day">14 Jan</td><td>Old New Year</td><td>Suzdal marks it warmly, with festivities on the market square</td></tr>
+          <tr><td class="day">19 Jan</td><td>Epiphany</td><td>Processions and water-blessing services; the churches of Yaroslavl at their most festive</td></tr>
+          <tr><td class="day">late Jan</td><td>The snowiest stretch</td><td>Fewer tourists, lower prices, noticeably longer days</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="sec-sub">Festive lighting in Moscow and St Petersburg usually stays up until mid-February, so the whole trip happens in an illuminated city.</p>
+  </div>
+</section>
+
+<!-- LITE ROUTE -->
+<section id="lite-en">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">Alternative</div>
+      <h2>The lite route</h2>
+    </div>
+    <p class="sec-sub">If six cities sounds like too much, here is a four-city version with only five journeys. Same 30 nights, same budget — but you stay put in one hotel for most of the trip instead of packing every three days.</p>
+
+    <ol class="spine">
+      <li class="stop major"><div class="stop-card"><span class="city">Moscow</span><span class="dates">5–15 Jan · with day trips to Sergiev Posad and Vladimir</span><span class="nights mono">11 nights</span></div></li>
+      <li class="leg">↓ Lastochka to Vladimir <b>1 h 40</b> + transfer <b>45 min</b></li>
+      <li class="stop"><div class="stop-card"><span class="city">Suzdal</span><span class="dates">16–19 Jan</span><span class="nights mono">4 nights</span></div></li>
+      <li class="leg">↓ transfer and Lastochka back to Moscow <b>2 h 30</b></li>
+      <li class="stop"><div class="stop-card"><span class="city">Moscow</span><span class="dates">20 Jan · one transit night</span><span class="nights mono">1 night</span></div></li>
+      <li class="leg">↓ <b>Sapsan 3 h 45</b></li>
+      <li class="stop major"><div class="stop-card"><span class="city">St Petersburg</span><span class="dates">21–31 Jan · with Tsarskoye Selo, Pavlovsk, Kronstadt</span><span class="nights mono">11 nights</span></div></li>
+      <li class="leg">↓ Lastochka <b>3 h</b></li>
+      <li class="stop"><div class="stop-card"><span class="city">Veliky Novgorod</span><span class="dates">1–2 Feb</span><span class="nights mono">2 nights</span></div></li>
+      <li class="leg">↓ overnight sleeper <b>8 h</b></li>
+      <li class="stop"><div class="stop-card"><span class="city">Moscow</span><span class="dates">3 Feb · the night before the flight</span><span class="nights mono">1 night</span></div></li>
+    </ol>
+
+    <div class="grid">
+      <div class="block">
+        <h4>What you gain</h4>
+        <ul>
+          <li><b>5 journeys instead of 8</b> — one every six days</li>
+          <li>Two "homes" for the month: 12 nights in Moscow and 11 in St Petersburg, each in a single hotel</li>
+          <li>Room for what usually gets cut: an unhurried second Hermitage visit, Kronstadt, Kolomenskoye, all of VDNKh</li>
+          <li>The effort score drops to about <b>2.5 out of 10</b>, with 12–13 rest days</li>
+          <li>Fewer suitcase days means fewer taxis, stations and "where are we sleeping tonight"</li>
+        </ul>
+      </div>
+      <div class="block">
+        <h4>What you give up</h4>
+        <ul>
+          <li><b>Kostroma</b> — and with it the moose farm and the Snow Maiden's Terem, the most unusual thing on the whole route</li>
+          <li><b>Yaroslavl and Rostov Veliky</b> — the painted enamel, the bell chimes and frozen Lake Nero</li>
+          <li>The sense of having crossed a country: provincial Russia is represented by Suzdal alone</li>
+          <li>You never see the Volga at all</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 style="font-size:22px;margin-bottom:14px">How to fill the freed-up days</h3>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Where</th><th>Days</th><th>What to add</th></tr></thead>
+        <tbody>
+          <tr><td><b>Moscow</b></td><td class="day">+5 days</td><td>Sergiev Posad and Vladimir as day trips (1.5 hours each by train), all of VDNKh and the Museum of Cosmonautics, Kolomenskoye, Kuskovo, Bunker-42, a second Tretyakov visit, huskies, the circus on Tsvetnoy Boulevard, a dumpling class</td></tr>
+          <tr><td><b>St Petersburg</b></td><td class="day">+3 days</td><td>Kronstadt and the Island of Forts, Peterhof in winter, Pavlovsk as its own day, Erarta, Yusupov Palace, a courtyards tour, a second ballet</td></tr>
+          <tr><td><b>Suzdal</b></td><td class="day">4 days</td><td>Unchanged: Vladimir, Bogolyubovo, the kremlin, the monasteries, a sleigh ride, mead</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 style="font-size:22px;margin-bottom:14px">Budget for the lite route</h3>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Category</th><th class="num">₽ pp</th><th class="num">NZD pp</th><th>Difference from the main route</th></tr></thead>
+        <tbody>
+          <tr><td>Accommodation</td><td class="num">115,000</td><td class="num">2,556</td><td>More nights in pricier Moscow and St Petersburg</td></tr>
+          <tr><td>Transport within Russia</td><td class="num">35,000</td><td class="num">778</td><td>Three legs disappear, two day-trip trains are added</td></tr>
+          <tr><td>Food</td><td class="num">90,000</td><td class="num">2,000</td><td>Unchanged</td></tr>
+          <tr><td>Museums</td><td class="num">26,000</td><td class="num">578</td><td>Unchanged — provincial museums swap for city ones</td></tr>
+          <tr><td>Entertainment</td><td class="num">30,000</td><td class="num">667</td><td>Unchanged</td></tr>
+          <tr><td>Souvenirs, SIM, insurance, visa</td><td class="num">33,000</td><td class="num">733</td><td>Unchanged</td></tr>
+          <tr><td>Contingency</td><td class="num">30,000</td><td class="num">667</td><td>Unchanged</td></tr>
+          <tr class="total"><td>Total per person</td><td class="num">359,000 ₽</td><td class="num">7,978</td><td>For two — 718,000 ₽ / 15,956 NZD</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="tip"><b>How to choose.</b> If this is a first trip to Russia and what matters is the feeling rather than the tally of places, take the lite route: it is calmer and costs virtually the same. If you want provincial Russia specifically — wooden houses, a frozen Volga, small towns — stay with the main route: the difference in tiredness is smaller than it looks.</div>
+
+    <div class="note"><b>A middle option:</b> keep the main route but drop Kostroma. That gives five cities and seven journeys, with the two freed nights going to Yaroslavl — Rostov Veliky and the moose farm can then be combined into one long day with a driver.</div>
+  </div>
+</section>
+
+<!-- CITIES -->
+<section id="cities-en">
+  <div class="wrap">
+    <div class="sec-head"><div class="eyebrow">02</div><h2>Cities</h2></div>
+    <p class="sec-sub">The rule behind the whole route: no more than one big thing per day, and every third or fourth day left empty.</p>
+
+    <!-- MOSCOW 1 -->
+    <article class="city">
+      <div class="city-head">
+        <h3>Moscow · part one</h3>
+        <div class="meta"><b>6 nights</b>days 1–6 · 5–10 Jan</div>
+      </div>
+      <div class="why"><b>Why this long</b>This is your first meeting with real winter and with a very large city at the same time. One or two days go to adjusting after the flight from New Zealand (a 10–12 hour time difference), and January Moscow is not only museums — it is the country's main winter stage: rinks, markets, lights. Fewer than five days here guarantees a rush.</div>
+
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Day</th><th>Plan</th><th>Effort</th></tr></thead>
+          <tbody>
+            <tr><td class="day">1</td><td>Arrive, check in, a short evening walk to Red Square, dinner near the hotel</td><td>Easy</td></tr>
+            <tr><td class="day">2</td><td>Red Square, GUM, Zaryadye Park, the floating bridge, the Ice Cave</td><td>Medium</td></tr>
+            <tr><td class="day">3</td><td>The Kremlin: Cathedral Square and the <b>Armoury Chamber</b>. Evening free</td><td>Medium</td></tr>
+            <tr><td class="day">4</td><td><b>Tretyakov Gallery</b>, a walk through Zamoskvorechye, skating in the evening</td><td>Medium</td></tr>
+            <tr><td class="day">5</td><td><b>No plan:</b> the beautiful metro stations, Patriarch's Ponds, cafés, GES-2</td><td>Easy</td></tr>
+            <tr><td class="day">6</td><td>Tsaritsyno or Kolomenskoye, then ballet or a Christmas market</td><td>Medium</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="grid">
+        <div class="block">
+          <h4>The essentials</h4>
+          <ul>
+            <li><b>Red Square and St Basil's Cathedral</b> — under snow and evening light it looks like an illustration from a fairy tale</li>
+            <li><b>The Kremlin</b> — Cathedral Square, Ivan the Great Bell Tower, the Tsar Cannon</li>
+            <li><b>GUM</b> — less a shopping arcade than a monument: glass roof, fountain, and Gastronom No. 1 with its Soviet interior</li>
+            <li><b>Zaryadye Park</b> — the floating bridge over the river with the Kremlin behind you, and an Ice Cave kept at −5 °C year round</li>
+            <li><b>Novodevichy Convent</b> — almost empty in winter, a frozen pond, the quietest view in Moscow</li>
+            <li><b>Tsaritsyno</b> — a Gothic palace in the snow and a vast illuminated park</li>
+            <li><b>Kolomenskoye</b> — the wooden palace of Tsar Alexei and a high bank above the river</li>
+            <li><b>Izmailovo Kremlin</b> — kitsch, but the easiest place to buy felt boots, fur hats and souvenirs</li>
+          </ul>
+        </div>
+        <div class="block">
+          <h4>Museums</h4>
+          <ul>
+            <li><b>Armoury Chamber</b> — carriages, thrones, Fabergé eggs, coronation robes <span class="tag">1,500–2,000 ₽</span></li>
+            <li><b>Tretyakov Gallery</b> — Rublev's icons through to Vrubel <span class="tag">800–1,200 ₽</span></li>
+            <li><b>New Tretyakov</b> — the avant-garde: Malevich, Kandinsky <span class="tag">800–1,000 ₽</span></li>
+            <li><b>Pushkin Museum of Fine Arts</b> — European painting <span class="tag">800–1,200 ₽</span></li>
+            <li><b>Museum of Cosmonautics</b> at VDNKh — Gagarin, the Lunokhod, spacesuits <span class="tag">500–700 ₽</span></li>
+            <li><b>Museum of Russian Impressionism</b> — the perfect two-hour museum <span class="tag">500–700 ₽</span></li>
+            <li><b>GES-2</b> — contemporary art in a former power station <span class="tag">often free</span></li>
+            <li><b>Bunker-42</b> — a Soviet command post 65 m underground <span class="tag">1,500–2,500 ₽</span></li>
+          </ul>
+        </div>
+        <div class="block">
+          <h4>Winter walks</h4>
+          <ul>
+            <li><b>Zamoskvorechye:</b> Lavrushinsky → Ordynka → Pyatnitskaya — merchants' houses, churches, quiet courtyards</li>
+            <li><b>Chistye Prudy → Pokrovka → Khokhlovsky Lane</b> — the cosiest café route in the city</li>
+            <li><b>Patriarch's Ponds</b> — a rink on the pond itself, Bulgakov's house next door</li>
+            <li><b>Krutitskoye Podvorye</b> — wooden pavement and glazed tiles, the 17th century intact</li>
+            <li><b>Sparrow Hills → Neskuchny Garden → Gorky Park</b> along the frozen river</li>
+          </ul>
+          <h4>Viewpoints</h4>
+          <ul>
+            <li><b>Sparrow Hills</b> — the classic panorama <span class="tag">free</span></li>
+            <li><b>Panorama 360</b>, Federation Tower, 89th floor <span class="tag">1,500–2,500 ₽</span></li>
+            <li><b>The roof of Detsky Mir</b> on Lubyanka — a little-known view of the Kremlin <span class="tag">free</span></li>
+            <li><b>The floating bridge in Zaryadye</b> <span class="tag">free</span></li>
+          </ul>
+        </div>
+        <div class="block">
+          <h4>Where to eat</h4>
+          <ul>
+            <li><b>Café Pushkin</b> — Russian classics in a mansion interior <span class="tag">4,000–7,000 ₽</span></li>
+            <li><b>Dr. Zhivago</b> — Kremlin views and the best breakfasts <span class="tag">2,500–4,000 ₽</span></li>
+            <li><b>Mari Vanna</b> — like a grandmother's flat: dumplings, herring under a fur coat, infusions <span class="tag">2,500–3,500 ₽</span></li>
+            <li><b>Varenichnaya No. 1</b> — cheap, homely, very good <span class="tag">1,200–1,800 ₽</span></li>
+            <li><b>Stolovaya No. 57</b> in GUM — a Soviet canteen with enormous portions <span class="tag">700–1,200 ₽</span></li>
+            <li><b>Danilovsky Market</b> and <b>Depo.Moscow</b> — food halls for every mood <span class="tag">800–2,000 ₽</span></li>
+          </ul>
+        </div>
+        <div class="block">
+          <h4>Rinks and markets</h4>
+          <ul>
+            <li><b>GUM rink on Red Square</b> — the most photogenic skate in the country <span class="tag">1,000–2,000 ₽</span></li>
+            <li><b>VDNKh</b> — Europe's largest rink, music and floodlit pavilions <span class="tag">600–1,200 ₽</span></li>
+            <li><b>Gorky Park</b> — paths between the trees, lights, mulled wine <span class="tag">500–1,000 ₽</span></li>
+            <li><b>Patriarch's Ponds</b> — skating on a real pond <span class="tag">300–500 ₽</span></li>
+            <li><b>Journey to Christmas festival</b> — market chalets on Tverskaya, Manezhnaya and Revolution Square. Usually mid-December to mid-January; exact dates are announced in December</li>
+          </ul>
+        </div>
+        <div class="block">
+          <h4>Something unusual</h4>
+          <ul>
+            <li><b>Tea from a samovar</b> — at Café Pushkin, or in the Perlov Tea House on Myasnitskaya, where loose-leaf tea is still sold under the original interiors</li>
+            <li><b>Ballet</b> — the Bolshoi (book 2–3 months ahead), Novaya Opera, Stanislavsky Theatre</li>
+            <li><b>Christmas service on 7 January</b> — the Cathedral of Christ the Saviour, or a small church in Zamoskvorechye</li>
+            <li><b>Husky park in Sokolniki</b> — a sled team inside the city</li>
+            <li><b>A dumpling-making class</b> — plenty of studios run them for two</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tip">Most museums close on Mondays; the Kremlin closes on Thursdays. Plan your museum days around that.</div>
+    </article>
+
+    <!-- SUZDAL -->
+    <article class="city">
+      <div class="city-head">
+        <h3>Suzdal <span style="font-size:.55em;color:var(--muted)">+ Vladimir</span></h3>
+        <div class="meta"><b>4 nights</b>days 7–10 · 11–14 Jan</div>
+      </div>
+      <div class="why"><b>Why this long</b>The discovery of the whole route: a town with no tall buildings at all, where two hundred monuments stand among snowy fields. Four nights buy you a day in Vladimir on the way, two full days in Suzdal, and one completely free — for sleigh rides, mead and long lunches. This is where winter feels most real.</div>
+
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Day</th><th>Plan</th></tr></thead>
+          <tbody>
+            <tr><td class="day">7</td><td>Morning train to <b>Vladimir</b>: the Golden Gates, Dormition Cathedral with Rublev's frescoes, St Demetrius Cathedral, the viewpoint on Georgievskaya. Transfer to Suzdal in the afternoon</td></tr>
+            <tr><td class="day">8</td><td>Suzdal Kremlin, Nativity Cathedral, the trading rows, Museum of Wooden Architecture</td></tr>
+            <tr><td class="day">9</td><td>Saviour Monastery of St Euthymius with its bell concerts, Intercession Convent, a mead tasting</td></tr>
+            <tr><td class="day">10</td><td><b>No plan:</b> a horse-drawn sleigh, Ilyinsky Meadow, the ice slides, a long lunch</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="grid">
+        <div class="block">
+          <h4>Vladimir in half a day</h4>
+          <ul>
+            <li><b>The Golden Gates</b> (1164) — the only surviving pre-Mongol city gates in Russia</li>
+            <li><b>Dormition Cathedral</b> — frescoes by Andrei Rublev, 12th century, UNESCO</li>
+            <li><b>St Demetrius Cathedral</b> — 600 carved stone reliefs across its façades</li>
+            <li><b>Georgievskaya Street</b> and the viewpoint over the frozen Klyazma floodplain</li>
+            <li><b>Bogolyubovo and the Church of the Intercession on the Nerl</b> — a 1.5 km walk across a snowy meadow to a solitary white church. Dress for wind</li>
+          </ul>
+        </div>
+        <div class="block">
+          <h4>Suzdal</h4>
+          <ul>
+            <li><b>The Kremlin</b> and the Nativity Cathedral with blue domes covered in gold stars</li>
+            <li><b>Saviour Monastery of St Euthymius</b> — fortress walls, an apothecary garden, and live <b>bell concerts</b> several times a day (check the schedule)</li>
+            <li><b>Museum of Wooden Architecture</b> — cottages, windmills and wooden churches under snow</li>
+            <li><b>Intercession Convent</b> — where tsarinas were exiled; white and very quiet</li>
+            <li><b>The market square</b> — souvenirs, felt boots, mittens, hot spiced sbiten</li>
+            <li><b>Ilyinsky Meadow</b> — the whole town seen from across the Kamenka river. Your best photograph will be taken here</li>
+          </ul>
+        </div>
+        <div class="block">
+          <h4>Where to eat</h4>
+          <ul>
+            <li><b>Ogurets</b> — modern Russian cooking, local cucumbers in every form <span class="tag">1,500–2,500 ₽</span></li>
+            <li><b>GraFin</b> — house infusions and excellent food <span class="tag">1,500–2,500 ₽</span></li>
+            <li><b>Gostiny Dvor</b> — the classic on the main square <span class="tag">1,200–2,000 ₽</span></li>
+            <li><b>The Kremlin refectory</b> — vaulted ceilings, porridge baked in a clay pot <span class="tag">1,000–1,800 ₽</span></li>
+            <li><b>The mead brewery</b> — a tasting of ten varieties <span class="tag">500–900 ₽</span></li>
+          </ul>
+        </div>
+        <div class="block">
+          <h4>Something unusual</h4>
+          <ul>
+            <li><b>A horse-drawn sleigh</b> through the snowy streets <span class="tag">1,500–3,000 ₽</span></li>
+            <li><b>Tubing and ice slides</b> at the Suzdal tourist complex</li>
+            <li><b>Dinner beside a real Russian stove</b>, food served in cast-iron pots with house infusions — the most Suzdal thing imaginable</li>
+            <li><b>Old New Year on 14 January</b> — festivities on the market square</li>
+            <li><b>A night walk</b> — there are almost no street lights, so you get stars, and snow that glows</li>
+          </ul>
+        </div>
+      </div>
+    </article>
+
+    <!-- KOSTROMA -->
+    <article class="city">
+      <div class="city-head">
+        <h3>Kostroma</h3>
+        <div class="meta"><b>2 nights</b>days 11–12 · 15–16 Jan</div>
+      </div>
+      <div class="why"><b>Why this long</b>The centre takes a day to walk, but two unique things sit here: the Ipatiev Monastery, where the Romanov dynasty began, and the Snow Maiden's Terem with a moose farm nearby. Two nights mean you arrive in Yaroslavl rested rather than rushed.</div>
+      <div class="grid">
+        <div class="block">
+          <h4>What to see</h4>
+          <ul>
+            <li><b>Ipatiev Monastery</b> — the cradle of the Romanovs, Trinity Cathedral frescoes, the boyars' chambers</li>
+            <li><b>Kostroma Sloboda</b> — an open-air museum of wooden architecture beside the monastery, magical in snow</li>
+            <li><b>Susanin Square, the trading rows and the fire tower</b> — a textbook neoclassical ensemble</li>
+            <li><b>The Volga embankment</b> — the river freezes solid, which is an experience in itself if you have never seen ice on a big river</li>
+            <li><b>The Snow Maiden's Terem</b> — an Ice Room at −14 °C where drinks are served in glasses made of ice</li>
+            <li><b>Romanov Museum</b> and the <b>Cheese Museum</b> — small and warm</li>
+          </ul>
+        </div>
+        <div class="block">
+          <h4>Unusual, and food</h4>
+          <ul>
+            <li><b>Sumarokovo moose farm</b>, 20 km out: feed moose by hand and taste moose milk. There are only a handful of places like it anywhere</li>
+            <li><b>Krasnoye-na-Volge</b> — a jewellery-making village, half a day if you like silver</li>
+            <li><b>Groza</b> — the best restaurant in town <span class="tag">1,500–2,500 ₽</span></li>
+            <li><b>Sloboda</b> — home cooking near the monastery <span class="tag">1,000–1,800 ₽</span></li>
+            <li><b>The market by the trading rows</b> — black salt, honey, salted milk-cap mushrooms</li>
+          </ul>
+        </div>
+      </div>
+    </article>
+
+    <!-- YAROSLAVL -->
+    <article class="city">
+      <div class="city-head">
+        <h3>Yaroslavl <span style="font-size:.55em;color:var(--muted)">+ Rostov Veliky</span></h3>
+        <div class="meta"><b>3 nights</b>days 13–15 · 17–19 Jan</div>
+      </div>
+      <div class="why"><b>Why this long</b>The capital of the Golden Ring: a UNESCO-listed centre, the Volga embankment and actual city life — coffee, theatres, restaurants. After small Suzdal that change of rhythm is welcome. One of the three days goes to Rostov Veliky, which should not be skipped.</div>
+
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Day</th><th>Plan</th></tr></thead>
+          <tbody>
+            <tr><td class="day">13</td><td>Check in, the Volga embankment, the Strelka, Dormition Cathedral, an evening in a café</td></tr>
+            <tr><td class="day">14</td><td><b>Rostov Veliky</b>, an hour by train: the Kremlin, frozen Lake Nero, the enamel museum</td></tr>
+            <tr><td class="day">15</td><td>Transfiguration Monastery, Church of Elijah the Prophet, the Music and Time museum, then the Volkov Theatre</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="grid">
+        <div class="block">
+          <h4>Yaroslavl</h4>
+          <ul>
+            <li><b>Transfiguration Monastery</b> — the oldest buildings in town and a belfry viewpoint</li>
+            <li><b>Church of Elijah the Prophet</b> — 17th-century frescoes, the benchmark of the Yaroslavl school (winter opening is irregular, check ahead)</li>
+            <li><b>The Volga embankment and the Strelka</b> — walking above a frozen river</li>
+            <li><b>Volkov Theatre</b> — Russia's first professional theatre, founded 1750</li>
+            <li><b>Music and Time museum</b> — a private collection of barrel organs, clocks and bells; the owners demonstrate everything by sound</li>
+            <li><b>Metropolitan Chambers</b> and the Governor's House — old Russian art and 19th-century painting</li>
+          </ul>
+        </div>
+        <div class="block">
+          <h4>Rostov Veliky</h4>
+          <ul>
+            <li><b>Rostov Kremlin</b> — white walls, covered passages and the famous Rostov bell chimes</li>
+            <li><b>Lake Nero</b> — you can walk out onto the ice, among fishermen and snowmobiles</li>
+            <li><b>The finift museum</b> — local painted enamel, and the best souvenirs of the trip</li>
+            <li><b>St Jacob Monastery</b> — the lake view from its shore</li>
+            <li>Lunch at the museum-restaurant <b>Sobranie</b> or in the Kremlin refectory</li>
+          </ul>
+        </div>
+        <div class="block">
+          <h4>Eating and winter</h4>
+          <ul>
+            <li><b>Ioann Vasilievich</b> — interiors themed on Soviet film comedies, the best "wow" dinner in town <span class="tag">1,500–2,500 ₽</span></li>
+            <li><b>Vanilnoye Nebo</b> — panoramic Volga views <span class="tag">2,000–3,000 ₽</span></li>
+            <li><b>Penaty</b> — a good, unfussy breakfast <span class="tag">700–1,200 ₽</span></li>
+            <li>Skating on <b>Damansky Island</b> and in the city park</li>
+            <li><b>A walk on the frozen Volga</b> near the Strelka — stick to the trodden paths the locals use</li>
+          </ul>
+        </div>
+      </div>
+    </article>
+
+    <!-- MOSCOW 2 -->
+    <article class="city">
+      <div class="city-head">
+        <h3>Moscow · the pause</h3>
+        <div class="meta"><b>2 nights</b>days 16–17 · 20–21 Jan</div>
+      </div>
+      <div class="why"><b>Why this long</b>After the Golden Ring you need a soft landing. Days with no obligations: whatever you missed the first time, a favourite café again, shopping, rest before the Sapsan. Psychologically this pause in the middle matters.</div>
+      <div class="grid">
+        <div class="block">
+          <h4>Pick two or three, no more</h4>
+          <ul>
+            <li><b>VDNKh</b> — Stalin-era pavilions under snow, the rink, the Museum of Cosmonautics</li>
+            <li><b>Pushkin Museum</b> or the <b>Museum of Russian Impressionism</b> — whatever you missed</li>
+            <li><b>The circus on Tsvetnoy Boulevard</b> or Moskvarium at VDNKh — for something the guidebooks skip</li>
+            <li><b>A metro walk</b>: Komsomolskaya, Novoslobodskaya, Mayakovskaya, Ploshchad Revolyutsii — rub the bronze dog's nose for luck</li>
+            <li><b>Izmailovo Kremlin</b> — souvenirs before the second half of the trip</li>
+            <li>In the evening: Krasny Oktyabr, GES-2, the Kremlin seen from Patriarshy Bridge</li>
+          </ul>
+        </div>
+        <div class="block">
+          <h4>Day 18: the Sapsan</h4>
+          <p>Leningradsky station to Moskovsky station, 3 h 45. Take a morning departure so you arrive in daylight, and book a window seat: snow-covered forest the whole way.</p>
+          <p style="margin:0">Breakfast is not included in every fare — check when booking.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- ST PETERSBURG -->
+    <article class="city">
+      <div class="city-head">
+        <h3>St Petersburg</h3>
+        <div class="meta"><b>8 nights</b>days 18–25 · 22–29 Jan</div>
+      </div>
+      <div class="why"><b>Why this long</b>It is at least three separate cities: the imperial centre, world-class museums and the palace suburbs. The Hermitage honestly needs two visits. Add short daylight and frequent grey skies and you want slack for the days when three hours in a museum and two in a café is the right answer.</div>
+
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Day</th><th>Plan</th><th>Effort</th></tr></thead>
+          <tbody>
+            <tr><td class="day">18</td><td>Sapsan, check in, Nevsky Prospect in the evening, dinner</td><td>Easy</td></tr>
+            <tr><td class="day">19</td><td><b>Hermitage, visit one</b>: the state rooms of the Winter Palace</td><td>Medium</td></tr>
+            <tr><td class="day">20</td><td>Church of the Saviour on Spilled Blood, Russian Museum, Mikhailovsky Garden</td><td>Medium</td></tr>
+            <tr><td class="day">21</td><td>Peter and Paul Fortress, Hare Island, the Spit of Vasilievsky Island</td><td>Medium</td></tr>
+            <tr><td class="day">22</td><td><b>No plan:</b> New Holland, skating, coffee, Sevkabel Port</td><td>Easy</td></tr>
+            <tr><td class="day">23</td><td><b>Tsarskoye Selo</b>: Catherine Palace and the Amber Room</td><td>Medium</td></tr>
+            <tr><td class="day">24</td><td>St Isaac's Cathedral and colonnade, Yusupov Palace, then <b>ballet at the Mariinsky</b></td><td>Medium</td></tr>
+            <tr><td class="day">25</td><td><b>Hermitage, visit two</b> — the General Staff Building and the Impressionists. Or Fabergé and Dostoevsky</td><td>Easy</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="grid">
+        <div class="block">
+          <h4>The essentials</h4>
+          <ul>
+            <li><b>The Hermitage</b> — split it in two: the Winter Palace for old masters, the General Staff Building for Monet, Matisse and Picasso</li>
+            <li><b>Saviour on Spilled Blood</b> — seven thousand square metres of mosaic inside</li>
+            <li><b>St Isaac's Cathedral</b> — the colonnade is a must: the best winter panorama in the city, 262 steps up</li>
+            <li><b>Peter and Paul Fortress</b> — the Romanov tombs, the noon cannon, the frozen Neva</li>
+            <li><b>Palace Square</b> with the Alexander Column, floodlit in the evening</li>
+            <li><b>The Spit of Vasilievsky Island</b> — Rostral Columns and the Winter Palace seen across the ice</li>
+          </ul>
+        </div>
+        <div class="block">
+          <h4>Museums</h4>
+          <ul>
+            <li><b>The Hermitage</b> — a global top five <span class="tag">500–1,000 ₽</span></li>
+            <li><b>Russian Museum</b> — Bryullov, Aivazovsky, Repin <span class="tag">700–1,000 ₽</span></li>
+            <li><b>Fabergé Museum</b> — the imperial Easter eggs <span class="tag">800–1,200 ₽</span></li>
+            <li><b>Kunstkamera</b> — Russia's first museum <span class="tag">600–900 ₽</span></li>
+            <li><b>Yusupov Palace</b> — the interiors, and the cellar where Rasputin was killed <span class="tag">1,000–1,800 ₽</span></li>
+            <li><b>Akhmatova Museum</b> at the Fountain House — the most atmospheric small museum in the city <span class="tag">400–600 ₽</span></li>
+            <li><b>Dostoevsky Museum</b> and <b>Erarta</b> — for a grey day <span class="tag">500–1,200 ₽</span></li>
+          </ul>
+        </div>
+        <div class="block">
+          <h4>Suburbs — choose one or two</h4>
+          <ul>
+            <li><b>Tsarskoye Selo (Pushkin)</b> — Catherine Palace, the Amber Room, the park in snow <span class="tag">40 min by train</span></li>
+            <li><b>Pavlovsk</b> — the loveliest winter park; squirrels and tits feed from your hand <span class="tag">45 min</span></li>
+            <li><b>Peterhof</b> — the fountains are switched off, but the Grand Palace and the snowy park by the gulf are nearly empty <span class="tag">40 min</span></li>
+          </ul>
+          <p style="margin:0"><b>Recommended:</b> Tsarskoye Selo without question, and Pavlovsk is next door — easy to combine in one day.</p>
+        </div>
+        <div class="block">
+          <h4>Walks and viewpoints</h4>
+          <ul>
+            <li><b>Moika → New Holland → St Nicholas Cathedral</b> — the cosiest route in the city</li>
+            <li><b>Palace Embankment at dusk</b> — lamplight and ice on the Neva</li>
+            <li><b>Griboedov Canal</b> from Spilled Blood down to the Lion Bridge</li>
+            <li><b>The Summer Garden</b> in winter — statues in their protective cases, empty avenues</li>
+            <li><b>Yelagin Island</b> — skis, skates, squirrels</li>
+            <li>Viewpoints: <b>St Isaac's colonnade</b>, <b>Loft Project Etagi</b>, the <b>Smolny Cathedral belfry</b></li>
+          </ul>
+        </div>
+        <div class="block">
+          <h4>Where to eat</h4>
+          <ul>
+            <li><b>Cococo</b> — modern Russian cooking from local produce, the city's best food experience <span class="tag">3,500–5,500 ₽</span></li>
+            <li><b>Severyanin</b> — Russian classics in a 1910s interior <span class="tag">2,000–3,000 ₽</span></li>
+            <li><b>Idiot</b> — a Dostoevsky-themed cellar on the Moika <span class="tag">1,500–2,500 ₽</span></li>
+            <li><b>Pyshechnaya on Bolshaya Konyushennaya</b> — sugar-dusted doughnuts, unchanged since 1958 <span class="tag">300–500 ₽</span></li>
+            <li><b>Teplo</b> — blankets and home cooking <span class="tag">1,500–2,500 ₽</span></li>
+            <li><b>Sevkabel Port</b> and <b>Vasileostrovsky Market</b> <span class="tag">1,000–1,800 ₽</span></li>
+          </ul>
+        </div>
+        <div class="block">
+          <h4>Winter and unusual</h4>
+          <ul>
+            <li><b>The rink at New Holland</b> — small, strung with lights and wooden huts, right in the centre</li>
+            <li><b>Ballet at the Mariinsky</b> — book 1–2 months ahead <span class="tag">3,000–12,000 ₽</span></li>
+            <li><b>The noon cannon</b> from the Naryshkin Bastion, daily at 12:00</li>
+            <li><b>Kronstadt and the Island of Forts park</b> — the Gulf of Finland under ice, half a day</li>
+            <li><b>A courtyards-and-staircases tour</b> — the Petersburg you cannot see from the street</li>
+            <li><b>The icebreaker Krasin</b> — a museum aboard a real polar icebreaker moored on the Neva</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tip">The Hermitage closes on Mondays and the Russian Museum on Tuesdays. Book Hermitage tickets online through your hotel, or use the machines in the courtyard.</div>
+    </article>
+
+    <!-- NOVGOROD -->
+    <article class="city">
+      <div class="city-head">
+        <h3>Veliky Novgorod</h3>
+        <div class="meta"><b>2 nights</b>days 26–27 · 30–31 Jan</div>
+      </div>
+      <div class="why"><b>Why this long</b>The oldest city on the route (859) and the right closing note: after imperial Petersburg, quiet medieval Rus. Everything essential fits into a day and a half, and there is a convenient overnight train to Moscow on the second evening.</div>
+      <div class="grid">
+        <div class="block">
+          <h4>What to see</h4>
+          <ul>
+            <li><b>The Novgorod Kremlin (Detinets)</b> — a 15th-century fortress you can walk along</li>
+            <li><b>St Sophia Cathedral</b> (1050) — the oldest church in Russia, older than almost everything you have seen so far</li>
+            <li><b>The Millennium of Russia monument</b> — 129 figures, the country's whole history in one sculpture</li>
+            <li><b>Yaroslav's Court</b> — eight churches on one small plot, seen across the frozen Volkhov</li>
+            <li><b>Vitoslavlitsy</b> — open-air wooden architecture beside St George's Monastery: cottages, chapels, snow, silence. Don't skip it</li>
+            <li><b>The birchbark letters</b> in the Museum of Written Culture — notes by ordinary people from the 11th–14th centuries, including the drawings of a boy called Onfim</li>
+          </ul>
+        </div>
+        <div class="block">
+          <h4>Food and winter</h4>
+          <ul>
+            <li><b>Dom Berga</b> — historic Russian cooking, the best table in town <span class="tag">1,500–2,500 ₽</span></li>
+            <li><b>Yuryevskoye Podvorye</b> — village food from a wood-fired oven, mead, next to Vitoslavlitsy</li>
+            <li><b>Ilmen</b> — fish from the lake</li>
+            <li>A walk <b>across the frozen Volkhov</b> from the Detinets to Yaroslav's Court — stick to the trodden path</li>
+            <li>Sledding hills and a rink beneath the kremlin walls</li>
+            <li>Mead and hot sbiten in the cold, brewed to old recipes</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tip">On the evening of day 27, the overnight train to Moscow. Eight hours in a two-berth compartment with tea in a metal holder: it saves a whole day and is an experience in its own right.</div>
+    </article>
+
+    <!-- MOSCOW FINAL -->
+    <article class="city">
+      <div class="city-head">
+        <h3>Moscow · the finish</h3>
+        <div class="meta"><b>3 nights</b>days 28–30 · 1–3 Feb</div>
+      </div>
+      <div class="why"><b>Why this long</b>You want a buffer before a long-haul flight — winter brings blizzards and delayed trains — plus time for presents and for repeating whatever you loved. Nothing here is compulsory.</div>
+      <div class="grid">
+        <div class="block">
+          <h4>Ideas</h4>
+          <ul>
+            <li>Morning of day 28: check in after the train, slow breakfast, rest</li>
+            <li>Red Square and GUM once more, this time like an old friend</li>
+            <li><b>Kuskovo or Ostankino estate</b> — if you want one last snowbound manor</li>
+            <li>The Tretyakov again, or the Pushkin Museum if you missed it</li>
+            <li>A farewell dinner at Café Pushkin or Dr. Zhivago</li>
+          </ul>
+        </div>
+        <div class="block">
+          <h4>What to take home</h4>
+          <ul>
+            <li><b>Valenki</b> (felt boots) and wool mittens — Izmailovo</li>
+            <li><b>Rostov enamel</b> and <b>Suzdal mead</b>, bought along the way</li>
+            <li><b>A Pavlovo Posad shawl</b> — GUM or Dom Farfora</li>
+            <li><b>Krasny Oktyabr and Babaevsky chocolates</b>, Tula gingerbread</li>
+            <li><b>Kostroma cheese</b> and black salt — if New Zealand biosecurity allows it. Check the rules before you pack food: they are strict</li>
+          </ul>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- BUDGET -->
+<section id="budget-en">
+  <div class="wrap">
+    <div class="sec-head"><div class="eyebrow">03</div><h2>Budget</h2></div>
+    <p class="sec-sub">All figures are per person, except the separately marked accommodation rows. Calculated at 1 NZD = 45 ₽. The 14,000 NZD ceiling is not even half spent: the recommended tier lands at 8,000.</p>
+
+    <div class="tiers" role="tablist" aria-label="Budget tiers">
+      <button class="tier-btn" role="tab" aria-selected="false" aria-controls="p-eco-en" id="t-eco-en">Lean but comfortable<span>7,000 NZD</span></button>
+      <button class="tier-btn" role="tab" aria-selected="true" aria-controls="p-rec-en" id="t-rec-en">Recommended<span>8,000 NZD</span></button>
+      <button class="tier-btn" role="tab" aria-selected="false" aria-controls="p-lux-en" id="t-lux-en">Generous<span>10,000 NZD</span></button>
+    </div>
+
+    <div class="panel" id="p-eco-en" role="tabpanel" aria-labelledby="t-eco-en" hidden>
+      <div class="summary">
+        <div class="sum-card"><div class="l">Per person</div><div class="v">316,500 ₽</div></div>
+        <div class="sum-card hi"><div class="l">Per person</div><div class="v">7,033 <small>NZD</small></div></div>
+        <div class="sum-card"><div class="l">For two</div><div class="v">14,067 <small>NZD</small></div></div>
+        <div class="sum-card"><div class="l">Left from the ceiling</div><div class="v">6,967 <small>NZD pp</small></div></div>
+      </div>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Category</th><th class="num">₽ pp</th><th class="num">NZD pp</th><th>What it means in practice</th></tr></thead>
+          <tbody>
+            <tr><td>Accommodation</td><td class="num">92,500</td><td class="num">2,056</td><td>3.5–4★ hotels and flats 10–15 minutes from the centre</td></tr>
+            <tr><td>Transport within Russia</td><td class="num">38,000</td><td class="num">844</td><td>Bus instead of a private transfer Suzdal–Kostroma, less taxi</td></tr>
+            <tr><td>Food</td><td class="num">82,500</td><td class="num">1,833</td><td>≈ 2,750 ₽ a day: food halls for lunch, one big dinner</td></tr>
+            <tr><td>Museums</td><td class="num">22,000</td><td class="num">489</td><td>Every key museum, minus the second Hermitage visit</td></tr>
+            <tr><td>Entertainment</td><td class="num">25,000</td><td class="num">556</td><td>One ballet, rinks, a sleigh ride, one guided tour</td></tr>
+            <tr><td>Souvenirs, SIM, insurance, visa</td><td class="num">26,500</td><td class="num">589</td><td>—</td></tr>
+            <tr><td>Contingency</td><td class="num">30,000</td><td class="num">667</td><td>≈ 10%</td></tr>
+            <tr class="total"><td>Total per person</td><td class="num">316,500 ₽</td><td class="num">7,033</td><td>For two — 633,000 ₽ / 14,067 NZD</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="sec-sub">Same route, same cities, same museums. Only the polish of the hotels and the number of restaurant dinners changes.</p>
+    </div>
+
+    <div class="panel" id="p-rec-en" role="tabpanel" aria-labelledby="t-rec-en">
+      <div class="summary">
+        <div class="sum-card"><div class="l">Per person</div><div class="v">360,000 ₽</div></div>
+        <div class="sum-card hi"><div class="l">Per person</div><div class="v">8,000 <small>NZD</small></div></div>
+        <div class="sum-card"><div class="l">For two</div><div class="v">16,000 <small>NZD</small></div></div>
+        <div class="sum-card"><div class="l">Left from the ceiling</div><div class="v">6,000 <small>NZD pp</small></div></div>
+      </div>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Category</th><th class="num">₽ pp</th><th class="num">NZD pp</th><th>What it covers</th></tr></thead>
+          <tbody>
+            <tr><td>Accommodation</td><td class="num">109,000</td><td class="num">2,422</td><td>Central hotels and flats rated 8.5+, one double room</td></tr>
+            <tr><td>Transport within Russia</td><td class="num">42,000</td><td class="num">933</td><td>8 journeys, 4 day trips, metro and taxis for 30 days</td></tr>
+            <tr><td>Food</td><td class="num">90,000</td><td class="num">2,000</td><td>≈ 3,000 ₽ a day, including three special dinners</td></tr>
+            <tr><td>Museums</td><td class="num">26,000</td><td class="num">578</td><td>18–20 museums, including two Hermitage visits</td></tr>
+            <tr><td>Entertainment</td><td class="num">30,000</td><td class="num">667</td><td>Ballet, rinks, sleigh ride, huskies, moose farm, 2–3 guides</td></tr>
+            <tr><td>Souvenirs, SIM, insurance, visa</td><td class="num">33,000</td><td class="num">733</td><td>Visa with invitation ≈ 12,000 ₽, insurance ≈ 8,000 ₽</td></tr>
+            <tr><td>Contingency</td><td class="num">30,000</td><td class="num">667</td><td>Blizzards, expensive taxis, spontaneous ideas</td></tr>
+            <tr class="total"><td>Total per person</td><td class="num">360,000 ₽</td><td class="num">8,000</td><td>For two — 720,000 ₽ / 16,000 NZD</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 style="font-size:22px;margin-bottom:14px">Accommodation city by city</h3>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>City</th><th class="num">Nights</th><th class="num">Per room / night</th><th class="num">Room total</th><th class="num">Per person</th></tr></thead>
+          <tbody>
+            <tr><td>Moscow (6 + 2 + 3)</td><td class="num">11</td><td class="num">8,000 ₽</td><td class="num">88,000 ₽</td><td class="num">44,000 ₽</td></tr>
+            <tr><td>Suzdal</td><td class="num">4</td><td class="num">7,000 ₽</td><td class="num">28,000 ₽</td><td class="num">14,000 ₽</td></tr>
+            <tr><td>Kostroma</td><td class="num">2</td><td class="num">5,000 ₽</td><td class="num">10,000 ₽</td><td class="num">5,000 ₽</td></tr>
+            <tr><td>Yaroslavl</td><td class="num">3</td><td class="num">6,000 ₽</td><td class="num">18,000 ₽</td><td class="num">9,000 ₽</td></tr>
+            <tr><td>St Petersburg</td><td class="num">8</td><td class="num">8,000 ₽</td><td class="num">64,000 ₽</td><td class="num">32,000 ₽</td></tr>
+            <tr><td>Veliky Novgorod</td><td class="num">2</td><td class="num">5,000 ₽</td><td class="num">10,000 ₽</td><td class="num">5,000 ₽</td></tr>
+            <tr class="total"><td>Total</td><td class="num">30</td><td class="num">—</td><td class="num">218,000 ₽ · 4,844 NZD</td><td class="num">109,000 ₽ · 2,422 NZD</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 style="font-size:22px;margin-bottom:14px">Where to look for hotels</h3>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>City</th><th>Area</th><th>Examples</th></tr></thead>
+          <tbody>
+            <tr><td>Moscow</td><td>Kitay-gorod, Tverskaya, Chistye Prudy, Zamoskvorechye</td><td>Cosmos Selection Tverskaya, Azimut Smolenskaya, Vertical apart-hotels, boutique hotels on Pokrovka</td></tr>
+            <tr><td>Suzdal</td><td>Walking distance to the market square</td><td>Pushkarskaya Sloboda, Nikolaevsky Posad, GTK Suzdal</td></tr>
+            <tr><td>Kostroma</td><td>By Susanin Square</td><td>Azimut Kostroma, Ostrovsky Prichal</td></tr>
+            <tr><td>Yaroslavl</td><td>Volga embankment, centre</td><td>Ring Premier Hotel, Ioann Vasilievich Hotel</td></tr>
+            <tr><td>St Petersburg</td><td>Admiralteysky and Tsentralny, near the Moika and Fontanka</td><td>Helvetia, hotels around St Isaac's Square, flats on the Moika</td></tr>
+            <tr><td>Novgorod</td><td>By the kremlin</td><td>Volkhov, Truvor</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="note"><b>Booking.com does not operate in Russia.</b> Use Ostrovok.ru, Yandex Travel or 101hotels, and choose the <b>pay-on-arrival</b> rate — that solves the foreign-card problem. Verify hotel names and ratings before booking: the market changes fast.</div>
+    </div>
+
+    <div class="panel" id="p-lux-en" role="tabpanel" aria-labelledby="t-lux-en" hidden>
+      <div class="summary">
+        <div class="sum-card"><div class="l">Per person</div><div class="v">450,500 ₽</div></div>
+        <div class="sum-card hi"><div class="l">Per person</div><div class="v">10,011 <small>NZD</small></div></div>
+        <div class="sum-card"><div class="l">For two</div><div class="v">20,022 <small>NZD</small></div></div>
+        <div class="sum-card"><div class="l">Left from the ceiling</div><div class="v">3,989 <small>NZD pp</small></div></div>
+      </div>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Category</th><th class="num">₽ pp</th><th class="num">NZD pp</th><th>Difference from recommended</th></tr></thead>
+          <tbody>
+            <tr><td>Accommodation</td><td class="num">131,500</td><td class="num">2,922</td><td>A category up, windows onto the historic centre</td></tr>
+            <tr><td>Transport within Russia</td><td class="num">47,500</td><td class="num">1,056</td><td>Private transfers throughout, taxis instead of the metro</td></tr>
+            <tr><td>Food</td><td class="num">120,000</td><td class="num">2,667</td><td>≈ 4,000 ₽ a day, five or six restaurant dinners</td></tr>
+            <tr><td>Museums</td><td class="num">30,000</td><td class="num">667</td><td>Palace suburbs with nothing trimmed</td></tr>
+            <tr><td>Entertainment</td><td class="num">45,000</td><td class="num">1,000</td><td>A box at the Bolshoi, a private art historian at the Hermitage</td></tr>
+            <tr><td>Souvenirs, SIM, insurance, visa</td><td class="num">36,500</td><td class="num">811</td><td>—</td></tr>
+            <tr><td>Contingency</td><td class="num">40,000</td><td class="num">889</td><td>—</td></tr>
+            <tr class="total"><td>Total per person</td><td class="num">450,500 ₽</td><td class="num">10,011</td><td>For two — 901,000 ₽ / 20,022 NZD</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="sec-sub">If you want to spend more and feel it, the three best options are: a box at the Bolshoi, a private art historian for a day in the Hermitage, and a hotel two categories up in St Petersburg for all eight nights.</p>
+    </div>
+
+    <div class="tip"><b>A suggestion:</b> keep what's left of the ceiling as a cushion rather than upgrading for the sake of it. Winter produces overbookings, surge-priced taxis in a blizzard, and sudden urges to add Kronstadt.</div>
+  </div>
+</section>
+
+<!-- PRACTICAL -->
+<section id="practice-en">
+  <div class="wrap">
+    <div class="sec-head"><div class="eyebrow">04</div><h2>Practical</h2></div>
+    <p class="sec-sub">Nine things to sort before you fly. The section on money is the single most important part of this document.</p>
+
+    <article class="city">
+      <div class="city-head"><h3>Weather and daylight</h3></div>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>City</th><th class="num">Daytime</th><th class="num">Night</th><th class="num">Extremes</th><th>Character</th></tr></thead>
+          <tbody>
+            <tr><td>Moscow</td><td class="num">−6…−12 °C</td><td class="num">−10…−16 °C</td><td class="num">down to −25 °C</td><td>Dry cold, plenty of snow, sun is rare</td></tr>
+            <tr><td>Suzdal, Yaroslavl, Kostroma</td><td class="num">−8…−14 °C</td><td class="num">−14…−20 °C</td><td class="num">down to −28 °C</td><td>The real frost of the trip, and the deepest snow</td></tr>
+            <tr><td>St Petersburg</td><td class="num">−3…−8 °C</td><td class="num">−6…−12 °C</td><td class="num">rarely below −20 °C</td><td>Milder but damp and windy; thaws and slush happen</td></tr>
+            <tr><td>Veliky Novgorod</td><td class="num">−4…−9 °C</td><td class="num">−8…−14 °C</td><td class="num">down to −20 °C</td><td>Somewhere in between</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="tip">−15 °C in dry Moscow is easier to bear than −5 °C with wind in St Petersburg. Don't judge by the numbers alone.</div>
+
+      <h4 style="font-size:19px;margin:0 0 14px">How much daylight you get</h4>
+      <ul class="daylight">
+        <li><span>Moscow, early January</span><span class="dl-bar"><span style="width:37.5%"></span><span class="dl-light" style="width:29%"></span><span style="width:33.5%"></span></span><span class="dl-val">9:00–16:00 · 7 h</span></li>
+        <li><span>Moscow, late January</span><span class="dl-bar"><span style="width:35.4%"></span><span class="dl-light" style="width:36.1%"></span><span style="width:28.5%"></span></span><span class="dl-val">8:30–17:10 · 8 h 40</span></li>
+        <li><span>St Petersburg, early January</span><span class="dl-bar"><span style="width:41.7%"></span><span class="dl-light" style="width:24.7%"></span><span style="width:33.6%"></span></span><span class="dl-val">10:00–16:00 · 5 h 55</span></li>
+        <li><span>St Petersburg, late January</span><span class="dl-bar"><span style="width:38.2%"></span><span class="dl-light" style="width:32.3%"></span><span style="width:29.5%"></span></span><span class="dl-val">9:10–17:00 · 7 h 45</span></li>
+      </ul>
+      <p>The practical conclusion: anything you need daylight for — walks, viewpoints, palace parks — belongs between <b>10:00 and 15:30</b>. Museums, theatres and restaurants take the dark hours. That isn't a loss: a floodlit snowy city in the evening is half the point of a Russian winter.</p>
+    </article>
+
+    <article class="city">
+      <div class="city-head"><h3>What to wear</h3></div>
+      <div class="grid">
+        <div class="block">
+          <h4>Three layers</h4>
+          <ul>
+            <li><b>Base:</b> merino wool thermals, top and bottom. Not cotton — it holds sweat and chills you</li>
+            <li><b>Mid:</b> fleece or a thin wool jumper</li>
+            <li><b>Outer:</b> a down coat to mid-thigh or longer, with a hood, rated to about −20 °C</li>
+          </ul>
+          <h4>The non-negotiables</h4>
+          <ul>
+            <li>A hat that covers your ears — not a beanie perched on top, not a beret</li>
+            <li><b>Mittens, not gloves</b> — about a third warmer; thin gloves underneath for your phone</li>
+            <li>A scarf or buff to cover your face in wind</li>
+            <li>Thermal leggings under your trousers: jeans alone do not work at −15 °C</li>
+            <li>Wool socks, two pairs for the coldest days</li>
+            <li>Rich face cream and lip balm — frost outside and dry heating inside strip your skin fast</li>
+            <li>Sunglasses: fresh snow on a sunny day is blinding</li>
+          </ul>
+        </div>
+        <div class="block">
+          <h4>Footwear matters most</h4>
+          <ul>
+            <li><b>Insulated winter boots with a thick, deeply treaded sole.</b> City trainers and smooth-soled leather boots are a guaranteed fall</li>
+            <li>Buy clip-on <b>ice grips</b> for your soles — 500–1,000 ₽ in any hardware shop</li>
+            <li>Boots should be slightly loose: the air gap is what keeps you warm, tight boots freeze your toes</li>
+            <li>Bring a second pair — St Petersburg thaws, and you will get wet feet</li>
+            <li>A souvenir that earns its place: <b>valenki</b>, traditional felt boots, from Suzdal or Izmailovo. They genuinely work</li>
+          </ul>
+          <div class="tip" style="margin-top:6px">Every museum and restaurant has a free cloakroom, and leaving your coat there is expected. You never wear a parka indoors — so dress so that what's underneath looks good.</div>
+        </div>
+      </div>
+    </article>
+
+    <article class="city">
+      <div class="city-head"><h3>Money</h3></div>
+      <div class="note"><b>Foreign Visa, Mastercard and Amex cards do not work in Russia at all</b> — not in shops, not in ATMs, not online. Plan the trip as if you had no cards.</div>
+      <div class="grid">
+        <div class="block">
+          <h4>How to pay</h4>
+          <ul>
+            <li><b>Cash roubles are the main instrument.</b> Change money at branches of large banks with your passport, not at the airport, where rates are noticeably worse</li>
+            <li>Bring <b>new, undamaged notes</b> in USD or EUR. Torn or old bills may be refused</li>
+            <li>You may bring in up to the equivalent of <b>10,000 USD</b> per person without declaring it — more than enough</li>
+            <li><b>How much you need:</b> about 360,000 ₽ per person, so roughly <b>5,000–5,500 USD for two</b>. Change it in weekly instalments and keep the rest in the hotel safe</li>
+            <li><b>UnionPay</b> issued abroad occasionally works in large hotels, but you cannot rely on it</li>
+          </ul>
+        </div>
+        <div class="block">
+          <h4>The option that pays off over 30 days</h4>
+          <ul>
+            <li>A foreigner can open a Russian bank account and get a <b>Mir card</b> with a passport — a tax number is often required, and it is usually done the same day</li>
+            <li>With it, the metro, taxis, online purchases and rail tickets all work, which removes half the daily friction</li>
+            <li>Spend one of your free days in the first Moscow week on this. Bank requirements vary, so ask locally</li>
+          </ul>
+          <h4>The rate used here</h4>
+          <p style="margin:0">Through 2026 the rate has sat between <b>44 and 46 ₽ per NZD</b>. Every figure here uses 45. Check it before you travel — the rouble moves.</p>
+        </div>
+      </div>
+    </article>
+
+    <article class="city">
+      <div class="city-head"><h3>Phone and apps</h3></div>
+      <div class="grid">
+        <div class="block">
+          <h4>Download before you fly</h4>
+          <ul>
+            <li><b>Yandex Go</b> — taxis. Cheap, safe, no haggling. The single most useful app of the trip</li>
+            <li><b>Yandex Maps</b> or <b>2GIS</b> — navigation; 2GIS works offline, so download the city maps in advance</li>
+            <li><b>Yandex Metro</b> — Moscow and St Petersburg maps with journey times</li>
+            <li><b>RZD Passengers</b> — train times and status</li>
+            <li><b>Yandex Translate</b> — offline Russian and camera translation for menus, signs and museum labels. Indispensable</li>
+            <li><b>Telegram</b> — the default messenger in Russia, not WhatsApp</li>
+            <li><b>Yandex Eda</b> — food delivery to the hotel on a very cold night</li>
+          </ul>
+        </div>
+        <div class="block">
+          <h4>SIM cards</h4>
+          <ul>
+            <li><b>Simplest:</b> an international eSIM (Airalo, Yesim and similar) with a Russia plan — activate it before you leave and it roams</li>
+            <li><b>A local SIM:</b> since 2025 foreigners must register biometrics to buy one. It is doable but takes time — go to an official MTS, Beeline, MegaFon or t2 shop with your passport and migration card</li>
+            <li>Never buy a SIM from a street seller: those numbers get blocked</li>
+            <li>Wi-Fi is everywhere, including the metro in both capitals (registration by phone number required)</li>
+            <li>Instagram and Facebook are blocked in Russia and some Western services are unreliable. Google Maps works, but Yandex is more accurate for transport and venues</li>
+          </ul>
+        </div>
+      </div>
+    </article>
+
+    <article class="city">
+      <div class="city-head"><h3>Safety and paperwork</h3></div>
+      <div class="grid">
+        <div class="block">
+          <h4>Safety</h4>
+          <ul>
+            <li><b>Moscow and St Petersburg are safe by European standards</b> — both when you're out together and if you walk back alone after dark. The metro runs until 1 am and is clean and policed</li>
+            <li>The real winter hazard is <b>ice underfoot</b>. Look down, take short steps, use the handrails</li>
+            <li>The second is <b>icicles and snow sliding off roofs</b>. Don't walk tight against buildings during a thaw, and respect the warning tape</li>
+            <li>Never take a taxi from someone touting at a station or airport — use the app</li>
+            <li>Not every driver stops at a crossing. Step out only once a car has actually stopped</li>
+            <li>Ambulance 103, general emergencies 112</li>
+          </ul>
+        </div>
+        <div class="block">
+          <h4>Paperwork</h4>
+          <ul>
+            <li><b>Visa:</b> New Zealand citizens cannot use the Russian e-visa. You need a standard tourist visa via the consulate or a visa centre, with an invitation from an accredited tour operator. Apply 6–8 weeks ahead</li>
+            <li><b>Migration registration:</b> hotels do it automatically — that is why they take your passport at check-in. In a rented flat the host must do it within 7 working days, so hotels are safer for a long trip</li>
+            <li>Carry a copy of your passport and visa and leave the original in the safe — except on train days, when you need the original</li>
+            <li><b>Insurance</b> is required for the visa. Many Western insurers exclude Russia, so choose a provider the consulate accepts</li>
+            <li>There are no direct flights from New Zealand: connections usually run via Dubai, Doha, Istanbul or Beijing</li>
+            <li>Check the current New Zealand government advice on SafeTravel before booking — standard practice for any trip</li>
+          </ul>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- FOOD -->
+<section id="food-en">
+  <div class="wrap">
+    <div class="sec-head"><div class="eyebrow">05</div><h2>What to eat</h2></div>
+    <p class="sec-sub">Russian winter food is heavy and warming, and that is the whole idea. The list is arranged so every city gives you something of its own.</p>
+
+    <div class="grid" style="margin-bottom:26px">
+      <div class="dish">
+        <h4>The classics, everywhere</h4>
+        <ul>
+          <li><b>Borscht</b> — beetroot soup with sour cream, garlic rolls or black bread</li>
+          <li><b>Pelmeni</b> — meat dumplings with sour cream or vinegar; winter food number one</li>
+          <li><b>Blini</b> — with red caviar, sour cream, curd cheese or honey</li>
+          <li><b>Solyanka</b> — a sharp, salty soup with smoked meats and lemon</li>
+          <li><b>Olivier salad and "herring under a fur coat"</b> — in January they are everywhere</li>
+          <li><b>Syrniki</b> — curd cheese pancakes, the best Russian breakfast</li>
+          <li><b>Beef Stroganoff</b> — beef in sour cream sauce with mashed potato</li>
+          <li><b>Medovik and Napoleon</b> — the two great Russian cakes; try both and pick a side</li>
+        </ul>
+      </div>
+      <div class="dish">
+        <h4>Drinks</h4>
+        <ul>
+          <li><b>Sbiten</b> — hot honey-and-spice drink; at markets, in Suzdal and Novgorod</li>
+          <li><b>Mors</b> — cranberry or lingonberry cordial, perfect after the cold</li>
+          <li><b>Kompot and kisel</b> — in canteens and homely cafés</li>
+          <li><b>Samovar tea with jam</b> — Suzdal, Yaroslavl</li>
+          <li><b>Medovukha (mead)</b> — Suzdal above all, then Veliky Novgorod</li>
+          <li><b>Infused spirits</b>: horseradish, cranberry, cedar — GraFin in Suzdal, Mari Vanna in Moscow</li>
+          <li><b>Vodka</b> — once, for the experience: ice cold, with a pickle and herring</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="dish">
+        <h4>Moscow</h4>
+        <ul>
+          <li>Kulebyaka pie and Guryev porridge at Café Pushkin</li>
+          <li>Pozharsky cutlets and beef Stroganoff</li>
+          <li>Napoleon cake and hot chocolate at Danilovsky Market</li>
+          <li>Krasny Oktyabr chocolates to take home</li>
+        </ul>
+      </div>
+      <div class="dish">
+        <h4>Vladimir and Suzdal</h4>
+        <ul>
+          <li><b>Mead</b> in all its varieties</li>
+          <li><b>Suzdal salted cucumbers</b> — and even cucumber jam, a local joke turned brand</li>
+          <li>Porridge baked in a clay pot, pike-perch soup</li>
+          <li>Vatrushka buns, pike pies, hot blini on the market square</li>
+        </ul>
+      </div>
+      <div class="dish">
+        <h4>Kostroma</h4>
+        <ul>
+          <li><b>Kostroma cheese</b> — this is Russia's cheese capital</li>
+          <li><b>Moose milk</b> at the Sumarokovo farm: a taste you will not find anywhere else</li>
+          <li>Volga fish soup, black salt, salted mushrooms</li>
+        </ul>
+      </div>
+      <div class="dish">
+        <h4>Yaroslavl and Rostov</h4>
+        <ul>
+          <li>Smoked Volga fish</li>
+          <li>Sauerkraut shchi baked in a pot</li>
+          <li>Pike from Lake Nero in Rostov</li>
+          <li>Gingerbread and fruit liqueurs, lunch in the film-set interiors of Ioann Vasilievich</li>
+        </ul>
+      </div>
+      <div class="dish">
+        <h4>St Petersburg</h4>
+        <ul>
+          <li><b>Pyshki</b> — sugar-dusted doughnuts on Bolshaya Konyushennaya: a ritual more than a snack</li>
+          <li>Baltic herring with new potatoes, pike-perch soup</li>
+          <li>The northern menu: <b>venison, cloudberries, lingonberries, wild mushrooms</b> at Cococo</li>
+          <li>Leningrad rassolnik, chocolates from the Krupskaya factory</li>
+          <li>Smelt — sadly a spring fish, but ask about it and watch locals light up</li>
+        </ul>
+      </div>
+      <div class="dish">
+        <h4>Veliky Novgorod</h4>
+        <ul>
+          <li>Fish from Lake Ilmen: pike-perch and bream</li>
+          <li>Monastery-recipe mead at Yuryevskoye Podvorye</li>
+          <li>Soaked apples and lingonberries</li>
+          <li>Pies straight from the oven</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PACE -->
+<section id="pace-en">
+  <div class="wrap">
+    <div class="sec-head"><div class="eyebrow">06</div><h2>The pace</h2></div>
+
+    <div class="gauge">
+      <h3 style="font-size:22px">How tiring this trip is</h3>
+      <div class="gauge-scale"><div class="gauge-pin"></div></div>
+      <div class="gauge-ends"><span>1 — a spa retreat</span><span>10 — a marathon</span></div>
+      <p style="margin:22px 0 0">For comparison, a standard "Golden Ring in 7 days" tour scores about 8 out of 10. This one is deliberately slow. It is a holiday.</p>
+    </div>
+
+    <div class="grid">
+      <div class="block">
+        <h4>Why it stays gentle</h4>
+        <ul>
+          <li>Only <b>8 journeys in 30 days</b> — one every 3.75 days on average</li>
+          <li>The longest daytime leg is 3 h 45, on a comfortable high-speed train</li>
+          <li>No flights and no 4 am starts</li>
+          <li>No city is done as a raid: the shortest stay is two nights</li>
+          <li><b>Nine days have no compulsory programme at all</b></li>
+        </ul>
+      </div>
+      <div class="block">
+        <h4>What will still tire you</h4>
+        <ul>
+          <li>Jet lag at the start: 2–3 days to adjust after the flight from New Zealand</li>
+          <li>Short daylight, which is unfamiliar and quietly drains energy</li>
+          <li>Cold itself burns energy: after three hours outdoors you will want a nap</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Measure</th><th class="num">Value</th></tr></thead>
+        <tbody>
+          <tr><td>Total days and nights</td><td class="num">31 days / 30 nights</td></tr>
+          <tr><td>Cities</td><td class="num">6 bases + 4 day trips</td></tr>
+          <tr><td>Intercity journeys</td><td class="num">8</td></tr>
+          <tr><td>Of those, overnight</td><td class="num">1</td></tr>
+          <tr><td>Rest days with no programme</td><td class="num">9</td></tr>
+          <tr><td>Days of active walking and sightseeing</td><td class="num">15</td></tr>
+          <tr><td>Medium days: a journey plus something light</td><td class="num">7</td></tr>
+          <tr><td>Museums in the plan</td><td class="num">18–20</td></tr>
+          <tr><td>Time on your feet on an active day</td><td class="num">4–5 hours, with breaks</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 style="font-size:22px;margin-bottom:14px">What a typical week feels like</h3>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th><th>Sun</th></tr></thead>
+        <tbody>
+          <tr><td>museum</td><td>walking</td><td><b>rest</b></td><td>travel</td><td>the city</td><td>museum and theatre</td><td><b>rest</b></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <h3>Three things you will remember most</h3>
+    <ol>
+      <li><b>Your first morning in Suzdal</b>, stepping out of the hotel to wooden houses, smoke rising from chimneys and white churches standing in snowy fields — with not one modern building in sight.</li>
+      <li><b>The rink on Red Square after dark</b>, with music, the lights of GUM and St Basil's Cathedral directly overhead.</li>
+      <li><b>The overnight train from Novgorod to Moscow</b> — tea in a metal holder, dark snowbound halts sliding past the window, and the sense of crossing a very large country.</li>
+    </ol>
+    <div class="sign">30 nights · 6 cities · 8 journeys · 8,000 NZD per person · have a good winter</div>
+  </div>
+</footer>
+
+</div>
+
+
+<script>
+// Переключение уровней бюджета — в пределах своего языкового слоя
+document.addEventListener('click', function(ev){
+  var btn = ev.target.closest ? ev.target.closest('.tier-btn') : null;
+  if(!btn) return;
+  var group = btn.closest('.tiers');
+  var scope = btn.closest('section');
+  group.querySelectorAll('.tier-btn').forEach(function(b){
+    var on = b === btn;
+    b.setAttribute('aria-selected', on ? 'true' : 'false');
+    var panel = scope.querySelector('#' + b.getAttribute('aria-controls'));
+    if(panel) panel.hidden = !on;
+  });
+});
+
+// Подсветка активного раздела в меню
+var navLinks = Array.prototype.slice.call(document.querySelectorAll('.nav-links a'));
+var spy = new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if(!e.isIntersecting) return;
+    var base = e.target.id.replace(/-en$/, '');
+    navLinks.forEach(function(a){ a.classList.toggle('on', a.dataset.sec === base); });
+  });
+}, {rootMargin:'-30% 0px -60% 0px'});
+document.querySelectorAll('section[id]').forEach(function(s){ spy.observe(s); });
+
+// Появление блоков при прокрутке
+var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+var io = reduced ? null : new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+  });
+}, {rootMargin:'0px 0px -8% 0px'});
+
+function initReveal(root, instant){
+  if(reduced) return;
+  root.querySelectorAll('.city, .gauge, .dish, .tbl-wrap').forEach(function(el){
+    el.classList.add('reveal');
+    if(instant){ el.classList.add('in'); } else { io.observe(el); }
+  });
+}
+
+// Переключение языка
+function setLang(lang){
+  var ru = document.getElementById('ru-content');
+  var en = document.getElementById('en-content');
+  ru.hidden = lang !== 'ru';
+  en.hidden = lang !== 'en';
+  document.documentElement.lang = lang;
+  document.querySelectorAll('[data-en]').forEach(function(el){
+    if(el.dataset.ru === undefined) el.dataset.ru = el.innerHTML;
+    el.innerHTML = lang === 'en' ? el.dataset.en : el.dataset.ru;
+  });
+  navLinks.forEach(function(a){ a.setAttribute('href', '#' + a.dataset.sec + (lang === 'en' ? '-en' : '')); });
+  document.querySelectorAll('.lang-btn').forEach(function(b){
+    b.setAttribute('aria-pressed', b.dataset.lang === lang ? 'true' : 'false');
+  });
+  initReveal(lang === 'en' ? en : ru, true);
+  try { localStorage.setItem('lang', lang); } catch(e){}
+}
+document.querySelectorAll('.lang-btn').forEach(function(b){
+  b.addEventListener('click', function(){ setLang(b.dataset.lang); });
+});
+
+initReveal(document.getElementById('ru-content'), false);
+initReveal(document.getElementById('en-content'), true);
+try { if(localStorage.getItem('lang') === 'en') setLang('en'); } catch(e){}
+</script>
+</body>
+</html>
