@@ -60,6 +60,20 @@ a{color:inherit}
 }
 .lang-btn[aria-pressed="true"]{background:var(--ink); color:#fff}
 .lang-btn:focus-visible{outline:2px solid var(--blue); outline-offset:2px}
+[hidden]{display:none !important}
+.route-switch{display:flex; align-items:center; gap:14px 18px; flex-wrap:wrap; background:var(--paper); border:1px solid var(--line); border-radius:16px; padding:14px 18px; margin:0 0 32px; box-shadow:var(--shadow)}
+.rs-label{font-family:"JetBrains Mono",monospace; font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted)}
+.rs-group{display:flex; gap:6px; margin-left:auto; flex-wrap:wrap}
+.rs-btn{font-family:"Golos Text",sans-serif; font-size:14.5px; cursor:pointer; border:1px solid var(--line); background:var(--frost); color:var(--text); border-radius:99px; padding:9px 16px; transition:background .2s,border-color .2s,color .2s}
+.rs-btn[aria-pressed="true"]{background:var(--gold); border-color:var(--gold); color:#1B1206; font-weight:600}
+.rs-btn:focus-visible{outline:3px solid var(--blue); outline-offset:2px}
+main a{color:var(--blue); text-underline-offset:3px}
+.src{font-size:13.5px; color:var(--muted); margin:-12px 0 26px}
+.src b{font-family:"JetBrains Mono",monospace; font-size:10.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); font-weight:500}
+.gauge-pin.lite{left:25%}
+.gauge-pin.lite::after{content:"2,5 / 10"}
+#pace-en .gauge-pin::after{content:"3.5 / 10"}
+#pace-en .gauge-pin.lite::after{content:"2.5 / 10"}
 
 /* ---------- hero ---------- */
 .hero{
@@ -234,9 +248,11 @@ footer .sign{font-family:"JetBrains Mono",monospace; font-size:11px; letter-spac
     <div class="brand" data-en="30 nights · January"><b>30 ночей</b> · январь</div>
     <div class="nav-links">
       <a href="#route" data-sec="route" data-en="Route">Маршрут</a>
-      <a href="#lite" data-sec="lite" data-en="Lite version">Упрощённый</a>
+      <a href="#lite" data-sec="lite" data-en="Compare">Сравнение</a>
       <a href="#cities" data-sec="cities" data-en="Cities">Города</a>
       <a href="#budget" data-sec="budget" data-en="Budget">Бюджет</a>
+      <a href="#money" data-sec="money" data-en="Money">Деньги</a>
+      <a href="#risk" data-sec="risk" data-en="Risks">Риски</a>
       <a href="#practice" data-sec="practice" data-en="Practical">Практика</a>
       <a href="#food" data-sec="food" data-en="Food">Кухня</a>
       <a href="#pace" data-sec="pace" data-en="Pace">Темп</a>
@@ -254,12 +270,16 @@ footer .sign{font-family:"JetBrains Mono",monospace; font-size:11px; letter-spac
     <div class="eyebrow">Маршрут для двоих · 5 января — 3 февраля</div>
     <h1>Зимняя Россия <em>за 30 дней</em></h1>
     <p class="dedication">для моей любви Иззи</p>
-    <p class="hero-lead">Для человека, который никогда не видел снега. Шесть городов, восемь переездов, ни одного перелёта — и девять дней, в которые не запланировано ровным счётом ничего.</p>
+    <p class="hero-lead" data-route="full">Для человека, который никогда не видел снега. Шесть городов, восемь переездов, ни одного перелёта — и девять дней, в которые не запланировано ровным счётом ничего.</p>
+    <p class="hero-lead" data-route="lite">Для человека, который никогда не видел снега. Четыре города, пять переездов, ни одного перелёта — и почти весь месяц вы живёте всего в двух отелях.</p>
     <div class="facts">
       <div class="fact"><span class="n">30</span><span class="l">ночей</span></div>
-      <div class="fact"><span class="n">6</span><span class="l">городов + 4 поездки одним днём</span></div>
-      <div class="fact"><span class="n">8</span><span class="l">переездов</span></div>
-      <div class="fact"><span class="n">9</span><span class="l">дней без программы</span></div>
+      <div class="fact" data-route="full"><span class="n">6</span><span class="l">городов + 4 поездки одним днём</span></div>
+      <div class="fact" data-route="lite"><span class="n">4</span><span class="l">города + 4 поездки одним днём</span></div>
+      <div class="fact" data-route="full"><span class="n">8</span><span class="l">переездов</span></div>
+      <div class="fact" data-route="lite"><span class="n">5</span><span class="l">переездов</span></div>
+      <div class="fact" data-route="full"><span class="n">9</span><span class="l">дней без программы</span></div>
+      <div class="fact" data-route="lite"><span class="n">12</span><span class="l">дней без программы</span></div>
       <div class="fact"><span class="n">8 000</span><span class="l">NZD на человека</span></div>
     </div>
   </div>
@@ -275,9 +295,21 @@ footer .sign{font-family:"JetBrains Mono",monospace; font-size:11px; letter-spac
       <div class="eyebrow">01</div>
       <h2>Маршрут</h2>
     </div>
-    <p class="sec-sub">Кольцо без возвратов: Москва — Золотое кольцо по дуге — Москва — Петербург — Новгород — Москва. Самолёты не нужны: самое длинное плечо занимает 3 часа 45 минут, и это «Сапсан». Если хочется ещё спокойнее — ниже есть <a href="#lite">упрощённая версия на четыре города</a>.</p>
+    <p class="sec-sub">Переключатель ниже меняет весь сайт: маршрут, расписание по дням, бюджет и оценку темпа. Самолёты не нужны ни в одном варианте — самое длинное плечо занимает 3 часа 45 минут, и это «Сапсан».</p>
 
-    <ol class="spine">
+    <div class="route-switch">
+      <span class="rs-label">Вариант маршрута</span>
+      <div class="rs-group">
+        <button class="rs-btn" type="button" data-route-btn="full" aria-pressed="true">Полный · 6 городов</button>
+        <button class="rs-btn" type="button" data-route-btn="lite" aria-pressed="false">Упрощённый · 4 города</button>
+      </div>
+    </div>
+
+    <p class="sec-sub" data-route="full">Кольцо без возвратов: Москва — Золотое кольцо по дуге — Москва — Петербург — Новгород — Москва.</p>
+    <p class="sec-sub" data-route="lite">Четыре города и две базы: почти весь месяц вы живёте в Москве и Петербурге, а Суздаль и Новгород добавляют провинцию и древнюю Русь.</p>
+
+    <div data-route="full">
+<ol class="spine">
       <li class="stop major"><div class="stop-card"><span class="city">Москва</span><span class="dates">5–10 января · знакомство</span><span class="nights mono">6 ночей</span></div></li>
       <li class="leg">↓ «Ласточка» до Владимира <b>1 ч 40 мин</b> + трансфер в Суздаль <b>45 мин</b></li>
       <li class="stop"><div class="stop-card"><span class="city">Суздаль</span><span class="dates">11–14 января · + Владимир</span><span class="nights mono">4 ночи</span></div></li>
@@ -315,6 +347,43 @@ footer .sign{font-family:"JetBrains Mono",monospace; font-size:11px; letter-spac
     </div>
 
     <div class="note"><b>Билеты покупайте в кассе вокзала за наличные по загранпаспорту</b> — иностранные карты в России не работают, включая сайт РЖД. Второй рабочий вариант: попросить отель выкупить билеты за вас. «Сапсан» и «Ласточки» берите за 1–2 недели: цена динамическая и растёт по мере заполнения.</div>
+    </div>
+    <div data-route="lite">
+<ol class="spine">
+      <li class="stop major"><div class="stop-card"><span class="city">Москва</span><span class="dates">5–15 января · с поездками в Сергиев Посад и Коломну</span><span class="nights mono">11 ночей</span></div></li>
+      <li class="leg">↓ «Ласточка» до Владимира <b>1 ч 40 мин</b> + трансфер <b>45 мин</b></li>
+      <li class="stop"><div class="stop-card"><span class="city">Суздаль</span><span class="dates">16–19 января · Владимир по дороге</span><span class="nights mono">4 ночи</span></div></li>
+      <li class="leg">↓ трансфер и «Ласточка» обратно <b>2 ч 30 мин</b></li>
+      <li class="stop"><div class="stop-card"><span class="city">Москва</span><span class="dates">20 января · транзитная ночь</span><span class="nights mono">1 ночь</span></div></li>
+      <li class="leg">↓ <b>«Сапсан» 3 ч 45 мин</b></li>
+      <li class="stop major"><div class="stop-card"><span class="city">Санкт-Петербург</span><span class="dates">21–31 января · с пригородами и Кронштадтом</span><span class="nights mono">11 ночей</span></div></li>
+      <li class="leg">↓ «Ласточка» <b>3 ч</b></li>
+      <li class="stop"><div class="stop-card"><span class="city">Великий Новгород</span><span class="dates">1–2 февраля</span><span class="nights mono">2 ночи</span></div></li>
+      <li class="leg">↓ ночной поезд <b>8 ч</b>, купе</li>
+      <li class="stop"><div class="stop-card"><span class="city">Москва</span><span class="dates">3 февраля · ночь перед вылетом</span><span class="nights mono">1 ночь</span></div></li>
+    </ol>
+
+    <h3 style="font-size:22px;margin-bottom:14px">Все переезды и цены</h3>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Отрезок</th><th>Транспорт</th><th>Время</th><th class="num">Цена / чел.</th></tr></thead>
+        <tbody>
+          <tr><td>Аэропорт → отель, Москва</td><td>Аэроэкспресс или такси</td><td>45–60 мин</td><td class="num">500–2 500 ₽</td></tr>
+          <tr><td>Москва → Владимир</td><td>«Ласточка», Курский вокзал</td><td>1 ч 40 мин</td><td class="num">1 000–1 500 ₽</td></tr>
+          <tr><td>Владимир → Суздаль</td><td>Индивидуальный трансфер</td><td>45 мин</td><td class="num">1 500 ₽</td></tr>
+          <tr><td>Суздаль → Москва</td><td>Трансфер до Владимира + «Ласточка»</td><td>2 ч 30 мин</td><td class="num">2 500–3 000 ₽</td></tr>
+          <tr><td><b>Москва → Санкт-Петербург</b></td><td><b>«Сапсан»</b></td><td>3 ч 45 мин</td><td class="num">5 000–8 000 ₽</td></tr>
+          <tr><td>Петербург → Великий Новгород</td><td>«Ласточка»</td><td>3 ч</td><td class="num">1 000–1 400 ₽</td></tr>
+          <tr><td>Великий Новгород → Москва</td><td>Ночной поезд, купе</td><td>8 ч</td><td class="num">4 000–5 000 ₽</td></tr>
+          <tr><td>Москва → аэропорт</td><td>Аэроэкспресс или такси</td><td>45–60 мин</td><td class="num">500–2 500 ₽</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="tip">Поездки одним днём — Сергиев Посад, Коломна, Царское Село, Петергоф — здесь не считаются переездами: это электрички на 40–90 минут, вечером вы возвращаетесь в тот же номер. Билеты на них берутся в кассе в день поездки.</div>
+
+    <div class="note"><b>Билеты покупайте в кассе вокзала за наличные по загранпаспорту</b> — иностранные карты в России не работают, включая сайт РЖД. Второй рабочий вариант: попросить отель выкупить билеты за вас. «Сапсан» берите за 1–2 недели: цена динамическая и растёт по мере заполнения.</div>
+    </div>
 
     <h3 style="font-size:22px;margin-bottom:14px">Почему именно январь и именно эти даты</h3>
     <div class="tbl-wrap">
@@ -338,78 +407,50 @@ footer .sign{font-family:"JetBrains Mono",monospace; font-size:11px; letter-spac
   <div class="wrap">
     <div class="sec-head">
       <div class="eyebrow">Альтернатива</div>
-      <h2>Упрощённый маршрут</h2>
+      <h2>Два варианта: что выбрать</h2>
     </div>
-    <p class="sec-sub">Если шесть городов кажутся перебором — вот версия на четыре города и всего пять переездов. Те же 30 ночей, тот же бюджет, но вы почти всё время живёте в одном отеле и не собираете чемодан каждые три дня.</p>
+    <p class="sec-sub">Переключатель «Полный / Упрощённый» меняет весь сайт целиком — маршрут, расписание по дням, бюджет и оценку темпа. Этот раздел помогает выбрать, а сам по себе не переключается.</p>
 
-    <ol class="spine">
-      <li class="stop major"><div class="stop-card"><span class="city">Москва</span><span class="dates">5–15 января · с поездками в Сергиев Посад и Владимир</span><span class="nights mono">11 ночей</span></div></li>
-      <li class="leg">↓ «Ласточка» до Владимира <b>1 ч 40</b> + трансфер <b>45 мин</b></li>
-      <li class="stop"><div class="stop-card"><span class="city">Суздаль</span><span class="dates">16–19 января</span><span class="nights mono">4 ночи</span></div></li>
-      <li class="leg">↓ трансфер и «Ласточка» обратно в Москву <b>2 ч 30</b></li>
-      <li class="stop"><div class="stop-card"><span class="city">Москва</span><span class="dates">20 января · транзитная ночь</span><span class="nights mono">1 ночь</span></div></li>
-      <li class="leg">↓ <b>«Сапсан» 3 ч 45</b></li>
-      <li class="stop major"><div class="stop-card"><span class="city">Санкт-Петербург</span><span class="dates">21–31 января · с Царским Селом, Павловском, Кронштадтом</span><span class="nights mono">11 ночей</span></div></li>
-      <li class="leg">↓ «Ласточка» <b>3 ч</b></li>
-      <li class="stop"><div class="stop-card"><span class="city">Великий Новгород</span><span class="dates">1–2 февраля</span><span class="nights mono">2 ночи</span></div></li>
-      <li class="leg">↓ ночной поезд <b>8 ч</b></li>
-      <li class="stop"><div class="stop-card"><span class="city">Москва</span><span class="dates">3 февраля · ночь перед вылетом</span><span class="nights mono">1 ночь</span></div></li>
-    </ol>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Параметр</th><th>Полный маршрут</th><th>Упрощённый</th></tr></thead>
+        <tbody>
+          <tr><td>Городов</td><td>6 (+ 4 поездки одним днём)</td><td>4 (+ 4 поездки одним днём)</td></tr>
+          <tr><td>Переездов с чемоданом</td><td class="num">8</td><td class="num">5</td></tr>
+          <tr><td>Смен отеля</td><td class="num">8</td><td class="num">6, но два отеля держатся 11 ночей подряд</td></tr>
+          <tr><td>Дней без программы</td><td class="num">9</td><td class="num">12</td></tr>
+          <tr><td>Утомительность</td><td class="num">3,5 / 10</td><td class="num">2,5 / 10</td></tr>
+          <tr><td>Стоимость на человека</td><td class="num">360 000 ₽ · 8 000 NZD</td><td class="num">359 000 ₽ · 7 978 NZD</td></tr>
+          <tr><td>Провинция</td><td>Суздаль, Кострома, Ярославль, Ростов, Владимир</td><td>Суздаль и Владимир</td></tr>
+          <tr><td>Волга</td><td>Кострома и Ярославль стоят на ней</td><td>Не появляется</td></tr>
+        </tbody>
+      </table>
+    </div>
 
     <div class="grid">
       <div class="block">
-        <h4>Что выигрываете</h4>
+        <h4>Что даёт упрощённый</h4>
         <ul>
-          <li><b>5 переездов вместо 8</b> — один раз в шесть дней</li>
-          <li>Два «дома» на весь месяц: 12 ночей в Москве и 11 в Петербурге в одном и том же отеле</li>
-          <li>Появляется время на то, что обычно вырезают: второй заход в Эрмитаж без спешки, Кронштадт, Коломенское, ВДНХ целиком</li>
-          <li>Утомительность падает примерно до <b>2,5 из 10</b>: дней отдыха становится 12–13</li>
-          <li>Меньше чемоданных дней — значит меньше такси, вокзалов и «где мы сегодня ночуем»</li>
+          <li>Два «дома» на весь месяц: 13 ночей в Москве и 11 в Петербурге, чемодан почти не собирается</li>
+          <li>Появляется время на то, что обычно вырезают: второй заход в Эрмитаж без спешки, Кронштадт, Петергоф зимой, ВДНХ целиком, Коломна с музеем пастилы</li>
+          <li>Три «пустых» дня сверху — это ровно та разница, которая превращает поездку в отдых</li>
+          <li>Меньше вокзалов, такси и вопросов «где мы сегодня ночуем»</li>
         </ul>
       </div>
       <div class="block">
-        <h4>Чем жертвуете</h4>
+        <h4>Чем приходится жертвовать</h4>
         <ul>
-          <li><b>Кострома</b> — а вместе с ней лосиная ферма и Терем Снегурочки, самое необычное развлечение всего маршрута</li>
-          <li><b>Ярославль и Ростов Великий</b> — ростовская финифть, звоны и замёрзшее озеро Неро</li>
+          <li><b>Кострома</b> — а с ней лосиная ферма и Терем Снегурочки, самое необычное развлечение маршрута</li>
+          <li><b>Ярославль и Ростов Великий</b> — финифть, ростовские звоны и замёрзшее озеро Неро</li>
           <li>Ощущение «мы проехали страну»: провинция останется представленной одним Суздалем</li>
-          <li>Волга в этом варианте не появляется вообще</li>
+          <li>Замёрзшая Волга — то самое зрелище, которого нет ни в Москве, ни в Петербурге</li>
         </ul>
       </div>
     </div>
 
-    <h3 style="font-size:22px;margin-bottom:14px">Чем занять освободившиеся дни</h3>
-    <div class="tbl-wrap">
-      <table>
-        <thead><tr><th>Где</th><th>Дни</th><th>Чем наполнить</th></tr></thead>
-        <tbody>
-          <tr><td><b>Москва</b></td><td class="day">+5 дней</td><td>Сергиев Посад и Владимир одним днём (по 1,5 ч на «Ласточке»), ВДНХ и Музей космонавтики целиком, Коломенское, Кусково, Бункер-42, второй визит в Третьяковку, хаски, цирк на Цветном бульваре, мастер-класс по пельменям</td></tr>
-          <tr><td><b>Петербург</b></td><td class="day">+3 дня</td><td>Кронштадт и «Остров фортов», Петергоф зимой, Павловск отдельным днём, Эрарта, Юсуповский дворец, экскурсия по парадным, второй балет</td></tr>
-          <tr><td><b>Суздаль</b></td><td class="day">4 дня</td><td>Без изменений: Владимир, Боголюбово, кремль, монастыри, сани, медовуха</td></tr>
-        </tbody>
-      </table>
-    </div>
+    <div class="tip"><b>Как выбрать.</b> Если для Иззи это первая поездка в Россию и важнее впечатление, а не количество галочек, берите упрощённый: он спокойнее и по деньгам практически не отличается. Если хочется увидеть именно провинцию — деревянные дома, маленькие города, замёрзшую реку — оставайтесь на полном: разница в усталости меньше, чем кажется.</div>
 
-    <h3 style="font-size:22px;margin-bottom:14px">Бюджет упрощённого варианта</h3>
-    <div class="tbl-wrap">
-      <table>
-        <thead><tr><th>Категория</th><th class="num">₽ / чел.</th><th class="num">NZD / чел.</th><th>Отличие от основного маршрута</th></tr></thead>
-        <tbody>
-          <tr><td>Жильё</td><td class="num">115 000</td><td class="num">2 556</td><td>Больше ночей в дорогих Москве и Петербурге</td></tr>
-          <tr><td>Транспорт по России</td><td class="num">35 000</td><td class="num">778</td><td>Три переезда отпадают, добавляются две электрички одним днём</td></tr>
-          <tr><td>Питание</td><td class="num">90 000</td><td class="num">2 000</td><td>Без изменений</td></tr>
-          <tr><td>Музеи</td><td class="num">26 000</td><td class="num">578</td><td>Без изменений: провинциальные музеи заменяются столичными</td></tr>
-          <tr><td>Развлечения</td><td class="num">30 000</td><td class="num">667</td><td>Без изменений</td></tr>
-          <tr><td>Сувениры, связь, страховка, виза</td><td class="num">33 000</td><td class="num">733</td><td>Без изменений</td></tr>
-          <tr><td>Резерв</td><td class="num">30 000</td><td class="num">667</td><td>Без изменений</td></tr>
-          <tr class="total"><td>Итого на человека</td><td class="num">359 000 ₽</td><td class="num">7 978</td><td>На двоих — 718 000 ₽ / 15 956 NZD</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="tip"><b>Как выбрать.</b> Если для вашей девушки это первая поездка в Россию и главное — впечатление, а не количество галочек, берите упрощённый вариант: он спокойнее и почти не отличается по деньгам. Если хочется увидеть именно провинцию — деревянные дома, замёрзшую Волгу, маленькие города, — оставайтесь на основном маршруте: разница в усталости не такая большая, как кажется.</div>
-
-    <div class="note"><b>Компромисс между двумя вариантами:</b> оставить основной маршрут, но убрать из него Кострому. Тогда получается пять городов, семь переездов, а освободившиеся две ночи уходят в Ярославль — Ростов Великий и лосиную ферму можно совместить в один длинный день с водителем.</div>
+    <div class="note"><b>Компромисс между вариантами:</b> оставить полный маршрут, но убрать из него одну Кострому. Получится пять городов и семь переездов, а освободившиеся две ночи уходят в Ярославль — Ростов Великий и лосиную ферму тогда можно совместить в один длинный день с водителем.</div>
   </div>
 </section>
 
@@ -420,17 +461,25 @@ footer .sign{font-family:"JetBrains Mono",monospace; font-size:11px; letter-spac
       <div class="eyebrow">02</div>
       <h2>Города</h2>
     </div>
-    <p class="sec-sub">Принцип всего маршрута: не больше одного «большого» дела в день, каждый третий-четвёртый день — пустой.</p>
+    <p class="sec-sub">Принцип всего маршрута: не больше одного «большого» дела в день, каждый третий-четвёртый день — пустой. Расписание ниже полностью меняется вместе с вариантом маршрута.</p>
+
+    <div class="route-switch">
+      <span class="rs-label">Вариант маршрута</span>
+      <div class="rs-group">
+        <button class="rs-btn" type="button" data-route-btn="full" aria-pressed="true">Полный · 6 городов</button>
+        <button class="rs-btn" type="button" data-route-btn="lite" aria-pressed="false">Упрощённый · 4 города</button>
+      </div>
+    </div>
 
     <!-- МОСКВА 1 -->
     <article class="city">
       <div class="city-head">
         <h3>Москва · часть первая</h3>
-        <div class="meta"><b>6 ночей</b>дни 1–6 · 5–10 января</div>
+        <div class="meta" data-route="full"><b>6 ночей</b>дни 1–6 · 5–10 января</div><div class="meta" data-route="lite"><b>11 ночей</b>дни 1–11 · 5–15 января</div>
       </div>
-      <div class="why"><b>Почему столько</b>Это одновременно первая встреча с настоящей зимой и с огромным городом. Один-два дня уйдут на акклиматизацию после перелёта из Новой Зеландии (разница 10–12 часов), а январская Москва — это не только музеи, но и главный зимний театр страны: катки, ярмарки, иллюминация. Меньше пяти дней здесь — гарантированная гонка.</div>
+      <div class="why" data-route="full"><b>Почему столько</b>Это одновременно первая встреча с настоящей зимой и с огромным городом. Один-два дня уйдут на акклиматизацию после перелёта из Новой Зеландии (разница 10–12 часов), а январская Москва — это не только музеи, но и главный зимний театр страны: катки, ярмарки, иллюминация. Меньше пяти дней здесь — гарантированная гонка.</div><div class="why" data-route="lite"><b>Почему столько</b>В упрощённом варианте Москва становится главной базой поездки. Одиннадцать ночей в одном отеле снимают всю логистику: чемодан не собирается, смена часовых поясов переживается спокойно, а Сергиев Посад и Коломна превращаются в лёгкие поездки одним днём с возвращением в свой же номер.</div>
 
-      <div class="tbl-wrap">
+      <div data-route="full"><div class="tbl-wrap">
         <table>
           <thead><tr><th>День</th><th>Программа</th><th>Нагрузка</th></tr></thead>
           <tbody>
@@ -442,7 +491,25 @@ footer .sign{font-family:"JetBrains Mono",monospace; font-size:11px; letter-spac
             <tr><td class="day">6</td><td>Царицыно или Коломенское, вечером балет или рождественская ярмарка</td><td>Средняя</td></tr>
           </tbody>
         </table>
-      </div>
+      </div></div>
+      <div data-route="lite"><div class="tbl-wrap">
+        <table>
+          <thead><tr><th>День</th><th>Программа</th><th>Нагрузка</th></tr></thead>
+          <tbody>
+            <tr><td class="day">1</td><td>Прилёт, заселение, короткая вечерняя прогулка до Красной площади</td><td>Лёгкая</td></tr>
+            <tr><td class="day">2</td><td>Красная площадь, ГУМ, парк «Зарядье», парящий мост, Ледяная пещера</td><td>Средняя</td></tr>
+            <tr><td class="day">3</td><td>Кремль: Соборная площадь и <b>Оружейная палата</b></td><td>Средняя</td></tr>
+            <tr><td class="day">4</td><td><b>Без программы:</b> метро-прогулка по красивым станциям, Патриаршие пруды, кофейни на Покровке</td><td>Лёгкая</td></tr>
+            <tr><td class="day">5</td><td><b>Третьяковская галерея</b>, Замоскворечье, вечером каток</td><td>Средняя</td></tr>
+            <tr><td class="day">6</td><td><b>Сергиев Посад</b> одним днём — 1,5 часа на «Ласточке»</td><td>Средняя</td></tr>
+            <tr><td class="day">7</td><td><b>Без программы:</b> ГЭС-2, «Красный Октябрь», Даниловский рынок</td><td>Лёгкая</td></tr>
+            <tr><td class="day">8</td><td>ВДНХ целиком: Музей космонавтики, каток, павильоны</td><td>Средняя</td></tr>
+            <tr><td class="day">9</td><td>Царицыно или Коломенское — заснеженная усадьба на полдня</td><td>Средняя</td></tr>
+            <tr><td class="day">10</td><td><b>Коломна</b> одним днём: кремль, музей пастилы, посадские улицы</td><td>Средняя</td></tr>
+            <tr><td class="day">11</td><td><b>Без программы:</b> Измайловский кремль, сувениры, вечером балет</td><td>Лёгкая</td></tr>
+          </tbody>
+        </table>
+      </div></div>
 
       <div class="grid">
         <div class="block">
@@ -527,11 +594,11 @@ footer .sign{font-family:"JetBrains Mono",monospace; font-size:11px; letter-spac
     <article class="city">
       <div class="city-head">
         <h3>Суздаль <span style="font-size:.55em;color:var(--muted)">+ Владимир</span></h3>
-        <div class="meta"><b>4 ночи</b>дни 7–10 · 11–14 января</div>
+        <div class="meta" data-route="full"><b>4 ночи</b>дни 7–10 · 11–14 января</div><div class="meta" data-route="lite"><b>4 ночи</b>дни 12–15 · 16–19 января</div>
       </div>
       <div class="why"><b>Почему столько</b>Главное открытие маршрута: город без единого высокого здания, где две сотни памятников стоят среди снежных полей. Четыре ночи дают день на Владимир по дороге, два полных дня в Суздале и один совершенно свободный — на сани, медовуху и долгие обеды. Именно здесь зима будет самой настоящей.</div>
 
-      <div class="tbl-wrap">
+      <div data-route="full"><div class="tbl-wrap">
         <table>
           <thead><tr><th>День</th><th>Программа</th></tr></thead>
           <tbody>
@@ -541,7 +608,18 @@ footer .sign{font-family:"JetBrains Mono",monospace; font-size:11px; letter-spac
             <tr><td class="day">10</td><td><b>Без программы:</b> катание в санях, Ильинский луг, ледяные горки, долгий обед</td></tr>
           </tbody>
         </table>
-      </div>
+      </div></div>
+      <div data-route="lite"><div class="tbl-wrap">
+        <table>
+          <thead><tr><th>День</th><th>Программа</th></tr></thead>
+          <tbody>
+            <tr><td class="day">12</td><td>Утром «Ласточка» во <b>Владимир</b>: Золотые ворота, Успенский собор с фресками Рублёва, Дмитриевский собор, смотровая на Георгиевской. Днём трансфер в Суздаль</td></tr>
+            <tr><td class="day">13</td><td>Суздальский кремль, Рождественский собор, Торговые ряды, Музей деревянного зодчества</td></tr>
+            <tr><td class="day">14</td><td>Спасо-Евфимиев монастырь с колокольными звонами, Покровский монастырь, дегустация медовухи</td></tr>
+            <tr><td class="day">15</td><td><b>Без программы:</b> катание в санях, Ильинский луг, ледяные горки, долгий обед</td></tr>
+          </tbody>
+        </table>
+      </div></div>
 
       <div class="grid">
         <div class="block">
@@ -589,7 +667,7 @@ footer .sign{font-family:"JetBrains Mono",monospace; font-size:11px; letter-spac
     </article>
 
     <!-- КОСТРОМА -->
-    <article class="city">
+    <article class="city" data-route="full">
       <div class="city-head">
         <h3>Кострома</h3>
         <div class="meta"><b>2 ночи</b>дни 11–12 · 15–16 января</div>
@@ -621,7 +699,7 @@ footer .sign{font-family:"JetBrains Mono",monospace; font-size:11px; letter-spac
     </article>
 
     <!-- ЯРОСЛАВЛЬ -->
-    <article class="city">
+    <article class="city" data-route="full">
       <div class="city-head">
         <h3>Ярославль <span style="font-size:.55em;color:var(--muted)">+ Ростов Великий</span></h3>
         <div class="meta"><b>3 ночи</b>дни 13–15 · 17–19 января</div>
@@ -678,9 +756,9 @@ footer .sign{font-family:"JetBrains Mono",monospace; font-size:11px; letter-spac
     <article class="city">
       <div class="city-head">
         <h3>Москва · пауза</h3>
-        <div class="meta"><b>2 ночи</b>дни 16–17 · 20–21 января</div>
+        <div class="meta" data-route="full"><b>2 ночи</b>дни 16–17 · 20–21 января</div><div class="meta" data-route="lite"><b>1 ночь</b>день 16 · 20 января</div>
       </div>
-      <div class="why"><b>Почему столько</b>После Золотого кольца нужен мягкий переход. Дни без обязательств: то, что не успели в первый раз, любимое кафе ещё раз, шопинг, отдых перед «Сапсаном». Психологически это важная пауза ровно в середине поездки.</div>
+      <div class="why" data-route="full"><b>Почему столько</b>После Золотого кольца нужен мягкий переход. Дни без обязательств: то, что не успели в первый раз, любимое кафе ещё раз, шопинг, отдых перед «Сапсаном». Психологически это важная пауза ровно в середине поездки.</div><div class="why" data-route="lite"><b>Почему столько</b>В упрощённом варианте это просто пересадка: днём вы возвращаетесь из Суздаля через Владимир, вечер проводите в уже знакомом городе, а утром садитесь в «Сапсан». Отель имеет смысл взять рядом с Ленинградским вокзалом.</div>
       <div class="grid">
         <div class="block">
           <h4>Выбрать два-три пункта, не больше</h4>
@@ -694,7 +772,7 @@ footer .sign{font-family:"JetBrains Mono",monospace; font-size:11px; letter-spac
           </ul>
         </div>
         <div class="block">
-          <h4>День 18: «Сапсан»</h4>
+          <h4 data-route="full">День 18: «Сапсан»</h4><h4 data-route="lite">День 17: «Сапсан»</h4>
           <p>Ленинградский вокзал → Московский вокзал, 3 ч 45 мин. Берите утренний рейс, чтобы приехать засветло, и место у окна: заснеженные леса всю дорогу.</p>
           <p style="margin:0">Завтрак в поезде включён не во все тарифы — проверьте при покупке.</p>
         </div>
@@ -705,11 +783,11 @@ footer .sign{font-family:"JetBrains Mono",monospace; font-size:11px; letter-spac
     <article class="city">
       <div class="city-head">
         <h3>Санкт-Петербург</h3>
-        <div class="meta"><b>8 ночей</b>дни 18–25 · 22–29 января</div>
+        <div class="meta" data-route="full"><b>8 ночей</b>дни 18–25 · 22–29 января</div><div class="meta" data-route="lite"><b>11 ночей</b>дни 17–27 · 21–31 января</div>
       </div>
-      <div class="why"><b>Почему столько</b>Это как минимум три отдельных города: имперский центр, музеи мирового уровня и пригородные дворцы. Эрмитаж честно требует двух визитов. Плюс короткий световой день и частая пасмурность — нужен запас на дни, когда хочется провести три часа в музее и два в кофейне.</div>
+      <div class="why" data-route="full"><b>Почему столько</b>Это как минимум три отдельных города: имперский центр, музеи мирового уровня и пригородные дворцы. Эрмитаж честно требует двух визитов. Плюс короткий световой день и частая пасмурность — нужен запас на дни, когда хочется провести три часа в музее и два в кофейне.</div><div class="why" data-route="lite"><b>Почему столько</b>Одиннадцать ночей — это тот случай, когда Петербург перестаёт быть списком музеев. Эрмитаж делится на два спокойных визита, пригороды разносятся по разным дням, добавляются Кронштадт и зимний Петергоф, а между ними остаются три дня, в которые не запланировано ничего.</div>
 
-      <div class="tbl-wrap">
+      <div data-route="full"><div class="tbl-wrap">
         <table>
           <thead><tr><th>День</th><th>Программа</th><th>Нагрузка</th></tr></thead>
           <tbody>
@@ -723,7 +801,25 @@ footer .sign{font-family:"JetBrains Mono",monospace; font-size:11px; letter-spac
             <tr><td class="day">25</td><td><b>Эрмитаж, визит второй</b> — Главный штаб, импрессионисты. Или Фаберже и Достоевский</td><td>Лёгкая</td></tr>
           </tbody>
         </table>
-      </div>
+      </div></div>
+      <div data-route="lite"><div class="tbl-wrap">
+        <table>
+          <thead><tr><th>День</th><th>Программа</th><th>Нагрузка</th></tr></thead>
+          <tbody>
+            <tr><td class="day">17</td><td>«Сапсан», заселение, Невский проспект вечером, ужин</td><td>Лёгкая</td></tr>
+            <tr><td class="day">18</td><td><b>Эрмитаж, визит первый</b>: парадные залы Зимнего дворца</td><td>Средняя</td></tr>
+            <tr><td class="day">19</td><td>Спас на Крови, Русский музей, Михайловский сад</td><td>Средняя</td></tr>
+            <tr><td class="day">20</td><td><b>Без программы:</b> Новая Голландия, каток, кофейни</td><td>Лёгкая</td></tr>
+            <tr><td class="day">21</td><td>Петропавловская крепость, Заячий остров, Стрелка Васильевского</td><td>Средняя</td></tr>
+            <tr><td class="day">22</td><td><b>Царское Село</b>: Екатерининский дворец и Янтарная комната</td><td>Средняя</td></tr>
+            <tr><td class="day">23</td><td>Исаакиевский собор и колоннада, Юсуповский дворец, вечером <b>балет в Мариинском</b></td><td>Средняя</td></tr>
+            <tr><td class="day">24</td><td><b>Без программы:</b> Севкабель Порт, Эрарта, кофейни на Петроградской</td><td>Лёгкая</td></tr>
+            <tr><td class="day">25</td><td><b>Павловск</b> с ручными белками или зимний <b>Петергоф</b></td><td>Средняя</td></tr>
+            <tr><td class="day">26</td><td><b>Эрмитаж, визит второй</b> — Главный штаб, импрессионисты</td><td>Лёгкая</td></tr>
+            <tr><td class="day">27</td><td><b>Кронштадт</b> и «Остров фортов», прощальный ужин</td><td>Средняя</td></tr>
+          </tbody>
+        </table>
+      </div></div>
 
       <div class="grid">
         <div class="block">
@@ -799,7 +895,7 @@ footer .sign{font-family:"JetBrains Mono",monospace; font-size:11px; letter-spac
     <article class="city">
       <div class="city-head">
         <h3>Великий Новгород</h3>
-        <div class="meta"><b>2 ночи</b>дни 26–27 · 30–31 января</div>
+        <div class="meta" data-route="full"><b>2 ночи</b>дни 26–27 · 30–31 января</div><div class="meta" data-route="lite"><b>2 ночи</b>дни 28–29 · 1–2 февраля</div>
       </div>
       <div class="why"><b>Почему столько</b>Самый древний город маршрута (859 год) и лучший финальный аккорд: после имперского Петербурга — тихая средневековая Русь. Всё главное осматривается за полтора дня, а вечером второго дня удобный ночной поезд в Москву.</div>
       <div class="grid">
@@ -826,16 +922,17 @@ footer .sign{font-family:"JetBrains Mono",monospace; font-size:11px; letter-spac
           </ul>
         </div>
       </div>
-      <div class="tip">Вечером дня 27 — ночной поезд в Москву. Восемь часов, купе, чай в подстаканнике: экономит целый день и сам по себе является впечатлением.</div>
+      <div class="tip" data-route="lite">Вечером дня 29 — ночной поезд в Москву. Восемь часов, купе, чай в подстаканнике: экономит целый день и сам по себе является впечатлением.</div>
+      <div class="tip" data-route="full">Вечером дня 27 — ночной поезд в Москву. Восемь часов, купе, чай в подстаканнике: экономит целый день и сам по себе является впечатлением.</div>
     </article>
 
     <!-- МОСКВА ФИНАЛ -->
     <article class="city">
       <div class="city-head">
         <h3>Москва · финал</h3>
-        <div class="meta"><b>3 ночи</b>дни 28–30 · 1–3 февраля</div>
+        <div class="meta" data-route="full"><b>3 ночи</b>дни 28–30 · 1–3 февраля</div><div class="meta" data-route="lite"><b>1 ночь</b>день 30 · 3 февраля</div>
       </div>
-      <div class="why"><b>Почему столько</b>Нужен буфер перед международным перелётом — зимой возможны метели и задержки поездов, — а также время на подарки и на «то, что понравилось, ещё раз». Никакой обязательной программы.</div>
+      <div class="why" data-route="full"><b>Почему столько</b>Нужен буфер перед международным перелётом — зимой возможны метели и задержки поездов, — а также время на подарки и на «то, что понравилось, ещё раз». Никакой обязательной программы.</div><div class="why" data-route="lite"><b>Почему столько</b>В упрощённом варианте это одна ночь-буфер: ночной поезд приходит утром, день уходит на подарки, любимое кафе и сборы, а утром 4 февраля — вылет. Если хочется подстраховаться от метели, добавьте вторую ночь за счёт Петербурга.</div>
       <div class="grid">
         <div class="block">
           <h4>Идеи</h4>
@@ -871,6 +968,7 @@ footer .sign{font-family:"JetBrains Mono",monospace; font-size:11px; letter-spac
     </div>
     <p class="sec-sub">Все суммы — на одного человека, кроме отдельно указанных строк по жилью. Расчёт по курсу 1 NZD = 45 ₽. Лимит в 14 000 NZD не расходуется даже наполовину: рекомендуемый вариант укладывается в 8 000.</p>
 
+    <div class="note" data-route="lite">Цифры ниже пересчитаны под упрощённый маршрут. Уровни «экономный» и «с размахом» показаны для полного варианта: в упрощённом разница меньше 1%, потому что экономия на переездах уходит в более дорогие столичные ночи.</div>
     <div class="tiers" role="tablist" aria-label="Уровни бюджета">
       <button class="tier-btn" role="tab" aria-selected="false" aria-controls="p-eco" id="t-eco">Экономный комфорт<span>7 000 NZD</span></button>
       <button class="tier-btn" role="tab" aria-selected="true" aria-controls="p-rec" id="t-rec">Рекомендуемый<span>8 000 NZD</span></button>
@@ -905,13 +1003,19 @@ footer .sign{font-family:"JetBrains Mono",monospace; font-size:11px; letter-spac
 
     <!-- РЕКОМЕНДУЕМЫЙ -->
     <div class="panel" id="p-rec" role="tabpanel" aria-labelledby="t-rec">
-      <div class="summary">
+      <div class="summary" data-route="full">
         <div class="sum-card"><div class="l">На человека</div><div class="v">360 000 ₽</div></div>
         <div class="sum-card hi"><div class="l">На человека</div><div class="v">8 000 <small>NZD</small></div></div>
         <div class="sum-card"><div class="l">На двоих</div><div class="v">16 000 <small>NZD</small></div></div>
         <div class="sum-card"><div class="l">Остаток от лимита</div><div class="v">6 000 <small>NZD / чел.</small></div></div>
       </div>
-      <div class="tbl-wrap">
+      <div class="summary" data-route="lite">
+        <div class="sum-card"><div class="l">На человека</div><div class="v">359 000 ₽</div></div>
+        <div class="sum-card hi"><div class="l">На человека</div><div class="v">7 978 <small>NZD</small></div></div>
+        <div class="sum-card"><div class="l">На двоих</div><div class="v">15 956 <small>NZD</small></div></div>
+        <div class="sum-card"><div class="l">Остаток от лимита</div><div class="v">6 022 <small>NZD / чел.</small></div></div>
+      </div>
+      <div data-route="full"><div class="tbl-wrap">
         <table>
           <thead><tr><th>Категория</th><th class="num">₽ / чел.</th><th class="num">NZD / чел.</th><th>Что входит</th></tr></thead>
           <tbody>
@@ -925,10 +1029,25 @@ footer .sign{font-family:"JetBrains Mono",monospace; font-size:11px; letter-spac
             <tr class="total"><td>Итого на человека</td><td class="num">360 000 ₽</td><td class="num">8 000</td><td>На двоих — 720 000 ₽ / 16 000 NZD</td></tr>
           </tbody>
         </table>
-      </div>
+      </div></div>
+      <div data-route="lite"><div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Категория</th><th class="num">₽ / чел.</th><th class="num">NZD / чел.</th><th>Что входит</th></tr></thead>
+          <tbody>
+            <tr><td>Жильё</td><td class="num">115 000</td><td class="num">2 556</td><td>Больше ночей в дорогих Москве и Петербурге</td></tr>
+            <tr><td>Транспорт по России</td><td class="num">35 000</td><td class="num">778</td><td>5 переездов, 4 поездки одним днём, метро и такси на 30 дней</td></tr>
+            <tr><td>Питание</td><td class="num">90 000</td><td class="num">2 000</td><td>≈ 3 000 ₽ в день, включая 3 «дорогих» ужина</td></tr>
+            <tr><td>Музеи</td><td class="num">26 000</td><td class="num">578</td><td>20–22 музея: провинциальные заменяются столичными</td></tr>
+            <tr><td>Развлечения</td><td class="num">30 000</td><td class="num">667</td><td>Два балета, катки, сани, хаски, 2–3 гида</td></tr>
+            <tr><td>Сувениры, связь, страховка, виза</td><td class="num">33 000</td><td class="num">733</td><td>Виза с приглашением ≈ 12 000 ₽, страховка ≈ 8 000 ₽</td></tr>
+            <tr><td>Резерв</td><td class="num">30 000</td><td class="num">667</td><td>Метели, дорогое такси, спонтанные идеи</td></tr>
+            <tr class="total"><td>Итого на человека</td><td class="num">359 000 ₽</td><td class="num">7 978</td><td>На двоих — 718 000 ₽ / 15 956 NZD</td></tr>
+          </tbody>
+        </table>
+      </div></div>
 
       <h3 style="font-size:22px;margin-bottom:14px">Жильё по городам</h3>
-      <div class="tbl-wrap">
+      <div data-route="full"><div class="tbl-wrap">
         <table>
           <thead><tr><th>Город</th><th class="num">Ночей</th><th class="num">За номер / ночь</th><th class="num">Всего за жильё</th><th class="num">На человека</th></tr></thead>
           <tbody>
@@ -941,7 +1060,19 @@ footer .sign{font-family:"JetBrains Mono",monospace; font-size:11px; letter-spac
             <tr class="total"><td>Итого</td><td class="num">30</td><td class="num">—</td><td class="num">218 000 ₽ · 4 844 NZD</td><td class="num">109 000 ₽ · 2 422 NZD</td></tr>
           </tbody>
         </table>
-      </div>
+      </div></div>
+      <div data-route="lite"><div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Город</th><th class="num">Ночей</th><th class="num">За номер / ночь</th><th class="num">Всего за жильё</th><th class="num">На человека</th></tr></thead>
+          <tbody>
+            <tr><td>Москва (11 + 1 + 1)</td><td class="num">13</td><td class="num">8 000 ₽</td><td class="num">104 000 ₽</td><td class="num">52 000 ₽</td></tr>
+            <tr><td>Суздаль</td><td class="num">4</td><td class="num">7 000 ₽</td><td class="num">28 000 ₽</td><td class="num">14 000 ₽</td></tr>
+            <tr><td>Санкт-Петербург</td><td class="num">11</td><td class="num">8 000 ₽</td><td class="num">88 000 ₽</td><td class="num">44 000 ₽</td></tr>
+            <tr><td>Великий Новгород</td><td class="num">2</td><td class="num">5 000 ₽</td><td class="num">10 000 ₽</td><td class="num">5 000 ₽</td></tr>
+            <tr class="total"><td>Итого</td><td class="num">30</td><td class="num">—</td><td class="num">230 000 ₽ · 5 111 NZD</td><td class="num">115 000 ₽ · 2 556 NZD</td></tr>
+          </tbody>
+        </table>
+      </div></div>
 
       <h3 style="font-size:22px;margin-bottom:14px">Где искать отели</h3>
       <div class="tbl-wrap">
@@ -950,8 +1081,8 @@ footer .sign{font-family:"JetBrains Mono",monospace; font-size:11px; letter-spac
           <tbody>
             <tr><td>Москва</td><td>Китай-город, Тверская, Чистые пруды, Замоскворечье</td><td>Cosmos Selection Tverskaya, «Азимут Смоленская», апарт-отели Vertical, бутик-отели на Покровке</td></tr>
             <tr><td>Суздаль</td><td>Пешком до Торговой площади</td><td>«Пушкарская слобода», «Николаевский посад», ГТК «Суздаль»</td></tr>
-            <tr><td>Кострома</td><td>У Сусанинской площади</td><td>«Азимут Кострома», «Островский причал»</td></tr>
-            <tr><td>Ярославль</td><td>Волжская набережная, центр</td><td>«Ринг Премьер Отель», отель «Иоанн Васильевич»</td></tr>
+            <tr data-route="full"><td>Кострома</td><td>У Сусанинской площади</td><td>«Азимут Кострома», «Островский причал»</td></tr>
+            <tr data-route="full"><td>Ярославль</td><td>Волжская набережная, центр</td><td>«Ринг Премьер Отель», отель «Иоанн Васильевич»</td></tr>
             <tr><td>Петербург</td><td>Адмиралтейский и Центральный, у Мойки и Фонтанки</td><td>«Гельвеция», отели у Исаакиевской площади, апартаменты на Мойке</td></tr>
             <tr><td>Новгород</td><td>У кремля</td><td>«Волхов», «Труворъ»</td></tr>
           </tbody>
@@ -990,11 +1121,244 @@ footer .sign{font-family:"JetBrains Mono",monospace; font-size:11px; letter-spac
   </div>
 </section>
 
+<!-- ============ ДЕНЬГИ ============ -->
+<section id="money">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">04</div>
+      <h2>Деньги</h2>
+    </div>
+    <p class="sec-sub">Ситуация нестандартная и в этом её преимущество: один из вас живёт в России и платит российской картой, вторая привозит валюту. Это позволяет обойтись <b>одной конвертацией вместо двух</b> и сэкономить несколько сотен долларов на месяце поездки.</p>
+
+    <article class="city">
+      <div class="city-head"><h3>Схема, которая выгоднее всего</h3></div>
+      <div class="why"><b>Суть в одной строке</b>Она меняет новозеландские доллары на американские ещё дома, привозит наличные USD и отдаёт их вам. Вы даёте ей эквивалент в рублях и дальше платите своей картой за всё подряд. Доллары остаются у того, кому они нужны, рубли — у того, кому нужны они, и валюта конвертируется всего один раз.</div>
+
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Вариант</th><th>Сколько конвертаций</th><th class="num">Ориентир по потерям</th></tr></thead>
+          <tbody>
+            <tr><td>Везти NZD и менять на рубли в России</td><td>NZD → RUB напрямую, но это редкая валюта: работают единицы банков</td><td class="num">6–10%</td></tr>
+            <tr><td>Везти USD и менять на рубли в банке</td><td>NZD → USD дома, затем USD → RUB здесь</td><td class="num">4–6%</td></tr>
+            <tr class="total"><td>Везти USD и обменяться между собой</td><td>только NZD → USD дома</td><td class="num">1–3%</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="src"><b>Оговорка</b> Проценты — ориентир по типичным спредам, а не гарантия: курс и комиссии зависят от банка и дня. Порядок вариантов от этого не меняется.</p>
+
+      <div class="grid">
+        <div class="block">
+          <h4>Законно ли это</h4>
+          <ul>
+            <li><b>Да.</b> Она — валютный нерезидент, вы — резидент. Валютные операции между резидентом и нерезидентом по закону 173-ФЗ совершаются без ограничений; обмен наличными между двумя физлицами в такой паре под запрет не подпадает</li>
+            <li><b>Налога нет:</b> это обмен эквивалентами, а не доход. Даже дарение денег между физическими лицами НДФЛ не облагается</li>
+            <li><b>Где начинается риск:</b> систематический обмен для третьих лиц — это уже признаки незаконной банковской деятельности (ст. 172 УК). Разовый обмен внутри пары к этому отношения не имеет</li>
+            <li><b>Чего избегать:</b> менял с рук и объявлений в мессенджерах — там и фальшивки, и та самая незаконная деятельность</li>
+            <li><b>Сохраните бумаги:</b> чек обменного пункта или таможенную декларацию. Если позже понесёте крупную сумму в банк, вопрос о происхождении средств снимается одной бумажкой</li>
+          </ul>
+        </div>
+        <div class="block">
+          <h4>Пороги на границе — проверенные цифры</h4>
+          <ul>
+            <li><b>Вылет из Новой Зеландии:</b> при сумме <b>NZ$10 000</b> и более наличными (или эквивалент в другой валюте) нужно заполнить Border Cash Report — форму NZCS 337, онлайн в течение 72 часов до вылета или на месте <span class="tag">customs.govt.nz</span></li>
+            <li><b>Въезд в Россию:</b> декларировать нужно сумму свыше эквивалента <b>10 000 USD</b> на человека; считаются вместе все валюты, включая рубли. До этого порога — зелёный коридор без бумаг</li>
+            <li><b>Её доля по рекомендуемому бюджету</b> — около 360 000 ₽, это примерно <b>4 500–4 800 USD</b>, то есть ниже обоих порогов. Но если решите взять больше — просто заполните форму, это не штраф и не налог, а пять минут времени</li>
+            <li>Не делите сумму на двоих ради обхода порога: дробление выглядит хуже, чем честная декларация</li>
+          </ul>
+          <p class="src"><b>Источники</b> <a href="https://www.customs.govt.nz/travel-to-and-from-new-zealand/border-cash-report" target="_blank" rel="noopener">Border Cash Report, NZ Customs</a> · <a href="https://www.customs.govt.nz/travel-to-and-from-new-zealand/leaving-new-zealand" target="_blank" rel="noopener">Leaving New Zealand</a> · <a href="https://customs.gov.ru/fiz/pravila-peremeshheniya-tovarov/peremeshhenie-nalichnoj-valyuty-i-denezhnyx-instrumentov" target="_blank" rel="noopener">ФТС России: перемещение наличной валюты</a></p>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="block">
+          <h4>Как ей взять доллары дешевле</h4>
+          <ul>
+            <li><b>Заказать наличные USD заранее в своём банке</b> (ANZ, ASB, BNZ, Westpac) — обычно заметно выгоднее уличных обменников</li>
+            <li><b>Не менять в аэропорту</b> — это самый дорогой пункт всей цепочки</li>
+            <li><b>Купюры:</b> в основном по 100, немного по 50 и 20 на первые дни. Только новые серии, без надрывов, надписей и пятен — потрёпанные в России либо не примут, либо возьмут с дисконтом</li>
+            <li><b>Рубли заранее не покупать</b> — в Новой Зеландии курс на них заведомо невыгодный</li>
+          </ul>
+        </div>
+        <div class="block">
+          <h4>По какому курсу считаться между собой</h4>
+          <ul>
+            <li>Берите <b>официальный курс ЦБ на день обмена</b> — он публикуется на cbr.ru и проверяется за десять секунд</li>
+            <li>Либо среднее между покупкой и продажей в крупном банке. Главное — договориться заранее, чтобы потом не было неловкости</li>
+            <li>Все сметы на этом сайте посчитаны по ориентиру <b>1 NZD = 45 ₽</b>; курс USD к рублю проверяйте в день сделки</li>
+          </ul>
+        </div>
+      </div>
+    </article>
+
+    <article class="city">
+      <div class="city-head"><h3>Карты: что реально работает</h3></div>
+      <div class="grid">
+        <div class="block">
+          <h4>Три варианта по убыванию удобства</h4>
+          <ul>
+            <li><b>1. Вы платите своей картой.</b> Работает с первой минуты, ничего оформлять не нужно. Отели, поезда, музеи, рестораны — всё с вашей карты, она компенсирует наличными</li>
+            <li><b>2. Дополнительная карта к вашему счёту на её имя.</b> Счёт остаётся вашим, пластик с её именем — у неё. Нужны загранпаспорт и, как правило, нотариальный перевод; оформляется за день-два. Оптимально, если хочется, чтобы она могла платить сама</li>
+            <li><b>3. Собственная карта «Мир».</b> Цепочка длиннее: сначала биометрия, потом российская SIM (без неё не приходят подтверждения банка), потом счёт. Не каждое отделение возьмётся за клиента на туристической визе. Имеет смысл при долгой или повторной поездке</li>
+          </ul>
+        </div>
+        <div class="block">
+          <h4>Что важно помнить</h4>
+          <ul>
+            <li><b>Иностранные Visa, Mastercard и Amex в России не работают</b> — ни в магазинах, ни в банкоматах, ни онлайн</li>
+            <li><b>Давать ей свою карту — плохая идея как основной план:</b> карта именная и непередаваемая, а там, где спросят документ (гостиница, касса РЖД, крупная покупка), это создаст проблему</li>
+            <li><b>Её NZ-карта нужна для того, что оплачивается до въезда:</b> авиабилеты, страховка, консульский сбор, бронирования за пределами России</li>
+            <li><b>Позвоните в свой банк заранее</b> и спросите дословно: выпускают ли они дополнительную карту на иностранного гражданина по загранпаспорту и нужен ли нотариальный перевод. У банков ответы разные</li>
+            <li><b>Если она живёт у вас, а не в отеле</b> — миграционный учёт делаете вы как принимающая сторона, в течение 7 рабочих дней</li>
+          </ul>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============ РИСКИ ============ -->
+<section id="risk">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">05</div>
+      <h2>Риски: честный разбор</h2>
+    </div>
+    <p class="sec-sub">Этот раздел написан не для того, чтобы успокоить или напугать, а чтобы вы принимали решение с открытыми глазами. Всё, что можно проверить, — со ссылками на первоисточники.</p>
+
+    <article class="city">
+      <div class="city-head"><h3>Что говорит правительство Новой Зеландии</h3></div>
+      <div class="note">Официальный уровень для России — <b>«Do not travel»</b>, высший из четырёх. Формулировка MFAT: для новозеландцев, путешествующих в Россию, существуют значительные угрозы; вооружённый конфликт с Украиной повлиял на доступность авиасообщения и финансовых услуг, и ситуация с безопасностью может ухудшиться без предупреждения. Отдельно упомянуты терроризм, произвольное применение местных законов и уличная преступность.</div>
+      <p class="src"><b>Источник</b> <a href="https://www.safetravel.govt.nz/destinations/russia" target="_blank" rel="noopener">SafeTravel · Russia (Russian Federation)</a>, страница обновлена 10 октября 2025 года</p>
+      <div class="grid">
+        <div class="block">
+          <h4>Что это значит на практике</h4>
+          <ul>
+            <li>Уровень «do not travel» у Новой Зеландии стоит для России с 2022 года и мотивирован прежде всего <b>логистикой, финансами и непредсказуемостью</b>, а не тем, что на улицах Москвы опасно ходить</li>
+            <li>В отличие от США, <b>консульская помощь новозеландцам доступна</b>: посольство в Москве работает по адресу Поварская, 44, телефон +7 495 956 3579</li>
+            <li>Есть круглосуточная линия MFAT: +64 99 20 20 20</li>
+            <li>Поездку стоит <b>зарегистрировать на SafeTravel</b> — тогда при кризисе с ней свяжутся напрямую</li>
+          </ul>
+        </div>
+        <div class="block">
+          <h4>Чего в этой оценке нет</h4>
+          <ul>
+            <li>Она не означает, что туристов из Новой Зеландии задерживают. Историй о «заложниках» в отношении новозеландцев нет — в отличие от практики в отношении граждан США, которую Госдеп описывает прямым текстом</li>
+            <li>Она не учитывает, что у неё в России есть свой человек, который встречает, живёт здесь и говорит на языке. Это снимает большую часть бытовых рисков, ради которых пишут такие предупреждения</li>
+            <li>Но она честно предупреждает о том, что <b>рейс может отмениться, деньги — стать недоступны, а правила — измениться быстро</b></li>
+          </ul>
+        </div>
+      </div>
+    </article>
+
+    <article class="city">
+      <div class="city-head"><h3>Страховка: нужна ли и какая</h3></div>
+      <div class="why"><b>Короткий ответ</b>Нужна, но не та, которую она купит по привычке дома. Обычный новозеландский полис на направлении уровня «do not travel» с высокой вероятностью не сработает — и это самая недооценённая проблема всей поездки.</div>
+      <div class="grid">
+        <div class="block">
+          <h4>В чём подвох</h4>
+          <ul>
+            <li>MFAT прямо пишет: <b>покрытие зависит от уровня предупреждения</b>, и полисы, как правило, не покрывают поездки в страны, куда правительство советует не ездить</li>
+            <li>MFAT также отмечает, что <b>большинство международных страховщиков не покрывают Россию из-за санкций</b> — вне зависимости от уровня предупреждения</li>
+            <li>Страховка, «встроенная» в кредитную карту, работает по тем же правилам и здесь тоже не поможет</li>
+            <li>При этом сам MFAT рекомендует иметь полноценный полис <b>с медицинской эвакуацией по воздуху</b>. Найти такой на Россию сложно, и делать вид, что это решаемо одной покупкой, я не буду</li>
+          </ul>
+          <p class="src"><b>Источники</b> <a href="https://www.safetravel.govt.nz/destinations/russia" target="_blank" rel="noopener">SafeTravel: Russia</a> · <a href="https://www.safetravel.govt.nz/destinations/about-our-travel-advice" target="_blank" rel="noopener">About our travel advice</a></p>
+        </div>
+        <div class="block">
+          <h4>Что делать</h4>
+          <ul>
+            <li><b>1.</b> Запросить у своего NZ-страховщика <b>письменный</b> ответ, действует ли полис при текущем уровне предупреждения. Устные заверения тут ничего не стоят</li>
+            <li><b>2.</b> Оформить полис, который принимает консульство и который действует на территории России, — обычно это российская или международная страховая, оформляется онлайн и стоит недорого за 30 дней. Он покрывает лечение на месте</li>
+            <li><b>3.</b> Считать, что <b>эвакуация домой, отмена поездки и потеря багажа не покрыты</b>, и закрыть эту дыру наличным резервом. В смете он заложен: 30 000 ₽ на человека</li>
+            <li><b>4.</b> Проверить, покрывает ли её полис <b>страны стыковки</b> — Дубай, Доху, Стамбул. Их уровень предупреждения другой, и там страховка обычно работает нормально</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tip"><b>Вывод.</b> Смысл оформлять есть — но воспринимайте это как страховку от больницы в Москве, а не как полноценный travel-полис в новозеландском понимании. Разницу закрывают деньги на счету и тот факт, что рядом с ней всё время будет местный человек.</div>
+    </article>
+
+    <article class="city">
+      <div class="city-head"><h3>Проверка телефона на границе</h3></div>
+      <div class="grid">
+        <div class="block">
+          <h4>Правовая рамка</h4>
+          <ul>
+            <li>Закон «О Государственной границе» даёт пограничным органам право <b>осматривать вещи и предметы</b> у лиц, въезжающих в Россию и выезжающих из неё. Формулировка не ограничена иностранцами</li>
+            <li>Более жёсткая процедура — личный досмотр — по закону должна быть привязана к <b>основаниям подозревать нарушение</b>, а не к простому желанию посмотреть телефон. Досмотр проводится лицом того же пола, в присутствии понятых, с составлением акта, копия которого вручается вам</li>
+            <li>На практике во время беседы могут спрашивать о цели поездки, политических взглядах, связях с Украиной и просить показать содержимое телефона</li>
+            <li><b>Отказ разблокировать</b> устройство рискует быть расценён как неповиновение законному требованию сотрудника — со штрафом или административным арестом. Стратегия «просто не покажу» работает плохо</li>
+          </ul>
+        </div>
+        <div class="block">
+          <h4>Какова вероятность</h4>
+          <ul>
+            <li>Честно: <b>публичной статистики нет</b>, и любой, кто называет вам процент, его придумывает. Проверки выборочные</li>
+            <li>Что повышает вероятность: связи с Украиной в переписке, работа в медиа, НКО или госструктурах, донаты украинским фондам в истории платежей, прошлые визиты в чувствительные страны, нервное поведение</li>
+            <li>Что снижает: обычная туристическая история, внятная цель поездки, подтверждённое жильё, обратный билет, спокойные ответы</li>
+            <li>Типичный турист из страны, не относящейся к «недружественным» по риторике, проходит контроль за минуту. Но право у пограничника есть всегда, и это надо принимать как данность</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3 style="font-size:22px;margin:10px 0 14px">Как подготовить телефон</h3>
+      <div class="grid">
+        <div class="block">
+          <h4>Делать</h4>
+          <ul>
+            <li><b>Ехать с обычным телефоном обычного человека.</b> Стерильный, вычищенный до пустоты аппарат выглядит неправдоподобно и сам по себе провоцирует более пристальную проверку</li>
+            <li>Выйти из политических каналов и чатов, отписаться от организаций, признанных в России нежелательными или экстремистскими</li>
+            <li>Пролистать галерею и удалить то, что не хотелось бы объяснять посреди аэропорта</li>
+            <li>Выйти из рабочих аккаунтов, если работа связана с медиа, госструктурами или чувствительными данными</li>
+            <li>Держать под рукой бумажные подтверждения: приглашение, бронь, обратный билет, ваши контакты</li>
+          </ul>
+        </div>
+        <div class="block">
+          <h4>Не делать</h4>
+          <ul>
+            <li>Не публиковать во время поездки посты на военно-политические темы. Статьи о «дискредитации армии» и «фейках» применяются и к иностранцам, в том числе к публикациям, сделанным задолго до въезда</li>
+            <li>Не везти «второй чистый телефон» вместо основного — это ровно та схема, которая вызывает вопросы</li>
+            <li>Не спорить на эмоциях. Если проверка началась, стоит спокойно уточнить, это осмотр или личный досмотр, и попросить оформить процедуру как положено</li>
+            <li>Не соглашаться на «мы сейчас просто поставим программу» без объяснений — но и не устраивать конфликт. Оптимально: вежливо, коротко, без иронии</li>
+          </ul>
+        </div>
+      </div>
+      <p class="src"><b>Правовая база</b> ст. 30 Закона РФ «О Государственной границе Российской Федерации»; таможенный контроль — ТК ЕАЭС. Практические памятки: <a href="https://ovdinfo.legal/instruction/border" target="_blank" rel="noopener">ОВД-Инфо, инструкция по пересечению границы</a></p>
+    </article>
+
+    <article class="city">
+      <div class="city-head"><h3>Итоговый вывод</h3></div>
+      <div class="grid">
+        <div class="block">
+          <h4>Как выглядят риски по убыванию реальности</h4>
+          <ul>
+            <li><b>1. Деньги и страховка.</b> Самая вероятная неприятность — не задержание, а неработающая страховка при травме на льду или неучтённые расходы. Решается наличными и трезвыми ожиданиями</li>
+            <li><b>2. Логистика.</b> Стыковочные рейсы, отмены, задержки, закрытое небо. Отсюда буферные дни в конце маршрута и запас в бюджете</li>
+            <li><b>3. Правовая осторожность в интернете.</b> Управляемо: подготовка телефона и молчание на политические темы на месяц</li>
+            <li><b>4. Граница.</b> Право на проверку есть, применяется выборочно, у обычного туриста без «красных флагов» проходит буднично</li>
+            <li><b>5. Бытовая безопасность.</b> В Москве и Петербурге ниже, чем во многих европейских столицах. Реальная опасность зимой — лёд под ногами</li>
+          </ul>
+        </div>
+        <div class="block">
+          <h4>Что сделать обязательно</h4>
+          <ul>
+            <li>Зарегистрировать поездку на <a href="https://www.safetravel.govt.nz/register" target="_blank" rel="noopener">SafeTravel</a></li>
+            <li>Сохранить в её телефоне: посольство Новой Зеландии в Москве +7 495 956 3579, круглосуточная линия MFAT +64 99 20 20 20, скорая 103, единый номер 112</li>
+            <li>Оставить родным копию паспорта, визы и маршрута</li>
+            <li>Договориться о простом правиле связи — одно короткое сообщение домой в день, чтобы никто не строил гипотез</li>
+            <li>Перед вылетом ещё раз открыть страницу SafeTravel: ситуация меняется, а этот сайт — нет</li>
+          </ul>
+        </div>
+      </div>
+      <div class="note"><b>Честно о главном.</b> Официальная рекомендация её страны — не ехать, и это не формальность, которую можно отмахнуть. Но эта рекомендация написана для абстрактного новозеландца без связей в стране, а не для человека, которого встречает и сопровождает местный житель. Разумная позиция выглядит так: риск существует, он в основном финансовый и логистический, он снижается подготовкой — и решение принимаете вы двое, а не сайт и не чиновник. Если после этого раздела решение осталось прежним, значит, оно осознанное, а это единственное, что здесь имеет значение.</div>
+    </article>
+  </div>
+</section>
+
 <!-- ============ ПРАКТИКА ============ -->
 <section id="practice">
   <div class="wrap">
     <div class="sec-head">
-      <div class="eyebrow">04</div>
+      <div class="eyebrow">06</div>
       <h2>Практика</h2>
     </div>
     <p class="sec-sub">Девять вещей, которые нужно знать до вылета. Пункт про оплату — самый важный во всём документе.</p>
@@ -1104,8 +1468,9 @@ footer .sign{font-family:"JetBrains Mono",monospace; font-size:11px; letter-spac
         <div class="block">
           <h4>SIM-карта</h4>
           <ul>
-            <li><b>Самый простой вариант:</b> международная eSIM (Airalo, Yesim и аналоги) с тарифом на Россию — активируется до вылета и работает в роуминге</li>
-            <li><b>Местная SIM:</b> с 2025 года иностранцу требуется сдача биометрии и регистрация. Процедура выполнима, но занимает время — идите в официальный салон МТС, Билайн, МегаФон или t2 с паспортом и миграционной картой</li>
+            <li><b>Роуминг иностранных SIM ограничен.</b> С 6 октября 2025 года при первой регистрации в российской сети мобильный интернет и SMS отключаются примерно на 24 часа — работают только голосовые звонки. Это касается и обычных SIM, и eSIM. MFAT подтверждает: <a href="https://www.safetravel.govt.nz/destinations/russia" target="_blank" rel="noopener">роуминг для иностранных SIM значительно ограничен</a></li>
+            <li><b>Практический вывод:</b> первые сутки в России рассчитывайте на Wi-Fi и на телефон встречающего. Скачайте офлайн-карты заранее</li>
+            <li><b>Местная SIM:</b> с 1 января 2025 года иностранец может купить российскую SIM только после регистрации биометрии в Единой биометрической системе. Процедура выполнима, но требует времени — идите в официальный салон МТС, Билайн, МегаФон или t2 с паспортом и миграционной картой</li>
             <li>Не покупайте SIM с рук: такие карты блокируют</li>
             <li>Wi-Fi есть везде, включая метро обеих столиц (нужна регистрация по номеру телефона)</li>
             <li>Instagram и Facebook в России заблокированы, часть западных сервисов работает нестабильно. Google Maps работает, но Яндекс точнее по транспорту и заведениям</li>
@@ -1131,7 +1496,7 @@ footer .sign{font-family:"JetBrains Mono",monospace; font-size:11px; letter-spac
         <div class="block">
           <h4>Формальности</h4>
           <ul>
-            <li><b>Виза:</b> гражданам Новой Зеландии электронная виза недоступна. Нужна обычная туристическая виза через консульство или визовый центр, с приглашением от аккредитованного туроператора. Подавайтесь за 1,5–2 месяца</li>
+            <li><b>Виза:</b> для 30 дней нужна обычная туристическая виза с приглашением от аккредитованного туроператора — единая электронная виза даёт максимум 16 дней пребывания и для этой поездки не подходит в любом случае. Подаётся в консульский отдел Посольства России в Веллингтоне; актуальный перечень документов и стран для э-визы проверяйте на сайте <a href="https://newzealand.mid.ru/" target="_blank" rel="noopener">newzealand.mid.ru</a>. Подавайтесь за 1,5–2 месяца</li>
             <li><b>Миграционный учёт:</b> отель ставит вас на учёт автоматически, для этого и берут паспорт при заселении. При аренде квартиры это обязан сделать хозяин в течение 7 рабочих дней — для длинной поездки надёжнее отели</li>
             <li>Носите копию паспорта и визы, оригинал держите в сейфе — кроме дней с поездами, там нужен оригинал</li>
             <li><b>Страховка</b> обязательна для визы. Многие западные страховщики не покрывают Россию — выбирайте компанию, которую принимает консульство</li>
@@ -1148,7 +1513,7 @@ footer .sign{font-family:"JetBrains Mono",monospace; font-size:11px; letter-spac
 <section id="food">
   <div class="wrap">
     <div class="sec-head">
-      <div class="eyebrow">05</div>
+      <div class="eyebrow">07</div>
       <h2>Что попробовать</h2>
     </div>
     <p class="sec-sub">Зимняя русская кухня плотная и согревающая — в этом её смысл. Список построен так, чтобы в каждом городе было что-то своё.</p>
@@ -1244,20 +1609,32 @@ footer .sign{font-family:"JetBrains Mono",monospace; font-size:11px; letter-spac
 <section id="pace">
   <div class="wrap">
     <div class="sec-head">
-      <div class="eyebrow">06</div>
+      <div class="eyebrow">08</div>
       <h2>Темп поездки</h2>
     </div>
 
-    <div class="gauge">
+    <div data-route="full">
+<div data-route="full">
+<div class="gauge">
       <h3 style="font-size:22px">Утомительность маршрута</h3>
       <div class="gauge-scale"><div class="gauge-pin"></div></div>
       <div class="gauge-ends"><span>1 — санаторий</span><span>10 — марафон</span></div>
       <p style="margin:22px 0 0">Для сравнения: классический тур «Золотое кольцо за 7 дней» тянет на 8 из 10. Здесь темп сознательно занижен — это отпуск.</p>
     </div>
+    </div>
+    <div data-route="lite">
+<div class="gauge">
+      <h3 style="font-size:22px">Утомительность маршрута</h3>
+      <div class="gauge-scale"><div class="gauge-pin lite"></div></div>
+      <div class="gauge-ends"><span>1 — санаторий</span><span>10 — марафон</span></div>
+      <p style="margin:22px 0 0">Пять переездов за месяц и два отеля на весь срок — это ближе к «пожить в городе», чем к путешествию. Для сравнения: классический тур «Золотое кольцо за 7 дней» тянет на 8 из 10.</p>
+    </div>
+    </div>
 
     <div class="grid">
       <div class="block">
-        <h4>Почему так спокойно</h4>
+        <div data-route="full">
+<h4>Почему так спокойно</h4>
         <ul>
           <li>Всего <b>8 переездов за 30 дней</b> — в среднем один раз в 3,75 дня</li>
           <li>Самый длинный дневной переезд — 3 ч 45 мин, и это комфортный «Сапсан»</li>
@@ -1265,6 +1642,17 @@ footer .sign{font-family:"JetBrains Mono",monospace; font-size:11px; letter-spac
           <li>Ни один город не посещается набегом: минимальная остановка — две ночи</li>
           <li>Заложено <b>9 дней вообще без обязательной программы</b></li>
         </ul>
+    </div>
+    <div data-route="lite">
+<h4>Почему так спокойно</h4>
+        <ul>
+          <li>Всего <b>5 переездов за 30 дней</b> — один раз в шесть дней</li>
+          <li>13 ночей в Москве и 11 в Петербурге: два отеля на весь месяц</li>
+          <li>Самый длинный дневной переезд — 3 ч 45 мин, и это «Сапсан»</li>
+          <li>Поездки одним днём заканчиваются в своём же номере — чемодан не собирается</li>
+          <li>Заложено <b>12 дней вообще без обязательной программы</b></li>
+        </ul>
+    </div>
       </div>
       <div class="block">
         <h4>Что всё-таки будет утомлять</h4>
@@ -1276,7 +1664,7 @@ footer .sign{font-family:"JetBrains Mono",monospace; font-size:11px; letter-spac
       </div>
     </div>
 
-    <div class="tbl-wrap">
+    <div data-route="full"><div class="tbl-wrap">
       <table>
         <thead><tr><th>Показатель</th><th class="num">Значение</th></tr></thead>
         <tbody>
@@ -1291,7 +1679,23 @@ footer .sign{font-family:"JetBrains Mono",monospace; font-size:11px; letter-spac
           <tr><td>Времени на ногах в активный день</td><td class="num">4–5 часов с перерывами</td></tr>
         </tbody>
       </table>
-    </div>
+    </div></div>
+    <div data-route="lite"><div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Показатель</th><th class="num">Значение</th></tr></thead>
+        <tbody>
+          <tr><td>Всего дней и ночей</td><td class="num">31 день / 30 ночей</td></tr>
+          <tr><td>Городов</td><td class="num">4 базовых + 4 поездки одним днём</td></tr>
+          <tr><td>Междугородних переездов</td><td class="num">5</td></tr>
+          <tr><td>Из них ночных</td><td class="num">1</td></tr>
+          <tr><td>Дней отдыха без программы</td><td class="num">12</td></tr>
+          <tr><td>Дней активных прогулок и осмотра</td><td class="num">12</td></tr>
+          <tr><td>Дней средней нагрузки: поездка одним днём или переезд</td><td class="num">6</td></tr>
+          <tr><td>Музеев в программе</td><td class="num">20–22</td></tr>
+          <tr><td>Времени на ногах в активный день</td><td class="num">4–5 часов с перерывами</td></tr>
+        </tbody>
+      </table>
+    </div></div>
 
     <h3 style="font-size:22px;margin-bottom:14px">Как ощущается типичная неделя</h3>
     <div class="tbl-wrap">
@@ -1326,12 +1730,16 @@ footer .sign{font-family:"JetBrains Mono",monospace; font-size:11px; letter-spac
     <div class="eyebrow">A route for two · 5 January — 3 February</div>
     <h1>Winter Russia <em>in 30 days</em></h1>
     <p class="dedication">for my love, Izzy</p>
-    <p class="hero-lead">Built for someone who has never seen snow. Six cities, eight journeys, not a single flight — and nine days with absolutely nothing planned.</p>
+    <p class="hero-lead" data-route="full">Built for someone who has never seen snow. Six cities, eight journeys, not a single flight — and nine days with absolutely nothing planned.</p>
+    <p class="hero-lead" data-route="lite">Built for someone who has never seen snow. Four cities, five journeys, not a single flight — and almost the whole month spent in just two hotels.</p>
     <div class="facts">
       <div class="fact"><span class="n">30</span><span class="l">nights</span></div>
-      <div class="fact"><span class="n">6</span><span class="l">cities + 4 day trips</span></div>
-      <div class="fact"><span class="n">8</span><span class="l">journeys</span></div>
-      <div class="fact"><span class="n">9</span><span class="l">days with no plan</span></div>
+      <div class="fact" data-route="full"><span class="n">6</span><span class="l">cities + 4 day trips</span></div>
+      <div class="fact" data-route="lite"><span class="n">4</span><span class="l">cities + 4 day trips</span></div>
+      <div class="fact" data-route="full"><span class="n">8</span><span class="l">journeys</span></div>
+      <div class="fact" data-route="lite"><span class="n">5</span><span class="l">journeys</span></div>
+      <div class="fact" data-route="full"><span class="n">9</span><span class="l">days with no plan</span></div>
+      <div class="fact" data-route="lite"><span class="n">12</span><span class="l">days with no plan</span></div>
       <div class="fact"><span class="n">8,000</span><span class="l">NZD per person</span></div>
     </div>
   </div>
@@ -1344,9 +1752,21 @@ footer .sign{font-family:"JetBrains Mono",monospace; font-size:11px; letter-spac
 <section id="route-en">
   <div class="wrap">
     <div class="sec-head"><div class="eyebrow">01</div><h2>The route</h2></div>
-    <p class="sec-sub">A loop with no backtracking: Moscow — the Golden Ring in an arc — Moscow — St Petersburg — Novgorod — Moscow. No flights needed: the longest leg is 3 hours 45 minutes, and that is the Sapsan high-speed train. If you want it calmer still, there is a <a href="#lite-en">four-city lite version</a> below.</p>
+    <p class="sec-sub">The switch below changes the whole site: the route, the day-by-day plans, the budget and the pace estimate. Neither version needs a flight — the longest leg is 3 hours 45 minutes, and that is the Sapsan high-speed train.</p>
 
-    <ol class="spine">
+    <div class="route-switch">
+      <span class="rs-label">Route version</span>
+      <div class="rs-group">
+        <button class="rs-btn" type="button" data-route-btn="full" aria-pressed="true">Full · 6 cities</button>
+        <button class="rs-btn" type="button" data-route-btn="lite" aria-pressed="false">Lite · 4 cities</button>
+      </div>
+    </div>
+
+    <p class="sec-sub" data-route="full">A loop with no backtracking: Moscow — the Golden Ring in an arc — Moscow — St Petersburg — Novgorod — Moscow.</p>
+    <p class="sec-sub" data-route="lite">Four cities and two bases: you spend most of the month in Moscow and St Petersburg, while Suzdal and Novgorod supply the provinces and medieval Rus.</p>
+
+    <div data-route="full">
+<ol class="spine">
       <li class="stop major"><div class="stop-card"><span class="city">Moscow</span><span class="dates">5–10 Jan · first impressions</span><span class="nights mono">6 nights</span></div></li>
       <li class="leg">↓ Lastochka train to Vladimir <b>1 h 40</b> + transfer to Suzdal <b>45 min</b></li>
       <li class="stop"><div class="stop-card"><span class="city">Suzdal</span><span class="dates">11–14 Jan · with Vladimir</span><span class="nights mono">4 nights</span></div></li>
@@ -1384,6 +1804,43 @@ footer .sign{font-family:"JetBrains Mono",monospace; font-size:11px; letter-spac
     </div>
 
     <div class="note"><b>Buy train tickets at the station ticket office, in cash, with your passport.</b> Foreign cards do not work in Russia, including on the Russian Railways website. The other reliable option is to ask your hotel to buy them for you. Book Sapsan and Lastochka seats 1–2 weeks ahead: prices rise as trains fill.</div>
+    </div>
+    <div data-route="lite">
+<ol class="spine">
+      <li class="stop major"><div class="stop-card"><span class="city">Moscow</span><span class="dates">5–15 Jan · with day trips to Sergiev Posad and Kolomna</span><span class="nights mono">11 nights</span></div></li>
+      <li class="leg">↓ Lastochka to Vladimir <b>1 h 40</b> + transfer <b>45 min</b></li>
+      <li class="stop"><div class="stop-card"><span class="city">Suzdal</span><span class="dates">16–19 Jan · Vladimir on the way</span><span class="nights mono">4 nights</span></div></li>
+      <li class="leg">↓ transfer and Lastochka back <b>2 h 30</b></li>
+      <li class="stop"><div class="stop-card"><span class="city">Moscow</span><span class="dates">20 Jan · one transit night</span><span class="nights mono">1 night</span></div></li>
+      <li class="leg">↓ <b>Sapsan 3 h 45</b></li>
+      <li class="stop major"><div class="stop-card"><span class="city">St Petersburg</span><span class="dates">21–31 Jan · with the palace suburbs and Kronstadt</span><span class="nights mono">11 nights</span></div></li>
+      <li class="leg">↓ Lastochka <b>3 h</b></li>
+      <li class="stop"><div class="stop-card"><span class="city">Veliky Novgorod</span><span class="dates">1–2 Feb</span><span class="nights mono">2 nights</span></div></li>
+      <li class="leg">↓ overnight sleeper <b>8 h</b></li>
+      <li class="stop"><div class="stop-card"><span class="city">Moscow</span><span class="dates">3 Feb · the night before the flight</span><span class="nights mono">1 night</span></div></li>
+    </ol>
+
+    <h3 style="font-size:22px;margin-bottom:14px">Every journey, with prices</h3>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Leg</th><th>Transport</th><th>Time</th><th class="num">Per person</th></tr></thead>
+        <tbody>
+          <tr><td>Airport → hotel, Moscow</td><td>Aeroexpress or taxi</td><td>45–60 min</td><td class="num">500–2,500 ₽</td></tr>
+          <tr><td>Moscow → Vladimir</td><td>Lastochka, Kursky station</td><td>1 h 40</td><td class="num">1,000–1,500 ₽</td></tr>
+          <tr><td>Vladimir → Suzdal</td><td>Private transfer</td><td>45 min</td><td class="num">1,500 ₽</td></tr>
+          <tr><td>Suzdal → Moscow</td><td>Transfer to Vladimir + Lastochka</td><td>2 h 30</td><td class="num">2,500–3,000 ₽</td></tr>
+          <tr><td><b>Moscow → St Petersburg</b></td><td><b>Sapsan</b></td><td>3 h 45</td><td class="num">5,000–8,000 ₽</td></tr>
+          <tr><td>St Petersburg → Veliky Novgorod</td><td>Lastochka</td><td>3 h</td><td class="num">1,000–1,400 ₽</td></tr>
+          <tr><td>Veliky Novgorod → Moscow</td><td>Overnight sleeper, 2-berth</td><td>8 h</td><td class="num">4,000–5,000 ₽</td></tr>
+          <tr><td>Moscow → airport</td><td>Aeroexpress or taxi</td><td>45–60 min</td><td class="num">500–2,500 ₽</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="tip">Day trips — Sergiev Posad, Kolomna, Tsarskoye Selo, Peterhof — don't count as journeys here: they are 40–90 minute train rides and you sleep in the same room that night. Buy those tickets at the station on the day.</div>
+
+    <div class="note"><b>Buy train tickets at the station ticket office, in cash, with your passport.</b> Foreign cards do not work in Russia, including on the Russian Railways website. The other reliable option is to ask your hotel to buy them. Book the Sapsan 1–2 weeks ahead: prices rise as the train fills.</div>
+    </div>
 
     <h3 style="font-size:22px;margin-bottom:14px">Why January, and why these dates</h3>
     <div class="tbl-wrap">
@@ -1407,78 +1864,50 @@ footer .sign{font-family:"JetBrains Mono",monospace; font-size:11px; letter-spac
   <div class="wrap">
     <div class="sec-head">
       <div class="eyebrow">Alternative</div>
-      <h2>The lite route</h2>
+      <h2>Two versions: how to choose</h2>
     </div>
-    <p class="sec-sub">If six cities sounds like too much, here is a four-city version with only five journeys. Same 30 nights, same budget — but you stay put in one hotel for most of the trip instead of packing every three days.</p>
+    <p class="sec-sub">The Full / Lite switch changes the entire site — the route, the daily plans, the budget and the pace estimate. This section is here to help you choose, so it stays the same in both.</p>
 
-    <ol class="spine">
-      <li class="stop major"><div class="stop-card"><span class="city">Moscow</span><span class="dates">5–15 Jan · with day trips to Sergiev Posad and Vladimir</span><span class="nights mono">11 nights</span></div></li>
-      <li class="leg">↓ Lastochka to Vladimir <b>1 h 40</b> + transfer <b>45 min</b></li>
-      <li class="stop"><div class="stop-card"><span class="city">Suzdal</span><span class="dates">16–19 Jan</span><span class="nights mono">4 nights</span></div></li>
-      <li class="leg">↓ transfer and Lastochka back to Moscow <b>2 h 30</b></li>
-      <li class="stop"><div class="stop-card"><span class="city">Moscow</span><span class="dates">20 Jan · one transit night</span><span class="nights mono">1 night</span></div></li>
-      <li class="leg">↓ <b>Sapsan 3 h 45</b></li>
-      <li class="stop major"><div class="stop-card"><span class="city">St Petersburg</span><span class="dates">21–31 Jan · with Tsarskoye Selo, Pavlovsk, Kronstadt</span><span class="nights mono">11 nights</span></div></li>
-      <li class="leg">↓ Lastochka <b>3 h</b></li>
-      <li class="stop"><div class="stop-card"><span class="city">Veliky Novgorod</span><span class="dates">1–2 Feb</span><span class="nights mono">2 nights</span></div></li>
-      <li class="leg">↓ overnight sleeper <b>8 h</b></li>
-      <li class="stop"><div class="stop-card"><span class="city">Moscow</span><span class="dates">3 Feb · the night before the flight</span><span class="nights mono">1 night</span></div></li>
-    </ol>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Measure</th><th>Full route</th><th>Lite route</th></tr></thead>
+        <tbody>
+          <tr><td>Cities</td><td>6 (+ 4 day trips)</td><td>4 (+ 4 day trips)</td></tr>
+          <tr><td>Journeys with luggage</td><td class="num">8</td><td class="num">5</td></tr>
+          <tr><td>Hotel changes</td><td class="num">8</td><td class="num">6, but two hotels hold for 11 nights each</td></tr>
+          <tr><td>Days with no plan</td><td class="num">9</td><td class="num">12</td></tr>
+          <tr><td>Effort score</td><td class="num">3.5 / 10</td><td class="num">2.5 / 10</td></tr>
+          <tr><td>Cost per person</td><td class="num">360,000 ₽ · 8,000 NZD</td><td class="num">359,000 ₽ · 7,978 NZD</td></tr>
+          <tr><td>Provincial Russia</td><td>Suzdal, Kostroma, Yaroslavl, Rostov, Vladimir</td><td>Suzdal and Vladimir</td></tr>
+          <tr><td>The Volga</td><td>Kostroma and Yaroslavl both stand on it</td><td>Never appears</td></tr>
+        </tbody>
+      </table>
+    </div>
 
     <div class="grid">
       <div class="block">
-        <h4>What you gain</h4>
+        <h4>What the lite route gives you</h4>
         <ul>
-          <li><b>5 journeys instead of 8</b> — one every six days</li>
-          <li>Two "homes" for the month: 12 nights in Moscow and 11 in St Petersburg, each in a single hotel</li>
-          <li>Room for what usually gets cut: an unhurried second Hermitage visit, Kronstadt, Kolomenskoye, all of VDNKh</li>
-          <li>The effort score drops to about <b>2.5 out of 10</b>, with 12–13 rest days</li>
-          <li>Fewer suitcase days means fewer taxis, stations and "where are we sleeping tonight"</li>
+          <li>Two "homes" for the month: 13 nights in Moscow and 11 in St Petersburg, with almost no packing</li>
+          <li>Room for what usually gets cut: an unhurried second Hermitage visit, Kronstadt, Peterhof in winter, all of VDNKh, Kolomna and its pastila museum</li>
+          <li>Three extra empty days — exactly the margin that turns a trip into a rest</li>
+          <li>Fewer stations, fewer taxis, fewer "where are we sleeping tonight" moments</li>
         </ul>
       </div>
       <div class="block">
         <h4>What you give up</h4>
         <ul>
-          <li><b>Kostroma</b> — and with it the moose farm and the Snow Maiden's Terem, the most unusual thing on the whole route</li>
-          <li><b>Yaroslavl and Rostov Veliky</b> — the painted enamel, the bell chimes and frozen Lake Nero</li>
+          <li><b>Kostroma</b> — and with it the moose farm and the Snow Maiden's Terem, the most unusual thing on the route</li>
+          <li><b>Yaroslavl and Rostov Veliky</b> — painted enamel, the famous bell chimes, frozen Lake Nero</li>
           <li>The sense of having crossed a country: provincial Russia is represented by Suzdal alone</li>
-          <li>You never see the Volga at all</li>
+          <li>The frozen Volga — a sight neither capital can give you</li>
         </ul>
       </div>
     </div>
 
-    <h3 style="font-size:22px;margin-bottom:14px">How to fill the freed-up days</h3>
-    <div class="tbl-wrap">
-      <table>
-        <thead><tr><th>Where</th><th>Days</th><th>What to add</th></tr></thead>
-        <tbody>
-          <tr><td><b>Moscow</b></td><td class="day">+5 days</td><td>Sergiev Posad and Vladimir as day trips (1.5 hours each by train), all of VDNKh and the Museum of Cosmonautics, Kolomenskoye, Kuskovo, Bunker-42, a second Tretyakov visit, huskies, the circus on Tsvetnoy Boulevard, a dumpling class</td></tr>
-          <tr><td><b>St Petersburg</b></td><td class="day">+3 days</td><td>Kronstadt and the Island of Forts, Peterhof in winter, Pavlovsk as its own day, Erarta, Yusupov Palace, a courtyards tour, a second ballet</td></tr>
-          <tr><td><b>Suzdal</b></td><td class="day">4 days</td><td>Unchanged: Vladimir, Bogolyubovo, the kremlin, the monasteries, a sleigh ride, mead</td></tr>
-        </tbody>
-      </table>
-    </div>
+    <div class="tip"><b>How to choose.</b> If this is Izzy's first trip to Russia and the feeling matters more than the tally of places, take the lite route: it is calmer and costs virtually the same. If you want provincial Russia specifically — wooden houses, small towns, a frozen river — stay with the full one: the difference in tiredness is smaller than it looks.</div>
 
-    <h3 style="font-size:22px;margin-bottom:14px">Budget for the lite route</h3>
-    <div class="tbl-wrap">
-      <table>
-        <thead><tr><th>Category</th><th class="num">₽ pp</th><th class="num">NZD pp</th><th>Difference from the main route</th></tr></thead>
-        <tbody>
-          <tr><td>Accommodation</td><td class="num">115,000</td><td class="num">2,556</td><td>More nights in pricier Moscow and St Petersburg</td></tr>
-          <tr><td>Transport within Russia</td><td class="num">35,000</td><td class="num">778</td><td>Three legs disappear, two day-trip trains are added</td></tr>
-          <tr><td>Food</td><td class="num">90,000</td><td class="num">2,000</td><td>Unchanged</td></tr>
-          <tr><td>Museums</td><td class="num">26,000</td><td class="num">578</td><td>Unchanged — provincial museums swap for city ones</td></tr>
-          <tr><td>Entertainment</td><td class="num">30,000</td><td class="num">667</td><td>Unchanged</td></tr>
-          <tr><td>Souvenirs, SIM, insurance, visa</td><td class="num">33,000</td><td class="num">733</td><td>Unchanged</td></tr>
-          <tr><td>Contingency</td><td class="num">30,000</td><td class="num">667</td><td>Unchanged</td></tr>
-          <tr class="total"><td>Total per person</td><td class="num">359,000 ₽</td><td class="num">7,978</td><td>For two — 718,000 ₽ / 15,956 NZD</td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="tip"><b>How to choose.</b> If this is a first trip to Russia and what matters is the feeling rather than the tally of places, take the lite route: it is calmer and costs virtually the same. If you want provincial Russia specifically — wooden houses, a frozen Volga, small towns — stay with the main route: the difference in tiredness is smaller than it looks.</div>
-
-    <div class="note"><b>A middle option:</b> keep the main route but drop Kostroma. That gives five cities and seven journeys, with the two freed nights going to Yaroslavl — Rostov Veliky and the moose farm can then be combined into one long day with a driver.</div>
+    <div class="note"><b>A middle option:</b> keep the full route but drop Kostroma alone. That gives five cities and seven journeys, with the two freed nights going to Yaroslavl — Rostov Veliky and the moose farm can then be combined into one long day with a driver.</div>
   </div>
 </section>
 
@@ -1486,17 +1915,25 @@ footer .sign{font-family:"JetBrains Mono",monospace; font-size:11px; letter-spac
 <section id="cities-en">
   <div class="wrap">
     <div class="sec-head"><div class="eyebrow">02</div><h2>Cities</h2></div>
-    <p class="sec-sub">The rule behind the whole route: no more than one big thing per day, and every third or fourth day left empty.</p>
+    <p class="sec-sub">The rule behind the whole route: no more than one big thing per day, and every third or fourth day left empty. The schedules below change completely with the route version.</p>
+
+    <div class="route-switch">
+      <span class="rs-label">Route version</span>
+      <div class="rs-group">
+        <button class="rs-btn" type="button" data-route-btn="full" aria-pressed="true">Full · 6 cities</button>
+        <button class="rs-btn" type="button" data-route-btn="lite" aria-pressed="false">Lite · 4 cities</button>
+      </div>
+    </div>
 
     <!-- MOSCOW 1 -->
     <article class="city">
       <div class="city-head">
         <h3>Moscow · part one</h3>
-        <div class="meta"><b>6 nights</b>days 1–6 · 5–10 Jan</div>
+        <div class="meta" data-route="full"><b>6 nights</b>days 1–6 · 5–10 Jan</div><div class="meta" data-route="lite"><b>11 nights</b>days 1–11 · 5–15 Jan</div>
       </div>
-      <div class="why"><b>Why this long</b>This is your first meeting with real winter and with a very large city at the same time. One or two days go to adjusting after the flight from New Zealand (a 10–12 hour time difference), and January Moscow is not only museums — it is the country's main winter stage: rinks, markets, lights. Fewer than five days here guarantees a rush.</div>
+      <div class="why" data-route="full"><b>Why this long</b>This is your first meeting with real winter and with a very large city at the same time. One or two days go to adjusting after the flight from New Zealand (a 10–12 hour time difference), and January Moscow is not only museums — it is the country's main winter stage: rinks, markets, lights. Fewer than five days here guarantees a rush.</div><div class="why" data-route="lite"><b>Why this long</b>On the lite route Moscow becomes the main base of the trip. Eleven nights in one hotel remove the logistics entirely: nothing gets packed, jet lag passes gently, and Sergiev Posad and Kolomna turn into easy day trips that end in your own room.</div>
 
-      <div class="tbl-wrap">
+      <div data-route="full"><div class="tbl-wrap">
         <table>
           <thead><tr><th>Day</th><th>Plan</th><th>Effort</th></tr></thead>
           <tbody>
@@ -1508,7 +1945,25 @@ footer .sign{font-family:"JetBrains Mono",monospace; font-size:11px; letter-spac
             <tr><td class="day">6</td><td>Tsaritsyno or Kolomenskoye, then ballet or a Christmas market</td><td>Medium</td></tr>
           </tbody>
         </table>
-      </div>
+      </div></div>
+      <div data-route="lite"><div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Day</th><th>Plan</th><th>Effort</th></tr></thead>
+          <tbody>
+            <tr><td class="day">1</td><td>Arrive, check in, a short evening walk to Red Square</td><td>Easy</td></tr>
+            <tr><td class="day">2</td><td>Red Square, GUM, Zaryadye Park, the floating bridge, the Ice Cave</td><td>Medium</td></tr>
+            <tr><td class="day">3</td><td>The Kremlin: Cathedral Square and the <b>Armoury Chamber</b></td><td>Medium</td></tr>
+            <tr><td class="day">4</td><td><b>No plan:</b> the beautiful metro stations, Patriarch's Ponds, cafés on Pokrovka</td><td>Easy</td></tr>
+            <tr><td class="day">5</td><td><b>Tretyakov Gallery</b>, Zamoskvorechye, skating in the evening</td><td>Medium</td></tr>
+            <tr><td class="day">6</td><td><b>Sergiev Posad</b> as a day trip — 1.5 hours by train</td><td>Medium</td></tr>
+            <tr><td class="day">7</td><td><b>No plan:</b> GES-2, Krasny Oktyabr, Danilovsky Market</td><td>Easy</td></tr>
+            <tr><td class="day">8</td><td>All of VDNKh: Museum of Cosmonautics, the rink, the pavilions</td><td>Medium</td></tr>
+            <tr><td class="day">9</td><td>Tsaritsyno or Kolomenskoye — a snowbound estate for half a day</td><td>Medium</td></tr>
+            <tr><td class="day">10</td><td><b>Kolomna</b> as a day trip: the kremlin, the pastila museum, the old town</td><td>Medium</td></tr>
+            <tr><td class="day">11</td><td><b>No plan:</b> Izmailovo Kremlin, souvenirs, ballet in the evening</td><td>Easy</td></tr>
+          </tbody>
+        </table>
+      </div></div>
 
       <div class="grid">
         <div class="block">
@@ -1593,11 +2048,11 @@ footer .sign{font-family:"JetBrains Mono",monospace; font-size:11px; letter-spac
     <article class="city">
       <div class="city-head">
         <h3>Suzdal <span style="font-size:.55em;color:var(--muted)">+ Vladimir</span></h3>
-        <div class="meta"><b>4 nights</b>days 7–10 · 11–14 Jan</div>
+        <div class="meta" data-route="full"><b>4 nights</b>days 7–10 · 11–14 Jan</div><div class="meta" data-route="lite"><b>4 nights</b>days 12–15 · 16–19 Jan</div>
       </div>
       <div class="why"><b>Why this long</b>The discovery of the whole route: a town with no tall buildings at all, where two hundred monuments stand among snowy fields. Four nights buy you a day in Vladimir on the way, two full days in Suzdal, and one completely free — for sleigh rides, mead and long lunches. This is where winter feels most real.</div>
 
-      <div class="tbl-wrap">
+      <div data-route="full"><div class="tbl-wrap">
         <table>
           <thead><tr><th>Day</th><th>Plan</th></tr></thead>
           <tbody>
@@ -1607,7 +2062,18 @@ footer .sign{font-family:"JetBrains Mono",monospace; font-size:11px; letter-spac
             <tr><td class="day">10</td><td><b>No plan:</b> a horse-drawn sleigh, Ilyinsky Meadow, the ice slides, a long lunch</td></tr>
           </tbody>
         </table>
-      </div>
+      </div></div>
+      <div data-route="lite"><div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Day</th><th>Plan</th></tr></thead>
+          <tbody>
+            <tr><td class="day">12</td><td>Morning train to <b>Vladimir</b>: the Golden Gates, Dormition Cathedral with Rublev's frescoes, St Demetrius Cathedral, the viewpoint on Georgievskaya. Transfer to Suzdal in the afternoon</td></tr>
+            <tr><td class="day">13</td><td>Suzdal Kremlin, Nativity Cathedral, the trading rows, Museum of Wooden Architecture</td></tr>
+            <tr><td class="day">14</td><td>Saviour Monastery of St Euthymius with its bell concerts, Intercession Convent, a mead tasting</td></tr>
+            <tr><td class="day">15</td><td><b>No plan:</b> a horse-drawn sleigh, Ilyinsky Meadow, the ice slides, a long lunch</td></tr>
+          </tbody>
+        </table>
+      </div></div>
 
       <div class="grid">
         <div class="block">
@@ -1655,7 +2121,7 @@ footer .sign{font-family:"JetBrains Mono",monospace; font-size:11px; letter-spac
     </article>
 
     <!-- KOSTROMA -->
-    <article class="city">
+    <article class="city" data-route="full">
       <div class="city-head">
         <h3>Kostroma</h3>
         <div class="meta"><b>2 nights</b>days 11–12 · 15–16 Jan</div>
@@ -1687,7 +2153,7 @@ footer .sign{font-family:"JetBrains Mono",monospace; font-size:11px; letter-spac
     </article>
 
     <!-- YAROSLAVL -->
-    <article class="city">
+    <article class="city" data-route="full">
       <div class="city-head">
         <h3>Yaroslavl <span style="font-size:.55em;color:var(--muted)">+ Rostov Veliky</span></h3>
         <div class="meta"><b>3 nights</b>days 13–15 · 17–19 Jan</div>
@@ -1744,9 +2210,9 @@ footer .sign{font-family:"JetBrains Mono",monospace; font-size:11px; letter-spac
     <article class="city">
       <div class="city-head">
         <h3>Moscow · the pause</h3>
-        <div class="meta"><b>2 nights</b>days 16–17 · 20–21 Jan</div>
+        <div class="meta" data-route="full"><b>2 nights</b>days 16–17 · 20–21 Jan</div><div class="meta" data-route="lite"><b>1 night</b>day 16 · 20 Jan</div>
       </div>
-      <div class="why"><b>Why this long</b>After the Golden Ring you need a soft landing. Days with no obligations: whatever you missed the first time, a favourite café again, shopping, rest before the Sapsan. Psychologically this pause in the middle matters.</div>
+      <div class="why" data-route="full"><b>Why this long</b>After the Golden Ring you need a soft landing. Days with no obligations: whatever you missed the first time, a favourite café again, shopping, rest before the Sapsan. Psychologically this pause in the middle matters.</div><div class="why" data-route="lite"><b>Why this long</b>On the lite route this is simply a connection: you come back from Suzdal via Vladimir during the day, spend the evening in a city you already know, and board the Sapsan in the morning. Book a hotel near Leningradsky station.</div>
       <div class="grid">
         <div class="block">
           <h4>Pick two or three, no more</h4>
@@ -1760,7 +2226,7 @@ footer .sign{font-family:"JetBrains Mono",monospace; font-size:11px; letter-spac
           </ul>
         </div>
         <div class="block">
-          <h4>Day 18: the Sapsan</h4>
+          <h4 data-route="full">Day 18: the Sapsan</h4><h4 data-route="lite">Day 17: the Sapsan</h4>
           <p>Leningradsky station to Moskovsky station, 3 h 45. Take a morning departure so you arrive in daylight, and book a window seat: snow-covered forest the whole way.</p>
           <p style="margin:0">Breakfast is not included in every fare — check when booking.</p>
         </div>
@@ -1771,11 +2237,11 @@ footer .sign{font-family:"JetBrains Mono",monospace; font-size:11px; letter-spac
     <article class="city">
       <div class="city-head">
         <h3>St Petersburg</h3>
-        <div class="meta"><b>8 nights</b>days 18–25 · 22–29 Jan</div>
+        <div class="meta" data-route="full"><b>8 nights</b>days 18–25 · 22–29 Jan</div><div class="meta" data-route="lite"><b>11 nights</b>days 17–27 · 21–31 Jan</div>
       </div>
-      <div class="why"><b>Why this long</b>It is at least three separate cities: the imperial centre, world-class museums and the palace suburbs. The Hermitage honestly needs two visits. Add short daylight and frequent grey skies and you want slack for the days when three hours in a museum and two in a café is the right answer.</div>
+      <div class="why" data-route="full"><b>Why this long</b>It is at least three separate cities: the imperial centre, world-class museums and the palace suburbs. The Hermitage honestly needs two visits. Add short daylight and frequent grey skies and you want slack for the days when three hours in a museum and two in a café is the right answer.</div><div class="why" data-route="lite"><b>Why this long</b>Eleven nights is the point at which St Petersburg stops being a list of museums. The Hermitage splits into two unhurried visits, the suburbs get days of their own, Kronstadt and winter Peterhof fit in — and three days in between are left entirely empty.</div>
 
-      <div class="tbl-wrap">
+      <div data-route="full"><div class="tbl-wrap">
         <table>
           <thead><tr><th>Day</th><th>Plan</th><th>Effort</th></tr></thead>
           <tbody>
@@ -1789,7 +2255,25 @@ footer .sign{font-family:"JetBrains Mono",monospace; font-size:11px; letter-spac
             <tr><td class="day">25</td><td><b>Hermitage, visit two</b> — the General Staff Building and the Impressionists. Or Fabergé and Dostoevsky</td><td>Easy</td></tr>
           </tbody>
         </table>
-      </div>
+      </div></div>
+      <div data-route="lite"><div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Day</th><th>Plan</th><th>Effort</th></tr></thead>
+          <tbody>
+            <tr><td class="day">17</td><td>Sapsan, check in, Nevsky Prospect in the evening, dinner</td><td>Easy</td></tr>
+            <tr><td class="day">18</td><td><b>Hermitage, visit one</b>: the state rooms of the Winter Palace</td><td>Medium</td></tr>
+            <tr><td class="day">19</td><td>Saviour on Spilled Blood, Russian Museum, Mikhailovsky Garden</td><td>Medium</td></tr>
+            <tr><td class="day">20</td><td><b>No plan:</b> New Holland, skating, coffee</td><td>Easy</td></tr>
+            <tr><td class="day">21</td><td>Peter and Paul Fortress, Hare Island, the Spit of Vasilievsky Island</td><td>Medium</td></tr>
+            <tr><td class="day">22</td><td><b>Tsarskoye Selo</b>: Catherine Palace and the Amber Room</td><td>Medium</td></tr>
+            <tr><td class="day">23</td><td>St Isaac's Cathedral and colonnade, Yusupov Palace, then <b>ballet at the Mariinsky</b></td><td>Medium</td></tr>
+            <tr><td class="day">24</td><td><b>No plan:</b> Sevkabel Port, Erarta, cafés on the Petrograd Side</td><td>Easy</td></tr>
+            <tr><td class="day">25</td><td><b>Pavlovsk</b> and its hand-fed squirrels, or winter <b>Peterhof</b></td><td>Medium</td></tr>
+            <tr><td class="day">26</td><td><b>Hermitage, visit two</b> — the General Staff Building and the Impressionists</td><td>Easy</td></tr>
+            <tr><td class="day">27</td><td><b>Kronstadt</b> and the Island of Forts, farewell dinner</td><td>Medium</td></tr>
+          </tbody>
+        </table>
+      </div></div>
 
       <div class="grid">
         <div class="block">
@@ -1865,7 +2349,7 @@ footer .sign{font-family:"JetBrains Mono",monospace; font-size:11px; letter-spac
     <article class="city">
       <div class="city-head">
         <h3>Veliky Novgorod</h3>
-        <div class="meta"><b>2 nights</b>days 26–27 · 30–31 Jan</div>
+        <div class="meta" data-route="full"><b>2 nights</b>days 26–27 · 30–31 Jan</div><div class="meta" data-route="lite"><b>2 nights</b>days 28–29 · 1–2 Feb</div>
       </div>
       <div class="why"><b>Why this long</b>The oldest city on the route (859) and the right closing note: after imperial Petersburg, quiet medieval Rus. Everything essential fits into a day and a half, and there is a convenient overnight train to Moscow on the second evening.</div>
       <div class="grid">
@@ -1892,16 +2376,17 @@ footer .sign{font-family:"JetBrains Mono",monospace; font-size:11px; letter-spac
           </ul>
         </div>
       </div>
-      <div class="tip">On the evening of day 27, the overnight train to Moscow. Eight hours in a two-berth compartment with tea in a metal holder: it saves a whole day and is an experience in its own right.</div>
+      <div class="tip" data-route="lite">On the evening of day 29, the overnight train to Moscow. Eight hours in a two-berth compartment with tea in a metal holder: it saves a whole day and is an experience in its own right.</div>
+      <div class="tip" data-route="full">On the evening of day 27, the overnight train to Moscow. Eight hours in a two-berth compartment with tea in a metal holder: it saves a whole day and is an experience in its own right.</div>
     </article>
 
     <!-- MOSCOW FINAL -->
     <article class="city">
       <div class="city-head">
         <h3>Moscow · the finish</h3>
-        <div class="meta"><b>3 nights</b>days 28–30 · 1–3 Feb</div>
+        <div class="meta" data-route="full"><b>3 nights</b>days 28–30 · 1–3 Feb</div><div class="meta" data-route="lite"><b>1 night</b>day 30 · 3 Feb</div>
       </div>
-      <div class="why"><b>Why this long</b>You want a buffer before a long-haul flight — winter brings blizzards and delayed trains — plus time for presents and for repeating whatever you loved. Nothing here is compulsory.</div>
+      <div class="why" data-route="full"><b>Why this long</b>You want a buffer before a long-haul flight — winter brings blizzards and delayed trains — plus time for presents and for repeating whatever you loved. Nothing here is compulsory.</div><div class="why" data-route="lite"><b>Why this long</b>On the lite route this is a single buffer night: the sleeper arrives in the morning, the day goes on presents, a favourite café and packing, and you fly out on 4 February. If you want insurance against a blizzard, add a second night by taking one from St Petersburg.</div>
       <div class="grid">
         <div class="block">
           <h4>Ideas</h4>
@@ -1934,6 +2419,7 @@ footer .sign{font-family:"JetBrains Mono",monospace; font-size:11px; letter-spac
     <div class="sec-head"><div class="eyebrow">03</div><h2>Budget</h2></div>
     <p class="sec-sub">All figures are per person, except the separately marked accommodation rows. Calculated at 1 NZD = 45 ₽. The 14,000 NZD ceiling is not even half spent: the recommended tier lands at 8,000.</p>
 
+    <div class="note" data-route="lite">The figures below are recalculated for the lite route. The lean and generous tiers are shown for the full version: on the lite route the difference is under 1%, because what you save on travel goes into pricier nights in the two capitals.</div>
     <div class="tiers" role="tablist" aria-label="Budget tiers">
       <button class="tier-btn" role="tab" aria-selected="false" aria-controls="p-eco-en" id="t-eco-en">Lean but comfortable<span>7,000 NZD</span></button>
       <button class="tier-btn" role="tab" aria-selected="true" aria-controls="p-rec-en" id="t-rec-en">Recommended<span>8,000 NZD</span></button>
@@ -1966,13 +2452,19 @@ footer .sign{font-family:"JetBrains Mono",monospace; font-size:11px; letter-spac
     </div>
 
     <div class="panel" id="p-rec-en" role="tabpanel" aria-labelledby="t-rec-en">
-      <div class="summary">
+      <div class="summary" data-route="full">
         <div class="sum-card"><div class="l">Per person</div><div class="v">360,000 ₽</div></div>
         <div class="sum-card hi"><div class="l">Per person</div><div class="v">8,000 <small>NZD</small></div></div>
         <div class="sum-card"><div class="l">For two</div><div class="v">16,000 <small>NZD</small></div></div>
         <div class="sum-card"><div class="l">Left from the ceiling</div><div class="v">6,000 <small>NZD pp</small></div></div>
       </div>
-      <div class="tbl-wrap">
+      <div class="summary" data-route="lite">
+        <div class="sum-card"><div class="l">Per person</div><div class="v">359,000 ₽</div></div>
+        <div class="sum-card hi"><div class="l">Per person</div><div class="v">7,978 <small>NZD</small></div></div>
+        <div class="sum-card"><div class="l">For two</div><div class="v">15,956 <small>NZD</small></div></div>
+        <div class="sum-card"><div class="l">Left from the ceiling</div><div class="v">6,022 <small>NZD pp</small></div></div>
+      </div>
+      <div data-route="full"><div class="tbl-wrap">
         <table>
           <thead><tr><th>Category</th><th class="num">₽ pp</th><th class="num">NZD pp</th><th>What it covers</th></tr></thead>
           <tbody>
@@ -1986,10 +2478,25 @@ footer .sign{font-family:"JetBrains Mono",monospace; font-size:11px; letter-spac
             <tr class="total"><td>Total per person</td><td class="num">360,000 ₽</td><td class="num">8,000</td><td>For two — 720,000 ₽ / 16,000 NZD</td></tr>
           </tbody>
         </table>
-      </div>
+      </div></div>
+      <div data-route="lite"><div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Category</th><th class="num">₽ pp</th><th class="num">NZD pp</th><th>What it covers</th></tr></thead>
+          <tbody>
+            <tr><td>Accommodation</td><td class="num">115,000</td><td class="num">2,556</td><td>More nights in pricier Moscow and St Petersburg</td></tr>
+            <tr><td>Transport within Russia</td><td class="num">35,000</td><td class="num">778</td><td>5 journeys, 4 day trips, metro and taxis for 30 days</td></tr>
+            <tr><td>Food</td><td class="num">90,000</td><td class="num">2,000</td><td>≈ 3,000 ₽ a day, including three special dinners</td></tr>
+            <tr><td>Museums</td><td class="num">26,000</td><td class="num">578</td><td>20–22 museums: provincial ones swap for city ones</td></tr>
+            <tr><td>Entertainment</td><td class="num">30,000</td><td class="num">667</td><td>Two ballets, rinks, a sleigh ride, huskies, 2–3 guides</td></tr>
+            <tr><td>Souvenirs, SIM, insurance, visa</td><td class="num">33,000</td><td class="num">733</td><td>Visa with invitation ≈ 12,000 ₽, insurance ≈ 8,000 ₽</td></tr>
+            <tr><td>Contingency</td><td class="num">30,000</td><td class="num">667</td><td>Blizzards, expensive taxis, spontaneous ideas</td></tr>
+            <tr class="total"><td>Total per person</td><td class="num">359,000 ₽</td><td class="num">7,978</td><td>For two — 718,000 ₽ / 15,956 NZD</td></tr>
+          </tbody>
+        </table>
+      </div></div>
 
       <h3 style="font-size:22px;margin-bottom:14px">Accommodation city by city</h3>
-      <div class="tbl-wrap">
+      <div data-route="full"><div class="tbl-wrap">
         <table>
           <thead><tr><th>City</th><th class="num">Nights</th><th class="num">Per room / night</th><th class="num">Room total</th><th class="num">Per person</th></tr></thead>
           <tbody>
@@ -2002,7 +2509,19 @@ footer .sign{font-family:"JetBrains Mono",monospace; font-size:11px; letter-spac
             <tr class="total"><td>Total</td><td class="num">30</td><td class="num">—</td><td class="num">218,000 ₽ · 4,844 NZD</td><td class="num">109,000 ₽ · 2,422 NZD</td></tr>
           </tbody>
         </table>
-      </div>
+      </div></div>
+      <div data-route="lite"><div class="tbl-wrap">
+        <table>
+          <thead><tr><th>City</th><th class="num">Nights</th><th class="num">Per room / night</th><th class="num">Room total</th><th class="num">Per person</th></tr></thead>
+          <tbody>
+            <tr><td>Moscow (11 + 1 + 1)</td><td class="num">13</td><td class="num">8,000 ₽</td><td class="num">104,000 ₽</td><td class="num">52,000 ₽</td></tr>
+            <tr><td>Suzdal</td><td class="num">4</td><td class="num">7,000 ₽</td><td class="num">28,000 ₽</td><td class="num">14,000 ₽</td></tr>
+            <tr><td>St Petersburg</td><td class="num">11</td><td class="num">8,000 ₽</td><td class="num">88,000 ₽</td><td class="num">44,000 ₽</td></tr>
+            <tr><td>Veliky Novgorod</td><td class="num">2</td><td class="num">5,000 ₽</td><td class="num">10,000 ₽</td><td class="num">5,000 ₽</td></tr>
+            <tr class="total"><td>Total</td><td class="num">30</td><td class="num">—</td><td class="num">230,000 ₽ · 5,111 NZD</td><td class="num">115,000 ₽ · 2,556 NZD</td></tr>
+          </tbody>
+        </table>
+      </div></div>
 
       <h3 style="font-size:22px;margin-bottom:14px">Where to look for hotels</h3>
       <div class="tbl-wrap">
@@ -2011,8 +2530,8 @@ footer .sign{font-family:"JetBrains Mono",monospace; font-size:11px; letter-spac
           <tbody>
             <tr><td>Moscow</td><td>Kitay-gorod, Tverskaya, Chistye Prudy, Zamoskvorechye</td><td>Cosmos Selection Tverskaya, Azimut Smolenskaya, Vertical apart-hotels, boutique hotels on Pokrovka</td></tr>
             <tr><td>Suzdal</td><td>Walking distance to the market square</td><td>Pushkarskaya Sloboda, Nikolaevsky Posad, GTK Suzdal</td></tr>
-            <tr><td>Kostroma</td><td>By Susanin Square</td><td>Azimut Kostroma, Ostrovsky Prichal</td></tr>
-            <tr><td>Yaroslavl</td><td>Volga embankment, centre</td><td>Ring Premier Hotel, Ioann Vasilievich Hotel</td></tr>
+            <tr data-route="full"><td>Kostroma</td><td>By Susanin Square</td><td>Azimut Kostroma, Ostrovsky Prichal</td></tr>
+            <tr data-route="full"><td>Yaroslavl</td><td>Volga embankment, centre</td><td>Ring Premier Hotel, Ioann Vasilievich Hotel</td></tr>
             <tr><td>St Petersburg</td><td>Admiralteysky and Tsentralny, near the Moika and Fontanka</td><td>Helvetia, hotels around St Isaac's Square, flats on the Moika</td></tr>
             <tr><td>Novgorod</td><td>By the kremlin</td><td>Volkhov, Truvor</td></tr>
           </tbody>
@@ -2050,10 +2569,243 @@ footer .sign{font-family:"JetBrains Mono",monospace; font-size:11px; letter-spac
   </div>
 </section>
 
+<!-- MONEY -->
+<section id="money-en">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">04</div>
+      <h2>Money</h2>
+    </div>
+    <p class="sec-sub">Your situation is unusual, and that works in your favour: one of you lives in Russia and pays with a Russian card, the other brings foreign currency. That means <b>one currency conversion instead of two</b> — worth several hundred dollars over a month.</p>
+
+    <article class="city">
+      <div class="city-head"><h3>The cheapest way to do this</h3></div>
+      <div class="why"><b>In one line</b>She converts New Zealand dollars into US dollars at home, brings the cash and hands it to him. He gives her the rouble equivalent and pays for everything with his card. The dollars end up with the person who wants dollars, the roubles with the person who wants roubles, and the money is converted only once.</div>
+
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Option</th><th>Conversions</th><th class="num">Rough cost</th></tr></thead>
+          <tbody>
+            <tr><td>Bring NZD, change into roubles in Russia</td><td>NZD → RUB directly, but it is an exotic currency here and few banks handle it</td><td class="num">6–10%</td></tr>
+            <tr><td>Bring USD, change into roubles at a bank</td><td>NZD → USD at home, then USD → RUB here</td><td class="num">4–6%</td></tr>
+            <tr class="total"><td>Bring USD and settle between yourselves</td><td>only NZD → USD at home</td><td class="num">1–3%</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="src"><b>Caveat</b> These percentages are typical spreads, not a promise: rates and fees vary by bank and by day. The ranking of the options does not change.</p>
+
+      <div class="grid">
+        <div class="block">
+          <h4>Is it legal</h4>
+          <ul>
+            <li><b>Yes.</b> She is a currency non-resident, he is a resident. Under Russian currency law (173-FZ) operations between a resident and a non-resident are not restricted, and a cash exchange between the two of you is not prohibited</li>
+            <li><b>No tax:</b> this is an exchange of equivalents, not income. Even a gift of money between individuals is not subject to personal income tax in Russia</li>
+            <li><b>Where the risk starts:</b> exchanging currency for third parties on a regular basis looks like unlicensed banking (art. 172 of the Criminal Code). A one-off exchange within a couple is nothing of the sort</li>
+            <li><b>Avoid</b> street money changers and messenger-app offers — that is where both counterfeits and genuine illegality live</li>
+            <li><b>Keep the paperwork:</b> the exchange receipt or customs declaration. If a large sum later goes into a bank account, one piece of paper answers the question about its origin</li>
+          </ul>
+        </div>
+        <div class="block">
+          <h4>Border thresholds — verified figures</h4>
+          <ul>
+            <li><b>Leaving New Zealand:</b> carrying <b>NZ$10,000</b> or more in cash (or foreign equivalent) requires a Border Cash Report, form NZCS 337 — online within 72 hours of travel, or on the spot <span class="tag">customs.govt.nz</span></li>
+            <li><b>Entering Russia:</b> declaration is required above the equivalent of <b>US$10,000</b> per person, counting all currencies together, roubles included. Below that, the green channel and no paperwork</li>
+            <li><b>Her share on the recommended budget</b> is about 360,000 ₽, roughly <b>US$4,500–4,800</b> — under both thresholds. If you decide to bring more, just file the form: it is not a fee or a tax, it takes five minutes</li>
+            <li>Don't split a sum between two people to stay under a threshold. Structuring looks far worse than an honest declaration</li>
+          </ul>
+          <p class="src"><b>Sources</b> <a href="https://www.customs.govt.nz/travel-to-and-from-new-zealand/border-cash-report" target="_blank" rel="noopener">Border Cash Report, NZ Customs</a> · <a href="https://www.customs.govt.nz/travel-to-and-from-new-zealand/leaving-new-zealand" target="_blank" rel="noopener">Leaving New Zealand</a> · <a href="https://customs.gov.ru/fiz/pravila-peremeshheniya-tovarov/peremeshhenie-nalichnoj-valyuty-i-denezhnyx-instrumentov" target="_blank" rel="noopener">Russian Federal Customs Service</a></p>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="block">
+          <h4>Getting the dollars cheaply in New Zealand</h4>
+          <ul>
+            <li><b>Order USD cash in advance from your own bank</b> (ANZ, ASB, BNZ, Westpac) — normally much better than a walk-in bureau</li>
+            <li><b>Don't change money at the airport</b> — the most expensive point in the whole chain</li>
+            <li><b>Notes:</b> mostly 100s, some 50s and 20s for the first days. Recent series only, no tears, no writing, no stains — worn notes are refused in Russia or taken at a discount</li>
+            <li><b>Don't buy roubles in advance</b> — the rate for them in New Zealand is poor by definition</li>
+          </ul>
+        </div>
+        <div class="block">
+          <h4>What rate to use between yourselves</h4>
+          <ul>
+            <li>Use the <b>official Central Bank rate for the day</b>, published on cbr.ru and checkable in ten seconds</li>
+            <li>Or the midpoint between a large bank's buy and sell rates. The important part is agreeing in advance so there is no awkwardness later</li>
+            <li>Every estimate on this site uses <b>1 NZD = 45 ₽</b>; check the USD rate on the day you settle up</li>
+          </ul>
+        </div>
+      </div>
+    </article>
+
+    <article class="city">
+      <div class="city-head"><h3>Cards: what actually works</h3></div>
+      <div class="grid">
+        <div class="block">
+          <h4>Three options, best first</h4>
+          <ul>
+            <li><b>1. He pays with his card.</b> Works from minute one, nothing to arrange. Hotels, trains, museums, restaurants all go on his card and she settles in cash</li>
+            <li><b>2. A supplementary card on his account, issued in her name.</b> The account stays his, the plastic with her name is hers. Needs her passport and usually a notarised translation; takes a day or two. The best option if she wants to pay for things herself</li>
+            <li><b>3. Her own Mir card.</b> A longer chain: biometrics first, then a Russian SIM (bank confirmations go to a Russian number), then the account. Not every branch will take a client on a tourist visa. Worth it only for a long or repeat stay</li>
+          </ul>
+        </div>
+        <div class="block">
+          <h4>Things to keep in mind</h4>
+          <ul>
+            <li><b>Foreign Visa, Mastercard and Amex do not work in Russia</b> — not in shops, not in ATMs, not online</li>
+            <li><b>Handing her his own card is a poor main plan:</b> bank cards are personal and non-transferable, and anywhere ID is checked — hotel, rail ticket office, large purchase — it becomes a problem</li>
+            <li><b>Her NZ card is for everything paid before arrival:</b> flights, insurance, consular fee, bookings outside Russia</li>
+            <li><b>Call the bank before she arrives</b> and ask literally: do you issue a supplementary card to a foreign national on a passport, and is a notarised translation required? Answers differ between banks</li>
+            <li><b>If she stays at his flat rather than a hotel</b>, migration registration is his duty as the host, within 7 working days</li>
+          </ul>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- RISKS -->
+<section id="risk-en">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">05</div>
+      <h2>Risks: an honest look</h2>
+    </div>
+    <p class="sec-sub">This section exists neither to reassure nor to frighten, but so that the decision is made with open eyes. Everything checkable is linked to its primary source.</p>
+
+    <article class="city">
+      <div class="city-head"><h3>What the New Zealand government says</h3></div>
+      <div class="note">The official level for Russia is <b>"Do not travel"</b>, the highest of four. MFAT's wording: there are significant threats to New Zealanders travelling to Russia; the armed conflict with Ukraine has affected commercial flight availability and access to financial services, and the security situation could deteriorate with little warning. Terrorism, arbitrary enforcement of local laws and violent crime are listed separately.</div>
+      <p class="src"><b>Source</b> <a href="https://www.safetravel.govt.nz/destinations/russia" target="_blank" rel="noopener">SafeTravel · Russia (Russian Federation)</a>, page updated 10 October 2025</p>
+      <div class="grid">
+        <div class="block">
+          <h4>What that means in practice</h4>
+          <ul>
+            <li>New Zealand has held this level for Russia since 2022, and it rests mainly on <b>logistics, finance and unpredictability</b> — not on the idea that walking around Moscow is dangerous</li>
+            <li>Unlike the United States, <b>consular help is available to New Zealanders</b>: the embassy in Moscow operates at 44 Povarskaya Ulitsa, phone +7 495 956 3579</li>
+            <li>There is a 24/7 MFAT consular line: +64 99 20 20 20</li>
+            <li>The trip should be <b>registered on SafeTravel</b> so she can be contacted directly if a crisis develops</li>
+          </ul>
+        </div>
+        <div class="block">
+          <h4>What the advisory does not say</h4>
+          <ul>
+            <li>It does not say New Zealand tourists are being detained. There is no pattern of that for New Zealanders — unlike the practice towards US citizens, which the State Department describes in plain terms</li>
+            <li>It cannot account for the fact that she has someone in Russia who meets her, lives there and speaks the language. That removes most of the everyday risks such advisories are written for</li>
+            <li>But it is right that <b>flights can be cancelled, money can become inaccessible and rules can change fast</b></li>
+          </ul>
+        </div>
+      </div>
+    </article>
+
+    <article class="city">
+      <div class="city-head"><h3>Insurance: is it worth it</h3></div>
+      <div class="why"><b>Short answer</b>Yes, but not the policy she would buy out of habit at home. A standard New Zealand policy will most likely not respond for a destination at "do not travel" level — the most underestimated problem of this whole trip.</div>
+      <div class="grid">
+        <div class="block">
+          <h4>The catch</h4>
+          <ul>
+            <li>MFAT states plainly that <b>insurance cover is affected by the advisory level</b>, and policies generally will not cover travel to destinations where the government advises against all or non-essential travel</li>
+            <li>MFAT also notes that <b>most international insurers will not cover travel to Russia because of sanctions</b>, regardless of the advisory level</li>
+            <li>Insurance bundled with a credit card follows the same rules and will not help here either</li>
+            <li>At the same time MFAT recommends holding a comprehensive policy <b>including air medical evacuation</b>. Such cover for Russia is hard to find, and I won't pretend one purchase solves it</li>
+          </ul>
+          <p class="src"><b>Sources</b> <a href="https://www.safetravel.govt.nz/destinations/russia" target="_blank" rel="noopener">SafeTravel: Russia</a> · <a href="https://www.safetravel.govt.nz/destinations/about-our-travel-advice" target="_blank" rel="noopener">About our travel advice</a></p>
+        </div>
+        <div class="block">
+          <h4>What to do</h4>
+          <ul>
+            <li><b>1.</b> Ask your New Zealand insurer <b>in writing</b> whether the policy responds at the current advisory level. Verbal reassurance is worth nothing here</li>
+            <li><b>2.</b> Buy a policy the consulate accepts and that is valid inside Russia — usually a Russian or international insurer, arranged online, inexpensive for 30 days. It covers treatment on the spot</li>
+            <li><b>3.</b> Assume <b>evacuation home, trip cancellation and lost luggage are not covered</b>, and close that gap with a cash reserve. The budget already carries one: 30,000 ₽ per person</li>
+            <li><b>4.</b> Check that her policy covers the <b>transit countries</b> — Dubai, Doha, Istanbul. Their advisory levels differ and insurance normally works there</li>
+          </ul>
+        </div>
+      </div>
+      <div class="tip"><b>Bottom line.</b> It is worth buying — but treat it as cover for a hospital in Moscow, not as a full travel policy in the New Zealand sense. The gap is closed by money in the bank and by the fact that a local person will be with her the entire time.</div>
+    </article>
+
+    <article class="city">
+      <div class="city-head"><h3>Phone checks at the border</h3></div>
+      <div class="grid">
+        <div class="block">
+          <h4>The legal framework</h4>
+          <ul>
+            <li>The Russian law on the State Border gives border authorities the right to <b>inspect items and possessions</b> of people entering and leaving the country. The wording is not limited to foreigners</li>
+            <li>The stricter procedure — a personal search — is supposed to require <b>grounds to suspect a violation</b>, not simple curiosity about a phone. It is conducted by an officer of the same sex, with witnesses present, and a report is drawn up and given to you</li>
+            <li>In practice the conversation can cover the purpose of travel, political views and connections to Ukraine, and can include a request to show the contents of a phone</li>
+            <li><b>Refusing to unlock</b> a device risks being treated as disobeying a lawful order, with a fine or administrative detention. "I simply won't show it" is a weak strategy</li>
+          </ul>
+        </div>
+        <div class="block">
+          <h4>How likely is it</h4>
+          <ul>
+            <li>Honestly: <b>there is no public statistic</b>, and anyone quoting you a percentage is inventing it. Checks are selective</li>
+            <li>What raises the odds: Ukrainian connections in your messages, work in media, NGOs or government, donations to Ukrainian funds in your payment history, previous visits to sensitive countries, visible nervousness</li>
+            <li>What lowers them: an ordinary tourist story, a clear purpose, confirmed accommodation, a return ticket, calm answers</li>
+            <li>A typical tourist clears the border in a minute. But the officer's right exists at all times, and that has to be accepted as a given</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3 style="font-size:22px;margin:10px 0 14px">Preparing the phone</h3>
+      <div class="grid">
+        <div class="block">
+          <h4>Do</h4>
+          <ul>
+            <li><b>Travel with an ordinary phone belonging to an ordinary person.</b> A device scrubbed to emptiness looks implausible and invites a closer look by itself</li>
+            <li>Leave political channels and chats, and unfollow organisations designated in Russia as undesirable or extremist</li>
+            <li>Scroll the photo library and delete anything you would not want to explain in the middle of an airport</li>
+            <li>Log out of work accounts if the work touches media, government or sensitive data</li>
+            <li>Keep paper copies to hand: invitation, booking, return ticket, his contact details</li>
+          </ul>
+        </div>
+        <div class="block">
+          <h4>Don't</h4>
+          <ul>
+            <li>Don't post about military or political topics during the trip. The "discrediting the armed forces" and "fakes" articles apply to foreigners too, including posts made long before entry</li>
+            <li>Don't bring a "clean second phone" instead of your real one — that is precisely the pattern that raises questions</li>
+            <li>Don't argue emotionally. If a check begins, calmly ask whether this is an inspection or a personal search, and ask for it to be documented properly</li>
+            <li>Don't agree to have software installed without explanation — but don't turn it into a confrontation either. Polite, brief, no irony</li>
+          </ul>
+        </div>
+      </div>
+      <p class="src"><b>Legal basis</b> Art. 30 of the Russian law "On the State Border"; customs control under the EAEU Customs Code. Practical guidance: <a href="https://ovdinfo.legal/instruction/border" target="_blank" rel="noopener">OVD-Info border crossing guide</a></p>
+    </article>
+
+    <article class="city">
+      <div class="city-head"><h3>The bottom line</h3></div>
+      <div class="grid">
+        <div class="block">
+          <h4>Risks, ordered by how real they are</h4>
+          <ul>
+            <li><b>1. Money and insurance.</b> The likeliest problem is not detention but a policy that doesn't respond after a fall on the ice. Solved by cash and sober expectations</li>
+            <li><b>2. Logistics.</b> Connecting flights, cancellations, delays, closed airspace. Hence the buffer days at the end of the route and the reserve in the budget</li>
+            <li><b>3. Legal caution online.</b> Manageable: prepare the phone and stay off political topics for a month</li>
+            <li><b>4. The border.</b> The right to check exists and is used selectively; for an ordinary tourist without red flags it passes uneventfully</li>
+            <li><b>5. Everyday safety.</b> Lower in Moscow and St Petersburg than in many European capitals. The real winter danger is ice underfoot</li>
+          </ul>
+        </div>
+        <div class="block">
+          <h4>Do these regardless</h4>
+          <ul>
+            <li>Register the trip on <a href="https://www.safetravel.govt.nz/register" target="_blank" rel="noopener">SafeTravel</a></li>
+            <li>Save in her phone: New Zealand Embassy Moscow +7 495 956 3579, MFAT 24/7 line +64 99 20 20 20, ambulance 103, general emergencies 112</li>
+            <li>Leave a copy of the passport, visa and itinerary with family</li>
+            <li>Agree on a simple rule: one short message home each day, so nobody starts imagining things</li>
+            <li>Re-read the SafeTravel page just before flying. The situation changes; that page keeps up</li>
+          </ul>
+        </div>
+      </div>
+      <div class="note"><b>Honestly, about the main thing.</b> Her government's official advice is not to go, and that is not a formality to wave away. But it is written for an abstract New Zealander with no connections in the country, not for someone met and accompanied by a local. The reasonable position is this: the risk is real, it is mostly financial and logistical, it shrinks with preparation — and the decision belongs to the two of you, not to a website or an official. If the answer is still yes after reading this, then it is an informed yes, which is the only thing that matters here.</div>
+    </article>
+  </div>
+</section>
+
 <!-- PRACTICAL -->
 <section id="practice-en">
   <div class="wrap">
-    <div class="sec-head"><div class="eyebrow">04</div><h2>Practical</h2></div>
+    <div class="sec-head"><div class="eyebrow">06</div><h2>Practical</h2></div>
     <p class="sec-sub">Nine things to sort before you fly. The section on money is the single most important part of this document.</p>
 
     <article class="city">
@@ -2161,8 +2913,9 @@ footer .sign{font-family:"JetBrains Mono",monospace; font-size:11px; letter-spac
         <div class="block">
           <h4>SIM cards</h4>
           <ul>
-            <li><b>Simplest:</b> an international eSIM (Airalo, Yesim and similar) with a Russia plan — activate it before you leave and it roams</li>
-            <li><b>A local SIM:</b> since 2025 foreigners must register biometrics to buy one. It is doable but takes time — go to an official MTS, Beeline, MegaFon or t2 shop with your passport and migration card</li>
+            <li><b>Roaming on foreign SIMs is restricted.</b> Since 6 October 2025, on first registration in a Russian network mobile data and SMS are cut for roughly 24 hours — voice calls only. This applies to eSIMs too, and MFAT confirms that <a href="https://www.safetravel.govt.nz/destinations/russia" target="_blank" rel="noopener">roaming for foreign SIM cards is significantly restricted</a></li>
+            <li><b>What this means:</b> plan your first day around Wi-Fi and the phone of whoever meets you. Download offline maps before you fly</li>
+            <li><b>A local SIM:</b> since 1 January 2025 a foreigner can only buy a Russian SIM after registering biometrics in the state biometric system. It is doable but takes time — go to an official MTS, Beeline, MegaFon or t2 shop with your passport and migration card</li>
             <li>Never buy a SIM from a street seller: those numbers get blocked</li>
             <li>Wi-Fi is everywhere, including the metro in both capitals (registration by phone number required)</li>
             <li>Instagram and Facebook are blocked in Russia and some Western services are unreliable. Google Maps works, but Yandex is more accurate for transport and venues</li>
@@ -2188,7 +2941,7 @@ footer .sign{font-family:"JetBrains Mono",monospace; font-size:11px; letter-spac
         <div class="block">
           <h4>Paperwork</h4>
           <ul>
-            <li><b>Visa:</b> New Zealand citizens cannot use the Russian e-visa. You need a standard tourist visa via the consulate or a visa centre, with an invitation from an accredited tour operator. Apply 6–8 weeks ahead</li>
+            <li><b>Visa:</b> a 30-day trip needs a standard tourist visa with an invitation from an accredited tour operator — the unified e-visa allows a maximum stay of 16 days, so it does not fit this trip regardless. Apply through the Consular Section of the Russian Embassy in Wellington and check the current document list at <a href="https://newzealand.mid.ru/" target="_blank" rel="noopener">newzealand.mid.ru</a>. Apply 6–8 weeks ahead</li>
             <li><b>Migration registration:</b> hotels do it automatically — that is why they take your passport at check-in. In a rented flat the host must do it within 7 working days, so hotels are safer for a long trip</li>
             <li>Carry a copy of your passport and visa and leave the original in the safe — except on train days, when you need the original</li>
             <li><b>Insurance</b> is required for the visa. Many Western insurers exclude Russia, so choose a provider the consulate accepts</li>
@@ -2305,10 +3058,20 @@ footer .sign{font-family:"JetBrains Mono",monospace; font-size:11px; letter-spac
       <div class="gauge-ends"><span>1 — a spa retreat</span><span>10 — a marathon</span></div>
       <p style="margin:22px 0 0">For comparison, a standard "Golden Ring in 7 days" tour scores about 8 out of 10. This one is deliberately slow. It is a holiday.</p>
     </div>
+    </div>
+    <div data-route="lite">
+<div class="gauge">
+      <h3 style="font-size:22px">How tiring this trip is</h3>
+      <div class="gauge-scale"><div class="gauge-pin lite"></div></div>
+      <div class="gauge-ends"><span>1 — a spa retreat</span><span>10 — a marathon</span></div>
+      <p style="margin:22px 0 0">Five journeys in a month and two hotels for the whole stay is closer to living in a city than to travelling through one. For comparison, a standard "Golden Ring in 7 days" tour scores about 8 out of 10.</p>
+    </div>
+    </div>
 
     <div class="grid">
       <div class="block">
-        <h4>Why it stays gentle</h4>
+        <div data-route="full">
+<h4>Why it stays gentle</h4>
         <ul>
           <li>Only <b>8 journeys in 30 days</b> — one every 3.75 days on average</li>
           <li>The longest daytime leg is 3 h 45, on a comfortable high-speed train</li>
@@ -2316,6 +3079,17 @@ footer .sign{font-family:"JetBrains Mono",monospace; font-size:11px; letter-spac
           <li>No city is done as a raid: the shortest stay is two nights</li>
           <li><b>Nine days have no compulsory programme at all</b></li>
         </ul>
+    </div>
+    <div data-route="lite">
+<h4>Why it stays gentle</h4>
+        <ul>
+          <li>Only <b>5 journeys in 30 days</b> — one every six days</li>
+          <li>13 nights in Moscow and 11 in St Petersburg: two hotels for the whole month</li>
+          <li>The longest daytime leg is 3 h 45, on a comfortable high-speed train</li>
+          <li>Day trips end in your own room — nothing gets packed</li>
+          <li><b>Twelve days have no compulsory programme at all</b></li>
+        </ul>
+    </div>
       </div>
       <div class="block">
         <h4>What will still tire you</h4>
@@ -2327,7 +3101,7 @@ footer .sign{font-family:"JetBrains Mono",monospace; font-size:11px; letter-spac
       </div>
     </div>
 
-    <div class="tbl-wrap">
+    <div data-route="full"><div class="tbl-wrap">
       <table>
         <thead><tr><th>Measure</th><th class="num">Value</th></tr></thead>
         <tbody>
@@ -2342,7 +3116,23 @@ footer .sign{font-family:"JetBrains Mono",monospace; font-size:11px; letter-spac
           <tr><td>Time on your feet on an active day</td><td class="num">4–5 hours, with breaks</td></tr>
         </tbody>
       </table>
-    </div>
+    </div></div>
+    <div data-route="lite"><div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Measure</th><th class="num">Value</th></tr></thead>
+        <tbody>
+          <tr><td>Total days and nights</td><td class="num">31 days / 30 nights</td></tr>
+          <tr><td>Cities</td><td class="num">4 bases + 4 day trips</td></tr>
+          <tr><td>Intercity journeys</td><td class="num">5</td></tr>
+          <tr><td>Of those, overnight</td><td class="num">1</td></tr>
+          <tr><td>Rest days with no programme</td><td class="num">12</td></tr>
+          <tr><td>Days of active walking and sightseeing</td><td class="num">12</td></tr>
+          <tr><td>Medium days: a day trip or a journey</td><td class="num">6</td></tr>
+          <tr><td>Museums in the plan</td><td class="num">20–22</td></tr>
+          <tr><td>Time on your feet on an active day</td><td class="num">4–5 hours, with breaks</td></tr>
+        </tbody>
+      </table>
+    </div></div>
 
     <h3 style="font-size:22px;margin-bottom:14px">What a typical week feels like</h3>
     <div class="tbl-wrap">
@@ -2437,6 +3227,23 @@ function setLang(lang){
 document.querySelectorAll('.lang-btn').forEach(function(b){
   b.addEventListener('click', function(){ setLang(b.dataset.lang); });
 });
+
+// Переключение варианта маршрута
+function setRoute(r){
+  document.querySelectorAll('[data-route]').forEach(function(el){
+    el.hidden = el.getAttribute('data-route') !== r;
+  });
+  document.querySelectorAll('.rs-btn').forEach(function(b){
+    b.setAttribute('aria-pressed', b.dataset.routeBtn === r ? 'true' : 'false');
+  });
+  try { localStorage.setItem('route', r); } catch(e){}
+}
+document.addEventListener('click', function(ev){
+  var b = ev.target.closest ? ev.target.closest('.rs-btn') : null;
+  if(b) setRoute(b.dataset.routeBtn);
+});
+try { setRoute(localStorage.getItem('route') === 'lite' ? 'lite' : 'full'); }
+catch(e){ setRoute('full'); }
 
 initReveal(document.getElementById('ru-content'), false);
 initReveal(document.getElementById('en-content'), true);
